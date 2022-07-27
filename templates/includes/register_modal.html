@@ -1,0 +1,31 @@
+{% load widget_tweaks %}
+
+{% with WIDGET_ERROR_CLASS='is-invalid' %}
+    <form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content" novalidate>
+        <div class="modal-header pb-2 border-bottom-0">
+            <h3 class="fw-bold mt-0">Register an account</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <hr class="my-1">
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="{{ form.email.id_for_label }}" class="form-label">Email address</label>
+                {% render_field form.email type="email" class="form-control" placeholder="Email address" %}
+                <div class="invalid-feedback">{{ form.email.errors|first }}</div>
+            </div>
+            <div class="mb-3">
+                <label for="{{ form.password1.id_for_label }}" class="form-label">Password</label>
+                {% render_field form.password1 type="password" class="form-control" placeholder="Password" %}
+                <div class="invalid-feedback">{{ form.password1.errors|first }}</div>
+            </div>
+            <div class="mb-3">
+                <label for="{{ form.password2.id_for_label }}" class="form-label">Confirm password</label>
+                {% render_field form.password2 type="password" class="form-control" placeholder="Confirm password" %}
+                <div class="invalid-feedback">{{ form.password2.errors|first }}</div>
+            </div>
+                <button class="w-100 mb-2 btn btn-lg btn-success fw-bold" type="submit">Sign up</button>
+                <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+                <hr class="my-4">
+        </div>
+    </form>
+{% endwith %}
