@@ -1,0 +1,78 @@
+{% load widget_tweaks %}
+
+{% with WIDGET_ERROR_CLASS='is-invalid' %}
+    <form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content" novalidate>
+        <div class="modal-header pb-2 border-bottom-0">
+            <h3 class="fw-bold mt-0">Personal Information</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <hr class="my-1">
+
+        <div class="modal-body">
+            <div class="row mb-3">
+                <label for="" class="col-sm-2 col-form-label">Last Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="" class="col-sm-2 col-form-label">First Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="" class="col-sm-2 col-form-label">Middle Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="">
+                </div>
+                
+            </div>
+
+                
+            <fieldset class="row mb-3">
+                <label for="" class="col-sm-2 col-form-label">Suffix</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-select" id="">
+                </div>
+                <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                        <label class="form-check-label" for="gridRadios1">
+                        MALE
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                        <label class="form-check-label" for="gridRadios2">
+                        FEMALE
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+            
+
+
+            <div class="row mb-3">
+                <label for="" class="col-sm-2 col-form-label">Date of Birth</label>
+                <div class="col-sm-3">
+                    <input type="date" class="form-control" id="">
+                </div>
+                <label for="" class="col-sm-2 col-form-label">Place of Birth</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="" class="col-sm-2 col-form-label">Cellphone No.</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="">
+                </div>
+            </div>
+
+            <hr class="my-4">
+        </div>
+    </form>
+{% endwith %}

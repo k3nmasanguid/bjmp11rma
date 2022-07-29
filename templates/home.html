@@ -1,5 +1,318 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-    Homepage
+
+<header class="bd-header bg-dark py-3 px-3 d-flex align-items-stretch border-bottom border-dark sticky-top">
+    <div class="container-fluid d-flex align-items-center">
+        <h1 class="d-flex align-items-center fs-4 text-white mb-0">
+        <a href="{% url 'home' %}" class="d-flex align-items-center text-white text-decoration-none">
+            <img class="bi me-2" width="40" height="" role="img" aria-label="bjmp11_logo" src="{% static 'img/r11_logo.png' %}">
+            <strong><span class="fs-4">Recruitment Management Application</span></strong>
+        </a>
+        </h1>
+        {% if user.is_authenticated %}
+            <a class="text-muted align-items-center ms-auto link-light text-decoration-none">{{user.email}}</a>&nbsp;&nbsp;
+            <a href="{% url 'logout' %}" class="fw-bold link-light">Logout</a>
+        {% endif %}
+    </div>
+</header>
+
+
+  
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse " >
+            <div class="position-sticky pt-3 sidebar-sticky">
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" aria-current="page">
+                            <i class="bi bi-person-bounding-box"></i>&nbsp;&nbsp;&nbsp;
+                            My Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark" >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-diagram-3" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1zM0 11.5A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/>
+                              </svg></i></i>&nbsp;&nbsp;&nbsp;
+                            Background
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-mortarboard" viewBox="0 0 16 16">
+                                <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5ZM8 8.46 1.758 5.965 8 3.052l6.242 2.913L8 8.46Z"/>
+                                <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46l-3.892-1.556Z"/>
+                              </svg>&nbsp;&nbsp;&nbsp;
+                            Education
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-folder-check" viewBox="0 0 16 16">
+                                <path d="m.5 3 .04.87a1.99 1.99 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.256-2.819A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2zm5.672-1a1 1 0 0 1 .707.293L7.586 3H2.19c-.24 0-.47.042-.683.12L1.5 2.98a1 1 0 0 1 1-.98h3.672z"/>
+                                <path d="M15.854 10.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.707 0l-1.5-1.5a.5.5 0 0 1 .707-.708l1.146 1.147 2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                              </svg>&nbsp;&nbsp;&nbsp;
+                            Eligibilities
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-file-earmark-pdf" viewBox="0 0 16 16">
+                                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                                <path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.71 12.71 0 0 1 1.01-.193 11.744 11.744 0 0 1-.51-.858 20.801 20.801 0 0 1-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 0 0-.612-.053zM8.078 7.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"/>
+                              </svg>&nbsp;&nbsp;&nbsp;
+                            Documents
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 border-bottom border-bottom">
+                <h1 class="h3 fw-bold">Personal Information
+                    <a style="cursor : pointer;" title="Edit" class="text-decoration-none" hx-get="{% url 'personal-info' %}" hx-target="#personal-info-modal-dialog" data-bs-toggle="modal" data-bs-target="#personal-info-modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        </svg>
+                    </a>
+                </h1>
+            </div>
+            
+            <div class="row">
+                <div class="col-6">
+                    <table class="table">
+                        <thead>
+                            <tr >
+                              <th scope="col" class="border border-0" width="30%"></th>
+                              <th scope="col" class="border border-0"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="fw-normal">Last Name:</th>
+                                <td class="fw-bold">MASANGUID</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">First Name:</th>
+                                <td class="fw-bold">KEN</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Middle Name:</th>
+                                <td class="fw-bold">BATAD</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Suffix:</th>
+                                <td class="fw-bold"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Gender:</th>
+                                <td class="fw-bold">MALE</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Civil Status:</th>
+                                <td class="fw-bold">MARRIED</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Date of Birth:</th>
+                                <td class="fw-bold">JUNE 02, 1989</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Place of Birth:</th>
+                                <td class="fw-bold">MATI CITY, DAVAO ORIENTAL</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Cellphone Number:</th>
+                                <td class="fw-bold">09123456789</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-6">
+                    <table class="table">
+                        <thead>
+                            <tr >
+                              <th scope="col" class="border border-0" width="30%"></th>
+                              <th scope="col" class="border border-0"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="fw-normal">Height (m):</th>
+                                <td class="fw-bold">159</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Weight (kg):</th>
+                                <td class="fw-bold">72</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Blood Type:</th>
+                                <td class="fw-bold">A</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">TIN:</th>
+                                <td class="fw-bold">489-691-500</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Pag-ibig No.:</th>
+                                <td class="fw-bold">916180252155</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Philhealth No.:</th>
+                                <td class="fw-bold">16-025725570-8</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">SSS No.:</th>
+                                <td class="fw-bold">09-4103211-1</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">GSIS No.:</th>
+                                <td class="fw-bold"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+               
+            <canvas class="my-2 w-100" id="myChart" width="900" height="0"></canvas>
+            
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
+                <h1 class="h3 fw-bold">Present Address
+                    <a href="" title="Edit" class="text-decoration-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        </svg>
+                    </a>
+                </h1>
+            </div>
+            
+            <div class="row">
+                <div class="col-4">
+                    <table class="table">
+                        <thead>
+                            <tr >
+                              <th scope="col" class="border border-0" width="30%"></th>
+                              <th scope="col" class="border border-0"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="fw-normal">Region:</th>
+                                <td class="fw-bold">11</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Zip Code:</th>
+                                <td class="fw-bold">8000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Province:</th>
+                                <td class="fw-bold">DAVAO DEL SUR</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-8">
+                    <table class="table">
+                        <thead>
+                            <tr >
+                              <th scope="col" class="border border-0" width="30%"></th>
+                              <th scope="col" class="border border-0"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="fw-normal">City/Municipality:</th>
+                                <td class="fw-bold">DAVAO CITY</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Barangay:</th>
+                                <td class="fw-bold">SASA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">House/Lot/Unit No./Street/Subdivision:</th>
+                                <td class="fw-bold">BLK 3 LOT 5, TURQUIOSE ST., PUROK 11 DONA SALUD</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <canvas class="my-2 w-100" id="myChart" width="900" height="0"></canvas>
+
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
+                <h1 class="h3 fw-bold">Permanent Address
+                    <a href="" title="Edit" class="text-decoration-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        </svg>
+                    </a>
+                </h1>
+            </div>
+            
+            <div class="row">
+                <div class="col-4">
+                    <table class="table">
+                        <thead>
+                            <tr >
+                              <th scope="col" class="border border-0" width="30%"></th>
+                              <th scope="col" class="border border-0"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="fw-normal">Region:</th>
+                                <td class="fw-bold">11</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Zip Code:</th>
+                                <td class="fw-bold">8000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Province:</th>
+                                <td class="fw-bold">DAVAO DEL SUR</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-8">
+                    <table class="table">
+                        <thead>
+                            <tr >
+                              <th scope="col" class="border border-0" width="30%"></th>
+                              <th scope="col" class="border border-0"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="fw-normal">City/Municipality:</th>
+                                <td class="fw-bold">DAVAO CITY</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">Barangay:</th>
+                                <td class="fw-bold">SASA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="fw-normal">House/Lot/Unit No./Street/Subdivision:</th>
+                                <td class="fw-bold">BLK 3 LOT 5, TURQUIOSE ST., PUROK 11 DONA SALUD</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div> 
+
+
+<!-- Modal -->
+<div class="modal" id="personal-info-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg" id="personal-info-modal-dialog" hx-target="this">
+        
+    </div>
+</div>
 {% endblock content %}
