@@ -10,24 +10,27 @@
         </div>
         <hr class="my-1">
         <div class="modal-body">
+            
+            {% render_field form.user %}
+        
             <div class="row mb-3">
-                <label for="{{ form.last_name.id_for_label }}" class="col-sm-2 col-form-label">Last Name *</label>
+                <label for="{{ form.last_name.id_for_label }}" class="col-sm-2 col-form-label">Last Name*</label>
                 <div class="col-sm-10">
                     {% render_field form.last_name type="text" class="form-control text-uppercase" %}
                     <div class="invalid-feedback">{{ form.last_name.errors|first }}</div>
                 </div>
             </div>
             <div class="row mb-3">
-                <label for="{{ form.first_name.id_for_label }}" class="col-sm-2 col-form-label">First Name *</label>
+                <label for="{{ form.first_name.id_for_label }}" class="col-sm-2 col-form-label">First Name*</label>
                 <div class="col-sm-10">
-                    {% render_field form.first_name type="text" class="form-control" %}
+                    {% render_field form.first_name type="text" class="form-control text-uppercase" %}
                     <div class="invalid-feedback">{{ form.first_name.errors|first }}</div>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="{{ form.middle_name.id_for_label }}" class="col-sm-2 col-form-label">Middle Name</label>
                 <div class="col-sm-10">
-                    {% render_field form.middle_name type="text" class="form-control" %}
+                    {% render_field form.middle_name type="text" class="form-control text-uppercase" %}
                     <div class="invalid-feedback">{{ form.middle_name.errors|first }}</div>
                 </div>
                 
@@ -48,60 +51,71 @@
                 </div>
             </fieldset>
             <div class="row mb-3">
-                <label for="{{ form.civil_status.id_for_label }}" class="col-sm-2 col-form-label">Civil Status</label>
+                <label for="{{ form.civil_status.id_for_label }}" class="col-sm-2 col-form-label">Civil Status*</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-select" id="">
+                    {% render_field form.civil_status type="text" class="form-select" %}
+                    <div class="invalid-feedback">{{ form.civil_status.errors|first }}</div>
                 </div>
-                <label for="{{ form.date_of_birth.id_for_label }}" class="col-sm-2 col-form-label">Date of Birth</label>
+                <label for="{{ form.date_of_birth.id_for_label }}" class="col-sm-2 col-form-label">Date of Birth*</label>
                 <div class="col-sm-4">
-                    <input type="date" class="form-control" id="">
+                    {% render_field form.date_of_birth type="date" class="form-control" %}
+                    <div class="invalid-feedback">{{ form.date_of_birth.errors|first }}</div>
                 </div>
             </div>
             <div class="row mb-3">
-                <label for="{{ form.place_of_birth.id_for_label }}" class="col-sm-2 col-form-label">Place of Birth</label>
+                <label for="{{ form.place_of_birth.id_for_label }}" class="col-sm-2 col-form-label">Place of Birth*</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="">
+                    {% render_field form.place_of_birth type="text" class="form-control text-uppercase" %}
+                    <div class="invalid-feedback">{{ form.place_of_birth.errors|first }}</div>
                 </div>
-                <label for="{{ form.last_name.cellphone_no }}" class="col-sm-2 col-form-label">Cellphone No.</label>
+                <label for="{{ form.last_name.cellphone_no }}" class="col-sm-2 col-form-label">Cellphone No.*</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="">
+                    {% render_field form.cellphone_no type="text" class="form-control" %}
+                    <div class="invalid-feedback">{{ form.cellphone_no.errors|first }}</div>
                 </div>
             </div>
             <hr class="my-4">
             <div class="row mb-3">
-                <label for="{{ form.height.id_for_label }}" class="col-sm-2 col-form-label">Height (m)</label>
+                <label for="{{ form.height.id_for_label }}" class="col-sm-2 col-form-label">Height (m)*</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="">
+                    {% render_field form.height type="text" class="form-control" %}
+                    <div class="invalid-feedback">{{ form.height.errors|first }}</div>
                 </div>
-                <label for="{{ form.weight.id_for_label }}" class="col-sm-2 col-form-label">Weight</label>
+                <label for="{{ form.weight.id_for_label }}" class="col-sm-2 col-form-label">Weight(kg)*</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="">
+                    {% render_field form.weight type="text" class="form-control" %}
+                    <div class="invalid-feedback">{{ form.weight.errors|first }}</div>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="{{ form.blood_type.id_for_label }}" class="col-sm-2 col-form-label">Blood Type</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="">
+                    {% render_field form.blood_type type="text" class="form-control text-uppercase" %}
+                    <div class="invalid-feedback">{{ form.blood_type.errors|first }}</div>
                 </div>
                 <label for="{{ form.tin.id_for_label }}" class="col-sm-2 col-form-label">TIN</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="">
+                    {% render_field form.tin type="text" class="form-control" %}
+                    <div class="invalid-feedback">{{ form.tin.errors|first }}</div>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="{{ form.pag_ibig.id_for_label }}" class="col-sm-2 col-form-label">Pag-ibig No.</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="">
+                    {% render_field form.pag_ibig type="text" class="form-control" %}
+                    <div class="invalid-feedback">{{ form.pag_ibig.errors|first }}</div>
                 </div>
                 <label for="{{ form.philhealth.id_for_label }}" class="col-sm-2 col-form-label">Philhealth No.</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="">
+                    {% render_field form.philhealth type="text" class="form-control" %}
+                    <div class="invalid-feedback">{{ form.philhealth.errors|first }}</div>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="{{ form.sss.id_for_label }}" class="col-sm-2 col-form-label">SSS No.</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="">
+                    {% render_field form.sss type="text" class="form-control" %}
+                    <div class="invalid-feedback">{{ form.sss.errors|first }}</div>
                 </div>
                 <label for="{{ form.gsis.id_for_label }}" class="col-sm-2 col-form-label">GSIS No.</label>
                 <div class="col-sm-4">
@@ -116,3 +130,6 @@
         </div>
     </form>
 {% endwith %}
+
+
+

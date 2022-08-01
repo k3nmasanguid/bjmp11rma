@@ -83,106 +83,15 @@
                 </h1>
             </div>
             
-            <div class="row">
-                <div class="col-6">
-                    <table class="table">
-                        <thead>
-                            <tr >
-                              <th scope="col" class="border border-0" width="30%"></th>
-                              <th scope="col" class="border border-0"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row" class="fw-normal">Last Name:</th>
-                                <td class="fw-bold">{{obj_pinfo.last_name}}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">First Name:</th>
-                                <td class="fw-bold">{{obj_pinfo.first_name}}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">Middle Name:</th>
-                                <td class="fw-bold">{{obj_pinfo.middle_name}}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">Suffix:</th>
-                                <td class="fw-bold">{{obj_pinfo.suffix}}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">Gender:</th>
-                                <td class="fw-bold">{{obj_pinfo.gender}}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">Civil Status:</th>
-                                <td class="fw-bold">{{obj_pinfo.civil_status}}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">Date of Birth:</th>
-                                <td class="fw-bold">{{obj_pinfo.date_of_birth}}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">Place of Birth:</th>
-                                <td class="fw-bold">{{obj_pinfo.place_of_birth}}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">Cellphone Number:</th>
-                                <td class="fw-bold">{{obj_pinfo.cellphone_no}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-6">
-                    <table class="table">
-                        <thead>
-                            <tr >
-                              <th scope="col" class="border border-0" width="30%"></th>
-                              <th scope="col" class="border border-0"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row" class="fw-normal">Height (m):</th>
-                                <td class="fw-bold">{{obj_pinfo.height}}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">Weight (kg):</th>
-                                <td class="fw-bold">{{obj_pinfo.weight}}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">Blood Type:</th>
-                                <td class="fw-bold">{{obj_pinfo.blood_type}}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">TIN:</th>
-                                <td class="fw-bold">{{obj_pinfo.tin}}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">Pag-ibig No.:</th>
-                                <td class="fw-bold">{{obj_pinfo.pag_ibig}}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">Philhealth No.:</th>
-                                <td class="fw-bold">{{obj_pinfo.philhealth}}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">SSS No.:</th>
-                                <td class="fw-bold">{{obj_pinfo.sss}}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">GSIS No.:</th>
-                                <td class="fw-bold">{{obj_pinfo.gsis}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="row" hx-get="{% url 'personal-info-data' %}" hx-trigger="load, personal_info from:body">
+                <!--loaded_data/personal_info_data.html-->
             </div>
                
             <canvas class="my-2 w-100" id="myChart" width="900" height="0"></canvas>
             
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
                 <h1 class="h3 fw-bold">Present Address
-                    <a href="" title="Edit" class="text-decoration-none">
+                    <a style="cursor : pointer;" title="Edit" class="text-decoration-none" hx-get="{% url 'present-address' %}" hx-target="#present-address-modal-dialog" data-bs-toggle="modal" data-bs-target="#present-address-modal">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -191,55 +100,8 @@
                 </h1>
             </div>
             
-            <div class="row">
-                <div class="col-4">
-                    <table class="table">
-                        <thead>
-                            <tr >
-                              <th scope="col" class="border border-0" width="30%"></th>
-                              <th scope="col" class="border border-0"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row" class="fw-normal">Region:</th>
-                                <td class="fw-bold">11</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">Zip Code:</th>
-                                <td class="fw-bold">8000</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">Province:</th>
-                                <td class="fw-bold">DAVAO DEL SUR</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-8">
-                    <table class="table">
-                        <thead>
-                            <tr >
-                              <th scope="col" class="border border-0" width="30%"></th>
-                              <th scope="col" class="border border-0"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row" class="fw-normal">City/Municipality:</th>
-                                <td class="fw-bold">DAVAO CITY</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">Barangay:</th>
-                                <td class="fw-bold">SASA</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="fw-normal">House/Lot/Unit No./Street/Subdivision:</th>
-                                <td class="fw-bold">BLK 3 LOT 5, TURQUIOSE ST., PUROK 11 DONA SALUD</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="row" hx-get="{% url 'present-address-data' %}" hx-trigger="load, personal_info from:body">
+                <!--loaded_data/present_address_data.html-->
             </div>
             
             <canvas class="my-2 w-100" id="myChart" width="900" height="0"></canvas>
@@ -317,4 +179,34 @@
         
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal" id="present-address-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg" id="present-address-modal-dialog" hx-target="this">
+        
+    </div>
+</div>
 {% endblock content %}
+
+
+
+{% block js %}
+<script>
+    ;(function () {
+        const personal_info_modal = new bootstrap.Modal(document.getElementById("personal-info-modal"))
+    
+        htmx.on("htmx:beforeSwap", (e) => {
+          // Empty response targeting #dialog => hide the modal
+          if (e.detail.target.id == "personal-info-modal-dialog" && !e.detail.xhr.response) {
+            personal_info_modal.hide()
+            e.detail.shouldSwap = false
+          }
+        })
+      
+        // Remove dialog content after hiding
+        htmx.on("hidden.bs.modal", () => {
+          document.getElementById("personal-info-modal-dialog").innerHTML = ""
+        })
+      })()
+</script>    
+{% endblock js %}

@@ -1,6 +1,6 @@
 from dataclasses import fields
 from django import forms
-from rma.models import PersonalInfo
+from rma.models import PersonalInfo, PresentAddress
 
 
 GENDER = (
@@ -13,5 +13,12 @@ class PersonalInfoForm(forms.ModelForm):
         model = PersonalInfo
         fields = '__all__'
 
+    user = forms.CharField(widget=forms.TextInput(attrs={'type':'hidden'}))
     gender = forms.CharField(required=True, widget=forms.RadioSelect(choices=GENDER),)
     
+class PresentAddressForm(forms.ModelForm):
+    class Meta:
+        model = PresentAddress
+        fields = '__all__'
+
+    user = forms.CharField(widget=forms.TextInput(attrs={'type':'hidden'}))
