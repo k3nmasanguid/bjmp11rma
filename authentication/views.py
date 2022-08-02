@@ -23,7 +23,7 @@ def register(request):
                     })
         else:
             form = UserForm()
-        return render(request,'includes/register_modal.html', {'form':form})
+        return render(request,'modals/register_modal.html', {'form':form})
 
 
 def login_user(request):
@@ -47,5 +47,4 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('login')
-# def home(request):
-#     return render(request, 'home.html',)
+

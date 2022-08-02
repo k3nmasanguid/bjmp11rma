@@ -46,20 +46,13 @@
                     <div class="invalid-feedback">{{ form.barangay.errors|first }}</div>
                 </div>
             </div>
-            <div class="row mb-3">
-                <label for="{{ form.house.id_for_label }}" class="col-sm-2 col-form-label">House/Lot/Unit No./Street/Subdivision*</label>
+            <div class="row mb-3 align-items-center">
+                <label for="{{ form.house.id_for_label }}" class="col-sm-2 col-form-label"><small>House/Lot/Unit No./St./Subd.*</small></label>
                 <div class="col-sm-10">
                     {% render_field form.house type="text" class="form-control text-uppercase" %}
                     <div class="invalid-feedback">{{ form.house.errors|first }}</div>
                 </div>
             </div>
-
-
-
-
-
-            
-            
         </div>
         <div class="modal-footer">
             <button class="w-100 mb-2 btn btn-md btn-primary fw-bold" type="submit">Save</button>

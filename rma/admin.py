@@ -1,5 +1,5 @@
 from django.contrib import admin
-from rma.models import PersonalInfo, PresentAddress
+from rma.models import PersonalInfo, PresentAddress, PermanentAddress, Spouse, Father, Mother
 
 class PersonalInfoAdmin(admin.ModelAdmin):
     model = PersonalInfo
@@ -10,3 +10,7 @@ class PersonalInfoAdmin(admin.ModelAdmin):
     filter_horizontal = ()
 admin.site.register(PersonalInfo,PersonalInfoAdmin)
 admin.site.register(PresentAddress)
+admin.site.register(PermanentAddress)
+admin.site.register(Spouse)
+admin.site.register(Father)
+admin.site.register(Mother)

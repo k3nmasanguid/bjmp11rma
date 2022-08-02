@@ -1,0 +1,53 @@
+{% load widget_tweaks %}
+
+{% with WIDGET_ERROR_CLASS='is-invalid' %}
+
+
+    <form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content" novalidate>
+        <div class="modal-header pb-2 border-bottom-0">
+            <h3 class="fw-bold mt-0">Mother</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <hr class="my-1">
+        <div class="modal-body">
+            
+            {% render_field form.user %}
+        
+            <div class="row mb-3">
+                <label for="{{ form.living_status.id_for_label }}" class="col-sm-2 col-form-label">Living status*</label>
+                <div class="col-sm-10">
+                    {% render_field form.living_status type="text" class="form-select text-uppercase" %}
+                    <div class="invalid-feedback">{{ form.living_status.errors|first }}</div>
+                </div>
+            </div>
+            <div class="row mb-3 align-items-center">
+                <label for="{{ form.last_name.id_for_label }}" class="col-sm-2 col-form-label"><small>Last name (Maiden)*</small></label>
+                <div class="col-sm-10">
+                    {% render_field form.last_name type="text" class="form-control text-uppercase" placeholder="" %}
+                    <div class="invalid-feedback">{{ form.last_name.errors|first }}</div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="{{ form.first_name.id_for_label }}" class="col-sm-2 col-form-label">First name*</label>
+                <div class="col-sm-10">
+                    {% render_field form.first_name type="text" class="form-control text-uppercase" %}
+                    <div class="invalid-feedback">{{ form.first_name.errors|first }}</div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="{{ form.middle_name.id_for_label }}" class="col-sm-2 col-form-label">Middle name</label>
+                <div class="col-sm-10">
+                    {% render_field form.middle_name type="text" class="form-control text-uppercase" %}
+                    <div class="invalid-feedback">{{ form.middle_name.errors|first }}</div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="modal-footer">
+            <button class="w-100 mb-2 btn btn-md btn-primary fw-bold" type="submit">Save</button>
+        </div>
+    </form>
+{% endwith %}
+
+
+

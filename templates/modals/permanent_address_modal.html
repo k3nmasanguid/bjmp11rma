@@ -1,0 +1,64 @@
+{% load widget_tweaks %}
+
+{% with WIDGET_ERROR_CLASS='is-invalid' %}
+
+
+    <form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content" novalidate>
+        <div class="modal-header pb-2 border-bottom-0">
+            <h3 class="fw-bold mt-0">Permanent Address</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <hr class="my-1">
+        <div class="modal-body">
+            
+            {% render_field form.user %}
+        
+            <div class="row mb-3">
+                <label for="{{ form.region.id_for_label }}" class="col-sm-2 col-form-label">Region*</label>
+                <div class="col-sm-4">
+                    {% render_field form.region type="text" class="form-control text-uppercase" %}
+                    <div class="invalid-feedback">{{ form.region.errors|first }}</div>
+                </div>
+                <label for="{{ form.zip_code.id_for_label }}" class="col-sm-2 col-form-label">Zip code*</label>
+                <div class="col-sm-4">
+                    {% render_field form.zip_code type="text" class="form-control" %}
+                    <div class="invalid-feedback">{{ form.zip_code.errors|first }}</div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="{{ form.province.id_for_label }}" class="col-sm-2 col-form-label">Province*</label>
+                <div class="col-sm-10">
+                    {% render_field form.province type="text" class="form-control text-uppercase" %}
+                    <div class="invalid-feedback">{{ form.province.errors|first }}</div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="{{ form.city_municipality.id_for_label }}" class="col-sm-2 col-form-label">City/Municipality*</label>
+                <div class="col-sm-10">
+                    {% render_field form.city_municipality type="text" class="form-control text-uppercase" %}
+                    <div class="invalid-feedback">{{ form.city_municipality.errors|first }}</div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="{{ form.barangay.id_for_label }}" class="col-sm-2 col-form-label">Barangay*</label>
+                <div class="col-sm-10">
+                    {% render_field form.barangay type="text" class="form-control text-uppercase" %}
+                    <div class="invalid-feedback">{{ form.barangay.errors|first }}</div>
+                </div>
+            </div>
+            <div class="row mb-3 align-items-center">
+                <label for="{{ form.house.id_for_label }}" class="col-sm-2 col-form-label"><small>House/Lot/Unit No./St./Subd.*</small></label>
+                <div class="col-sm-10">
+                    {% render_field form.house type="text" class="form-control text-uppercase" %}
+                    <div class="invalid-feedback">{{ form.house.errors|first }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="w-100 mb-2 btn btn-md btn-primary fw-bold" type="submit">Save</button>
+        </div>
+    </form>
+{% endwith %}
+
+
+
