@@ -29,54 +29,57 @@
 
             <canvas class="my-2 w-100" id="myChart" width="900" height="0"></canvas> 
 
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
-                <h1 class="h3 fw-bold">Father
-                    <a style="cursor : pointer;" title="Edit" class="text-decoration-none" hx-get="{% url 'father' %}" hx-target="#father-modal-dialog" data-bs-toggle="modal" data-bs-target="#father-modal">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                        </svg>
-                    </a>
-                </h1>
-            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
+                        <h1 class="h3 fw-bold">Father
+                            <a style="cursor : pointer;" title="Edit" class="text-decoration-none" hx-get="{% url 'father' %}" hx-target="#father-modal-dialog" data-bs-toggle="modal" data-bs-target="#father-modal">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                </svg>
+                            </a>
+                        </h1>
+                    </div>
+                    
+                    <div class="row" hx-get="{% url 'father-data' %}" hx-trigger="load, father from:body">
+                        <!--loaded_data/father_data.html-->
+                    </div>
+                </div>
             
-            <div class="row" hx-get="{% url 'father-data' %}" hx-trigger="load, father from:body">
-                <!--loaded_data/father_data.html-->
-            </div>
-
-            <canvas class="my-2 w-100" id="myChart" width="900" height="0"></canvas> 
-
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
-                <h1 class="h3 fw-bold">Mother
-                    <a style="cursor : pointer;" title="Edit" class="text-decoration-none" hx-get="{% url 'mother' %}" hx-target="#mother-modal-dialog" data-bs-toggle="modal" data-bs-target="#mother-modal">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                        </svg>
-                    </a>
-                </h1>
-            </div>
-            
-            <div class="row" hx-get="{% url 'mother-data' %}" hx-trigger="load, mother from:body">
-                <!--loaded_data/permanent_address_data.html-->
-            </div>
-
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
+                        <h1 class="h3 fw-bold">Mother
+                            <a style="cursor : pointer;" title="Edit" class="text-decoration-none" hx-get="{% url 'mother' %}" hx-target="#mother-modal-dialog" data-bs-toggle="modal" data-bs-target="#mother-modal">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                </svg>
+                            </a>
+                        </h1>
+                    </div>
+                
+                    <div class="row" hx-get="{% url 'mother-data' %}" hx-trigger="load, mother from:body">
+                        <!--loaded_data/permanent_address_data.html-->
+                    </div>
+                </div>
+             </div>
 
             <canvas class="my-2 w-100" id="myChart" width="900" height="0"></canvas> 
 
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
                 <h1 class="h3 fw-bold">Sibling
-                    <a style="cursor : pointer;" title="Edit" class="text-decoration-none" >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                    <a style="cursor : pointer;" title="Add" class="text-decoration-none" hx-get="{% url 'sibling' %}" hx-target="#sibling-modal-dialog" data-bs-toggle="modal" data-bs-target="#sibling-modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
                         </svg>
                     </a>
                 </h1>
             </div>
             
-            <div class="row" >
-                <!--loaded_data/permanent_address_data.html-->
+            <div class="row" hx-get="{% url 'sibling-data' %}" hx-trigger="load, sibling from:body">
+                <!--loaded_data/sibling_data.html-->
             </div>
 
         </main>
@@ -101,6 +104,20 @@
 <!-- Modal -->
 <div class="modal" id="mother-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-lg" id="mother-modal-dialog" hx-target="this">
+        
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="sibling-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg" id="sibling-modal-dialog" hx-target="this">
+        
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="delete-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-ms modal-dialog-centered" id="delete-modal-dialog" hx-target="this">
         
     </div>
 </div>
@@ -164,6 +181,44 @@
         // Remove dialog content after hiding
         htmx.on("hidden.bs.modal", () => {
           document.getElementById("mother-modal-dialog").innerHTML = ""
+        })
+      })()
+</script>
+
+<script>
+    ;(function () {
+        const sibling_modal = new bootstrap.Modal(document.getElementById("sibling-modal"))
+    
+        htmx.on("htmx:beforeSwap", (e) => {
+          // Empty response targeting #dialog => hide the modal
+          if (e.detail.target.id == "sibling-modal-dialog" && !e.detail.xhr.response) {
+            sibling_modal.hide()
+            e.detail.shouldSwap = false
+          }
+        })
+      
+        // Remove dialog content after hiding
+        htmx.on("hidden.bs.modal", () => {
+          document.getElementById("sibling-modal-dialog").innerHTML = ""
+        })
+      })()
+</script>
+
+<script>
+    ;(function () {
+        const delete_modal = new bootstrap.Modal(document.getElementById("delete-modal"))
+    
+        htmx.on("htmx:beforeSwap", (e) => {
+          // Empty response targeting #dialog => hide the modal
+          if (e.detail.target.id == "delete-modal-dialog" && !e.detail.xhr.response) {
+            delete_modal.hide()
+            e.detail.shouldSwap = false
+          }
+        })
+      
+        // Remove dialog content after hiding
+        htmx.on("hidden.bs.modal", () => {
+          document.getElementById("delete-modal-dialog").innerHTML = ""
         })
       })()
 </script>

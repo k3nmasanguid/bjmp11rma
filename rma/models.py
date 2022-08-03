@@ -130,3 +130,19 @@ class Mother(models.Model):
 
     def __str__(self):
         return self.user.email
+
+class Sibling(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    living_status = Uppercase('Living Status',max_length=9, choices=LIVING_STATUS)
+    last_name = Uppercase('Last name (Maiden)',max_length=200)
+    first_name = Uppercase('First name',max_length=200)
+    middle_name = Uppercase('Middle name',max_length=200, blank=True)
+    suffix = Uppercase('Suffix',max_length=3, null=False, blank=True, choices=SUFFIX)
+    gender =  models.CharField('Gender',max_length=6, choices=GENDER)
+    civil_status = Uppercase('Civil status',max_length=9, choices=CIVIL_STATUS)
+
+    class Meta:
+        verbose_name_plural = "Sibling"
+
+    def __str__(self):
+        return self.user.email

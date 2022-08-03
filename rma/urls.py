@@ -17,10 +17,12 @@ urlpatterns = [
    path('spouse-data/', views.spouse_data, name='spouse-data'),
    path('father-data/', views.father_data, name='father-data'),
    path('mother-data/', views.mother_data, name='mother-data'),
-
+   path('sibling-data/', views.sibling_data, name='sibling-data'),
    # launch modals background page
    path('spouse/', views.spouse, name='spouse'),
    path('father/', views.father, name='father'),
    path('mother/', views.mother, name='mother'),
-   
+   path('sibling/', views.sibling, name='sibling'),
+   path('sibling-edit/<str:id>/', views.sibling_edit, name='sibling-edit'),
+   path('sibling-delete/<str:id>/', views.sibling_delete, name='sibling-delete'),
 ]

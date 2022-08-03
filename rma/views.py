@@ -1,11 +1,11 @@
 
 import json
 from wsgiref.headers import Headers
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import get_object_or_404, render, HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-from rma.models import PermanentAddress, PersonalInfo, PresentAddress, Spouse, Father, Mother
-from rma.forms import PersonalInfoForm, PresentAddressForm, PermanentAddressForm, SpouseForm, FatherForm, MotherForm
+from rma.models import PermanentAddress, PersonalInfo, PresentAddress, Spouse, Father, Mother, Sibling
+from rma.forms import PersonalInfoForm, PresentAddressForm, PermanentAddressForm, SpouseForm, FatherForm, MotherForm, SiblingForm
 
 def get_or_none(model, *args, **kwargs):
     try:
@@ -93,6 +93,8 @@ def permanent_address(request):
 ############################################################### END LOAD MODAL IN HOME PAGE ######################################################################
 
 
+############################################################### LOADED DATA IN BACKGROUND PAGE #########################################################################
+
 @login_required()
 def background(request):
     return render(request, 'background.html')
@@ -112,7 +114,14 @@ def mother_data(request):
     obj_mother = get_or_none(Mother, user_id=request.user)
     return render(request, 'loaded_data/mother_data.html',{'obj_mother':obj_mother})
 
+@login_required()
+def sibling_data(request):
+    obj_sibling = Sibling.objects.filter(user_id=request.user)
+    return render(request, 'loaded_data/sibling_data.html',{'obj_sibling':obj_sibling})
 
+############################################################### END LOADED DATA IN BACKGROUND PAGE #########################################################################
+
+###############################################################  LOAD MODAL IN BACKGROUND PAGE ######################################################################
 
 @login_required()
 def spouse(request):
@@ -161,3 +170,40 @@ def mother(request):
     else:
         form = MotherForm(instance=obj)  
     return render(request, 'modals/mother_modal.html',{'form':form})
+
+@login_required()
+def sibling(request):
+    if request.method == 'POST':
+        form = SiblingForm(request.POST)
+        if form.is_valid():
+            sibling = form.save(commit=False)
+            sibling.user_id = request.user.id
+            sibling.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'sibling'})
+    else:
+        form = SiblingForm()  
+    return render(request, 'modals/sibling_modal.html',{'form':form})
+
+@login_required()
+def sibling_edit(request, id):
+    obj = get_object_or_404(Sibling, id=id)
+
+    if request.method == 'POST':
+        form = SiblingForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'sibling'})
+    else:
+        form = SiblingForm(instance=obj)  
+    return render(request, 'modals/sibling_modal.html',{'form':form})
+
+
+@login_required()
+def sibling_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(Sibling, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'sibling'}) 
+    else:
+        return render(request, 'modals/sibling_delete_modal.html')
+###############################################################  END LOAD MODAL IN BACKGROUND PAGE ######################################################################

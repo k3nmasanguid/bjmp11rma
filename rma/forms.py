@@ -1,7 +1,7 @@
 from dataclasses import fields
 from django import forms
 from django.core.validators import RegexValidator
-from rma.models import PersonalInfo, PresentAddress, PermanentAddress, Spouse, Father, Mother
+from rma.models import PersonalInfo, PresentAddress, PermanentAddress, Spouse, Father, Mother, Sibling
 
 
 GENDER = (
@@ -77,3 +77,10 @@ class MotherForm(forms.ModelForm):
     class Meta:
         model = Mother
         fields = '__all__'
+
+class SiblingForm(forms.ModelForm):
+    # user = forms.CharField(widget=forms.TextInput(attrs={'type':'hidden'}))
+    gender = forms.CharField(required=True, widget=forms.RadioSelect(choices=GENDER),)
+    class Meta:
+        model = Sibling
+        exclude = ('user',)
