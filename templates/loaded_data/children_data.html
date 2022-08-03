@@ -1,0 +1,33 @@
+<div class="col-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Living Status</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Middle Name</th>
+                <th scope="col">Suffix</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for children in obj_children %}
+                <tr>
+                    <td>{{children.living_status}}</td>
+                    <td>{{children.last_name}}</td>
+                    <td>{{children.first_name}}</td>
+                    <td>{{children.middle_name}}</td>
+                    <td>{{children.suffix}}</td>
+                    <td>{{children.gender}}</td>
+                    <td>{{children.date_of_birth}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'children-edit' children.id %}" hx-target="#children-modal-dialog" data-bs-toggle="modal" data-bs-target="#children-modal">Edit</button>
+                        <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'children-delete' children.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

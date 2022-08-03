@@ -25,6 +25,23 @@
             <div class="row" hx-get="{% url 'spouse-data' %}" hx-trigger="load, spouse from:body">
                 <!--loaded_data/spouse_data.html-->
             </div>
+
+            <canvas class="my-2 w-100" id="myChart" width="900" height="0"></canvas> 
+
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
+                <h1 class="h3 fw-bold">Children
+                    <a style="cursor : pointer;" title="Add" class="text-decoration-none" hx-get="{% url 'children' %}" hx-target="#children-modal-dialog" data-bs-toggle="modal" data-bs-target="#children-modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg>
+                    </a>
+                </h1>
+            </div>
+            
+            <div class="row" hx-get="{% url 'children-data' %}" hx-trigger="load, children from:body">
+                <!--loaded_data/children_data.html-->
+            </div>
                
 
             <canvas class="my-2 w-100" id="myChart" width="900" height="0"></canvas> 
@@ -116,6 +133,13 @@
 </div>
 
 <!-- Modal -->
+<div class="modal" id="children-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg" id="children-modal-dialog" hx-target="this">
+        
+    </div>
+</div>
+
+<!-- Modal -->
 <div class="modal" id="delete-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-ms modal-dialog-centered" id="delete-modal-dialog" hx-target="this">
         
@@ -200,6 +224,25 @@
         // Remove dialog content after hiding
         htmx.on("hidden.bs.modal", () => {
           document.getElementById("sibling-modal-dialog").innerHTML = ""
+        })
+      })()
+</script>
+
+<script>
+    ;(function () {
+        const children_modal = new bootstrap.Modal(document.getElementById("children-modal"))
+    
+        htmx.on("htmx:beforeSwap", (e) => {
+          // Empty response targeting #dialog => hide the modal
+          if (e.detail.target.id == "children-modal-dialog" && !e.detail.xhr.response) {
+            children_modal.hide()
+            e.detail.shouldSwap = false
+          }
+        })
+      
+        // Remove dialog content after hiding
+        htmx.on("hidden.bs.modal", () => {
+          document.getElementById("children-modal-dialog").innerHTML = ""
         })
       })()
 </script>

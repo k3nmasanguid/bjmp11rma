@@ -1,5 +1,5 @@
 from django.contrib import admin
-from rma.models import PersonalInfo, PresentAddress, PermanentAddress, Spouse, Father, Mother,Sibling
+from rma.models import PersonalInfo, PresentAddress, PermanentAddress, Spouse, Father, Mother,Sibling, Children, Primary
 
 class PersonalInfoAdmin(admin.ModelAdmin):
     model = PersonalInfo
@@ -15,3 +15,5 @@ admin.site.register(Spouse)
 admin.site.register(Father)
 admin.site.register(Mother)
 admin.site.register(Sibling)
+admin.site.register(Children)
+admin.site.register(Primary)

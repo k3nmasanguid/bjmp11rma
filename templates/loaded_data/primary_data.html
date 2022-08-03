@@ -1,0 +1,32 @@
+<div class="col-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name of School</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">Highest level</th>
+                <th scope="col">Year Graduated</th>
+                <th scope="col">Academic Honors Received</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for primary in obj_primary %}
+                <tr>
+         
+                    <td>{{primary.school_name}}</td>
+                    <td>{{primary.year_from}}</td>
+                    <td>{{primary.year_to}}</td>
+                    <td>{{primary.highest_level}}</td>
+                    <td>{{primary.year_graduated}}</td>
+                    <td>{{primary.academic_honors}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" >Edit</button>
+                        <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'primary-delete' primary.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

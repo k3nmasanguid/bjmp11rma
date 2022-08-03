@@ -1,7 +1,9 @@
 from dataclasses import fields
+from tkinter.tix import Select
 from django import forms
 from django.core.validators import RegexValidator
-from rma.models import PersonalInfo, PresentAddress, PermanentAddress, Spouse, Father, Mother, Sibling
+from rma.models import YEAR_CHOICES
+from rma.models import PersonalInfo, PresentAddress, PermanentAddress, Spouse, Father, Mother, Sibling, Children, Primary
 
 
 GENDER = (
@@ -73,14 +75,24 @@ class FatherForm(forms.ModelForm):
 
 class MotherForm(forms.ModelForm):
     user = forms.CharField(widget=forms.TextInput(attrs={'type':'hidden'}))
-
     class Meta:
         model = Mother
         fields = '__all__'
 
 class SiblingForm(forms.ModelForm):
-    # user = forms.CharField(widget=forms.TextInput(attrs={'type':'hidden'}))
     gender = forms.CharField(required=True, widget=forms.RadioSelect(choices=GENDER),)
     class Meta:
         model = Sibling
+        exclude = ('user',)
+
+class ChildrenForm(forms.ModelForm):
+    gender = forms.CharField(required=True, widget=forms.RadioSelect(choices=GENDER),)
+    class Meta:
+        model = Children
+        exclude = ('user',)
+
+class PrimaryForm(forms.ModelForm):
+    
+    class Meta:
+        model = Primary
         exclude = ('user',)

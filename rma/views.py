@@ -1,11 +1,10 @@
 
-import json
-from wsgiref.headers import Headers
+
 from django.shortcuts import get_object_or_404, render, HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-from rma.models import PermanentAddress, PersonalInfo, PresentAddress, Spouse, Father, Mother, Sibling
-from rma.forms import PersonalInfoForm, PresentAddressForm, PermanentAddressForm, SpouseForm, FatherForm, MotherForm, SiblingForm
+from rma.models import PermanentAddress, PersonalInfo, PresentAddress, Spouse, Father, Mother, Sibling, Children, Primary
+from rma.forms import PersonalInfoForm, PresentAddressForm, PermanentAddressForm, SpouseForm, FatherForm, MotherForm, SiblingForm, ChildrenForm, PrimaryForm
 
 def get_or_none(model, *args, **kwargs):
     try:
@@ -119,6 +118,12 @@ def sibling_data(request):
     obj_sibling = Sibling.objects.filter(user_id=request.user)
     return render(request, 'loaded_data/sibling_data.html',{'obj_sibling':obj_sibling})
 
+
+@login_required()
+def children_data(request):
+    obj_children = Children.objects.filter(user_id=request.user)
+    return render(request, 'loaded_data/children_data.html',{'obj_children':obj_children})
+
 ############################################################### END LOADED DATA IN BACKGROUND PAGE #########################################################################
 
 ###############################################################  LOAD MODAL IN BACKGROUND PAGE ######################################################################
@@ -205,5 +210,85 @@ def sibling_delete(request, id):
         obj.delete()
         return HttpResponse(status=204, headers={'HX-Trigger': 'sibling'}) 
     else:
-        return render(request, 'modals/sibling_delete_modal.html')
+        return render(request, 'modals/delete_modal.html')
+
+
+@login_required()
+def children(request):
+    if request.method == 'POST':
+        form = ChildrenForm(request.POST)
+        if form.is_valid():
+            children = form.save(commit=False)
+            children.user_id = request.user.id
+            children.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'children'})
+    else:
+        form = ChildrenForm()  
+    return render(request, 'modals/children_modal.html',{'form':form})
+
+@login_required()
+def children_edit(request, id):
+    obj = get_object_or_404(Children, id=id)
+
+    if request.method == 'POST':
+        form = ChildrenForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'children'})
+    else:
+        form = ChildrenForm(instance=obj)  
+    return render(request, 'modals/children_modal.html',{'form':form})
+
+
+@login_required()
+def children_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(Children, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'children'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
 ###############################################################  END LOAD MODAL IN BACKGROUND PAGE ######################################################################
+
+
+############################################################### LOADED DATA IN EDUCATION PAGE #########################################################################
+
+@login_required()
+def education(request):
+    return render(request, 'education.html')
+
+@login_required()
+def primary_data(request):
+    obj_primary = Primary.objects.filter(user_id=request.user)
+    return render(request, 'loaded_data/primary_data.html', {'obj_primary':obj_primary})
+
+############################################################### END LOADED DATA IN EDUCATION PAGE #########################################################################
+
+
+############################################################### LOAD MODAL IN EDUCATION PAGE ######################################################################
+@login_required()
+def primary(request):
+    if request.method == 'POST':
+        form = PrimaryForm(request.POST)
+        if form.is_valid():
+            primary = form.save(commit=False)
+            primary.user_id = request.user.id
+            primary.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'primary'})
+        else:
+            print("FAILED")
+    else:
+        form = PrimaryForm()  
+    return render(request, 'modals/primary_modal.html',{'form':form})
+
+
+@login_required()
+def primary_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(Primary, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'primary'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+############################################################### END LOAD MODAL IN EDUCATION PAGE ######################################################################
