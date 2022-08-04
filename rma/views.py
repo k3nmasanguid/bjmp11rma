@@ -3,8 +3,8 @@
 from django.shortcuts import get_object_or_404, render, HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-from rma.models import PermanentAddress, PersonalInfo, PresentAddress, Spouse, Father, Mother, Sibling, Children, Primary
-from rma.forms import PersonalInfoForm, PresentAddressForm, PermanentAddressForm, SpouseForm, FatherForm, MotherForm, SiblingForm, ChildrenForm, PrimaryForm
+from rma.models import Graduate, PermanentAddress, PersonalInfo, PresentAddress, Spouse, Father, Mother, Sibling, Children, Primary, HighSchool, SeniorHigh, College, Graduate
+from rma.forms import PersonalInfoForm, PresentAddressForm, PermanentAddressForm, SpouseForm, FatherForm, MotherForm, SiblingForm, ChildrenForm, PrimaryForm, HighSchoolForm, SeniorHighForm, CollegeForm, GraduateForm
 
 def get_or_none(model, *args, **kwargs):
     try:
@@ -263,6 +263,26 @@ def primary_data(request):
     obj_primary = Primary.objects.filter(user_id=request.user)
     return render(request, 'loaded_data/primary_data.html', {'obj_primary':obj_primary})
 
+@login_required()
+def high_school_data(request):
+    obj_high_school = HighSchool.objects.filter(user_id=request.user)
+    return render(request, 'loaded_data/high_school_data.html', {'obj_high_school':obj_high_school})
+
+@login_required()
+def senior_high_data(request):
+    obj_senior_high = SeniorHigh.objects.filter(user_id=request.user)
+    return render(request, 'loaded_data/senior_high_data.html', {'obj_senior_high':obj_senior_high})
+
+@login_required()
+def college_data(request):
+    obj_college = College.objects.filter(user_id=request.user)
+    return render(request, 'loaded_data/college_data.html', {'obj_college':obj_college})
+
+@login_required()
+def graduate_data(request):
+    obj_graduate = Graduate.objects.filter(user_id=request.user)
+    return render(request, 'loaded_data/graduate_data.html', {'obj_graduate':obj_graduate})
+
 ############################################################### END LOADED DATA IN EDUCATION PAGE #########################################################################
 
 
@@ -276,10 +296,21 @@ def primary(request):
             primary.user_id = request.user.id
             primary.save()
             return HttpResponse(status=204, headers={'HX-Trigger': 'primary'})
-        else:
-            print("FAILED")
     else:
         form = PrimaryForm()  
+    return render(request, 'modals/primary_modal.html',{'form':form})
+
+@login_required()
+def primary_edit(request, id):
+    obj = get_object_or_404(Primary, id=id)
+
+    if request.method == 'POST':
+        form = PrimaryForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'primary'})
+    else:
+        form = PrimaryForm(instance=obj)  
     return render(request, 'modals/primary_modal.html',{'form':form})
 
 
@@ -289,6 +320,189 @@ def primary_delete(request, id):
         obj = get_object_or_404(Primary, id=id)
         obj.delete()
         return HttpResponse(status=204, headers={'HX-Trigger': 'primary'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+
+@login_required()
+def high_school(request):
+    if request.method == 'POST':
+        form = HighSchoolForm(request.POST)
+        if form.is_valid():
+            high_school = form.save(commit=False)
+            high_school.user_id = request.user.id
+            high_school.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'high_school'})
+    else:
+        form = HighSchoolForm()  
+    return render(request, 'modals/high_school_modal.html',{'form':form})
+
+@login_required()
+def high_school_edit(request, id):
+    obj = get_object_or_404(HighSchool, id=id)
+
+    if request.method == 'POST':
+        form = HighSchoolForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'high_school'})
+    else:
+        form = HighSchoolForm(instance=obj)  
+    return render(request, 'modals/high_school_modal.html',{'form':form})
+
+
+@login_required()
+def high_school_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(HighSchool, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'high_school'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+
+@login_required()
+def senior_high(request):
+    if request.method == 'POST':
+        form = SeniorHighForm(request.POST)
+        if form.is_valid():
+            senior_high = form.save(commit=False)
+            senior_high.user_id = request.user.id
+            senior_high.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'senior_high'})
+    else:
+        form = SeniorHighForm()  
+    return render(request, 'modals/senior_high_modal.html',{'form':form})
+
+@login_required()
+def senior_high_edit(request, id):
+    obj = get_object_or_404(SeniorHigh, id=id)
+
+    if request.method == 'POST':
+        form = SeniorHighForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'senior_high'})
+    else:
+        form = SeniorHighForm(instance=obj)  
+    return render(request, 'modals/senior_high_modal.html',{'form':form})
+
+
+@login_required()
+def senior_high_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(SeniorHigh, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'senior_high'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+@login_required()
+def college(request):
+    if request.method == 'POST':
+        form = CollegeForm(request.POST)
+        if form.is_valid():
+            college = form.save(commit=False)
+            college.user_id = request.user.id
+            college.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'college'})
+    else:
+        form = CollegeForm()  
+    return render(request, 'modals/college_modal.html',{'form':form})
+
+@login_required()
+def college_edit(request, id):
+    obj = get_object_or_404(College, id=id)
+
+    if request.method == 'POST':
+        form = CollegeForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'college'})
+    else:
+        form = CollegeForm(instance=obj)  
+    return render(request, 'modals/college_modal.html',{'form':form})
+
+
+@login_required()
+def college_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(College, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'college'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+
+@login_required()
+def college(request):
+    if request.method == 'POST':
+        form = CollegeForm(request.POST)
+        if form.is_valid():
+            college = form.save(commit=False)
+            college.user_id = request.user.id
+            college.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'college'})
+    else:
+        form = CollegeForm()  
+    return render(request, 'modals/college_modal.html',{'form':form})
+
+@login_required()
+def college_edit(request, id):
+    obj = get_object_or_404(College, id=id)
+
+    if request.method == 'POST':
+        form = CollegeForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'college'})
+    else:
+        form = CollegeForm(instance=obj)  
+    return render(request, 'modals/college_modal.html',{'form':form})
+
+
+@login_required()
+def college_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(College, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'college'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+@login_required()
+def graduate(request):
+    if request.method == 'POST':
+        form = GraduateForm(request.POST)
+        if form.is_valid():
+            graduate = form.save(commit=False)
+            graduate.user_id = request.user.id
+            graduate.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'graduate'})
+    else:
+        form = GraduateForm()  
+    return render(request, 'modals/graduate_modal.html',{'form':form})
+
+@login_required()
+def graduate_edit(request, id):
+    obj = get_object_or_404(Graduate, id=id)
+
+    if request.method == 'POST':
+        form = GraduateForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'graduate'})
+    else:
+        form = GraduateForm(instance=obj)  
+    return render(request, 'modals/graduate_modal.html',{'form':form})
+
+
+@login_required()
+def graduate_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(Graduate, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'graduate'}) 
     else:
         return render(request, 'modals/delete_modal.html')
 ############################################################### END LOAD MODAL IN EDUCATION PAGE ######################################################################

@@ -1,0 +1,32 @@
+<div class="col-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name of School</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">Highest level</th>
+                <th scope="col">Year Graduated</th>
+                <th scope="col">Academic Honors Received</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for high_school in obj_high_school %}
+                <tr>
+         
+                    <td>{{high_school.school_name}}</td>
+                    <td>{{high_school.year_from}}</td>
+                    <td>{{high_school.year_to}}</td>
+                    <td>{{high_school.highest_level}}</td>
+                    <td>{{high_school.year_graduated}}</td>
+                    <td>{{high_school.academic_honors}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'high-school-edit' high_school.id %}" hx-target="#high-school-modal-dialog" data-bs-toggle="modal" data-bs-target="#high-school-modal">Edit</button>
+                        <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'high-school-delete' high_school.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

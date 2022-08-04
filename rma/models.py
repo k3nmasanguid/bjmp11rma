@@ -44,6 +44,20 @@ ELEMENTARY_LEVEL = (
         ('GRADE 6', 'GRADE 6'),
 )
 
+HIGH_SCHOOL_LEVEL = (
+        ('GRADUATED', 'GRADUATED'),
+        ('GRADE 7', 'GRADE 7'),
+        ('GRADE 8', 'GRADE 8'),
+        ('GRADE 9', 'GRADE 9'),
+        ('GRADE 10', 'GRADE 10'),
+)
+
+SENIOR_HIGH_LEVEL = (
+        ('GRADUATED', 'GRADUATED'),
+        ('GRADE 11', 'GRADE 11'),
+        ('GRADE 12', 'GRADE 12'),
+)
+
 YEAR_CHOICES = [('N/A','N/A')]
 for r in range(1990, (datetime.datetime.now().year+1)):
     YEAR_CHOICES.append((str(r),str(r)))
@@ -192,3 +206,67 @@ class Primary(models.Model):
 
     def __str__(self):
         return self.user.email
+
+class HighSchool(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    school_name = Uppercase('Name of School', max_length=200)
+    year_from = Uppercase('From',max_length=4, choices=YEAR_CHOICES)
+    year_to = Uppercase('To',max_length=4, choices=YEAR_CHOICES)
+    highest_level = Uppercase('Highest Level', max_length=50, choices=HIGH_SCHOOL_LEVEL)
+    year_graduated = Uppercase('Year Graduated',max_length=4, choices=YEAR_CHOICES)
+    academic_honors = Uppercase('Academic Honors Received', max_length=150, blank=True, null=False)
+
+    class Meta:
+        verbose_name_plural = "High School"
+
+    def __str__(self):
+        return self.user.email
+
+class SeniorHigh(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    school_name = Uppercase('Name of School', max_length=200)
+    year_from = Uppercase('From',max_length=4, choices=YEAR_CHOICES)
+    year_to = Uppercase('To',max_length=4, choices=YEAR_CHOICES)
+    highest_level = Uppercase('Highest Level', max_length=50, choices=SENIOR_HIGH_LEVEL)
+    year_graduated = Uppercase('Year Graduated',max_length=4, choices=YEAR_CHOICES)
+    academic_honors = Uppercase('Academic Honors Received', max_length=150, blank=True, null=False)
+
+    class Meta:
+        verbose_name_plural = "Senior High"
+
+    def __str__(self):
+        return self.user.email
+
+class College(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    school_name = Uppercase('Name of School', max_length=200)
+    course = Uppercase('Course/Degree', max_length=200)
+    year_from = Uppercase('From',max_length=4, choices=YEAR_CHOICES)
+    year_to = Uppercase('To',max_length=4, choices=YEAR_CHOICES)
+    units_earned = models.DecimalField('Units Earned', max_digits=4, decimal_places=2, blank=True, null=True)
+    year_graduated = Uppercase('Year Graduated',max_length=4, choices=YEAR_CHOICES)
+    academic_honors = Uppercase('Academic Honors Received', max_length=150, blank=True, null=False)
+
+    class Meta:
+        verbose_name_plural = "College"
+
+    def __str__(self):
+        return self.user.email
+
+class Graduate(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    school_name = Uppercase('Name of School', max_length=200)
+    degree = Uppercase('Degree', max_length=200)
+    year_from = Uppercase('From',max_length=4, choices=YEAR_CHOICES)
+    year_to = Uppercase('To',max_length=4, choices=YEAR_CHOICES)
+    units_earned = models.DecimalField('Units Earned', max_digits=4, decimal_places=2, blank=True, null=True)
+    year_graduated = Uppercase('Year Graduated',max_length=4, choices=YEAR_CHOICES)
+    academic_honors = Uppercase('Academic Honors Received', max_length=150, blank=True, null=False)
+
+    class Meta:
+        verbose_name_plural = "Graduate Studies"
+
+    def __str__(self):
+        return self.user.email
+
+

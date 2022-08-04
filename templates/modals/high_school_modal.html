@@ -1,0 +1,63 @@
+{% url 'high-school' as high_school %}
+
+{% load widget_tweaks %}
+
+{% with WIDGET_ERROR_CLASS='is-invalid' %}
+
+
+    <form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content" novalidate>
+        <div class="modal-header pb-2 border-bottom-0">
+            <h3 class="fw-bold mt-0">
+                {% if request.path == high_school %}
+                Add High School
+                {% else %}
+                Edit High School 
+                {% endif %}
+            </h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <hr class="my-1">
+        <div class="modal-body">
+            <label for="{{ form.school_name.id_for_label }}" class="form-label">Name of school (Write in full)*</label>
+        
+            {% render_field form.school_name type="text" class="form-control text-uppercase" %}
+            <div class="invalid-feedback">{{ form.school_name.errors|first }}</div>
+           
+            
+            <div class="row mt-3">
+                <div class="col-sm-6">
+                    <label for="{{ form.year_from.id_for_label }}" class="form-label">From*</label>
+                    {% render_field form.year_from type="text" class="form-select" %}
+                    <div class="invalid-feedback">{{ form.year_from.errors|first }}</div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="{{ form.year_to.id_for_label }}" class="form-label">To*</label>
+                    {% render_field form.year_to type="text" class="form-select" %}
+                    <div class="invalid-feedback">{{ form.year_to.errors|first }}</div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm-6">
+                    <label for="{{ form.highest_level.id_for_label }}" class="form-label">Highest level*</label>
+                    {% render_field form.highest_level type="text" class="form-select" %}
+                    <div class="invalid-feedback">{{ form.highest_level.errors|first }}</div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="{{ form.year_graduated.id_for_label }}" class="form-label">Year Graduated*</label>
+                    {% render_field form.year_graduated type="text" class="form-select" %}
+                    <div class="invalid-feedback">{{ form.year_graduated.errors|first }}</div>
+                </div>
+            </div>
+            <label for="{{ form.academic_honors.id_for_label }}" class="form-label mt-3">Academic honors received</label>
+        
+            {% render_field form.academic_honors type="text" class="form-control text-uppercase mb-3" %}
+            <div class="invalid-feedback">{{ form.academic_honors.errors|first }}</div>
+        </div>
+        <div class="modal-footer">
+            <button class="w-100 mb-2 btn btn-md btn-primary fw-bold" type="submit">Save</button>
+        </div>
+    </form>
+{% endwith %}
+
+
+

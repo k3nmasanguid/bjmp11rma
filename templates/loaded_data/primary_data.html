@@ -22,7 +22,7 @@
                     <td>{{primary.year_graduated}}</td>
                     <td>{{primary.academic_honors}}</td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm" >Edit</button>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'primary-edit' primary.id %}" hx-target="#primary-modal-dialog" data-bs-toggle="modal" data-bs-target="#primary-modal">Edit</button>
                         <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'primary-delete' primary.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
                     </td>
                 </tr>

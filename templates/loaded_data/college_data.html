@@ -1,0 +1,34 @@
+<div class="col-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name of School</th>
+                <th scope="col">Course</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">Units Earned</th>
+                <th scope="col">Year Graduated</th>
+                <th scope="col">Academic Honors Received</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for college in obj_college %}
+                <tr>
+                    <td>{{college.school_name}}</td>
+                    <td>{{college.course}}</td>
+                    <td>{{college.year_from}}</td>
+                    <td>{{college.year_to}}</td>
+                    <td>{{college.units_earned}}</td>
+                    <td>{{college.highest_level}}</td>
+                    <td>{{college.year_graduated}}</td>
+                    <td>{{college.academic_honors}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'college-edit' college.id %}" hx-target="#college-modal-dialog" data-bs-toggle="modal" data-bs-target="#college-modal">Edit</button>
+                        <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'college-delete' college.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

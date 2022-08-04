@@ -33,7 +33,25 @@ urlpatterns = [
    # loaded data to the education page
    path('education/', views.education, name='education'),
    path('primary-data/', views.primary_data, name='primary-data'),
+   path('high-school-data/', views.high_school_data, name='high-school-data'),
+   path('senior-high-data/', views.senior_high_data, name='senior-high-data'),
+   path('college-data/', views.college_data, name='college-data'),
+   path('graduate-data/', views.graduate_data, name='graduate-data'),
    # launch modals education page
    path('primary/', views.primary, name='primary'),
+   path('primary-edit/<str:id>/', views.primary_edit, name='primary-edit'),
    path('primary-delete/<str:id>/', views.primary_delete, name='primary-delete'),
+   path('high-school/', views.high_school, name='high-school'),
+   path('high-school-edit/<str:id>/', views.high_school_edit, name='high-school-edit'),
+   path('high-school-delete/<str:id>/', views.high_school_delete, name='high-school-delete'),
+   path('senior-high/', views.senior_high, name='senior-high'),
+   path('senior-high-edit/<str:id>/', views.senior_high_edit, name='senior-high-edit'),
+   path('senior-high-delete/<str:id>/', views.senior_high_delete, name='senior-high-delete'),
+   path('college/', views.college, name='college'),
+   path('college-edit/<str:id>/', views.college_edit, name='college-edit'),
+   path('college-delete/<str:id>/', views.college_delete, name='college-delete'),
+   path('graduate/', views.graduate, name='graduate'),
+   path('graduate-edit/<str:id>/', views.graduate_edit, name='graduate-edit'),
+   path('graduate-delete/<str:id>/', views.graduate_delete, name='graduate-delete'),
+
 ]

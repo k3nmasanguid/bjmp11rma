@@ -2,8 +2,7 @@ from dataclasses import fields
 from tkinter.tix import Select
 from django import forms
 from django.core.validators import RegexValidator
-from rma.models import YEAR_CHOICES
-from rma.models import PersonalInfo, PresentAddress, PermanentAddress, Spouse, Father, Mother, Sibling, Children, Primary
+from rma.models import PersonalInfo, PresentAddress, PermanentAddress, Spouse, Father, Mother, Sibling, Children, Primary, HighSchool, SeniorHigh, College, Graduate
 
 
 GENDER = (
@@ -95,4 +94,28 @@ class PrimaryForm(forms.ModelForm):
     
     class Meta:
         model = Primary
+        exclude = ('user',)
+
+class HighSchoolForm(forms.ModelForm):
+    
+    class Meta:
+        model = HighSchool
+        exclude = ('user',)
+
+class SeniorHighForm(forms.ModelForm):
+    
+    class Meta:
+        model = SeniorHigh
+        exclude = ('user',)
+
+class CollegeForm(forms.ModelForm):
+    
+    class Meta:
+        model = College
+        exclude = ('user',)
+
+class GraduateForm(forms.ModelForm):
+    
+    class Meta:
+        model = Graduate
         exclude = ('user',)

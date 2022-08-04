@@ -5,7 +5,7 @@
 {% include 'includes/main_header.html' %}
 
   
-<div class="container-fluid">
+<div class="container-fluid mb-5">
     <div class="row">
         
         {% include 'includes/main_sidenav.html' %}
@@ -34,7 +34,7 @@
 
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
                 <h1 class="h3 fw-bold">High School
-                    <a style="cursor : pointer;" title="Add" class="text-decoration-none" >
+                    <a style="cursor : pointer;" title="Add" class="text-decoration-none" hx-get="{% url 'high-school' %}" hx-target="#high-school-modal-dialog" data-bs-toggle="modal" data-bs-target="#high-school-modal">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
@@ -43,15 +43,15 @@
                 </h1>
             </div>
             
-            <div class="row">
-                
+            <div class="row" hx-get="{% url 'high-school-data' %}" hx-trigger="load, high_school from:body">
+                <!--loaded_data/high_school_data.html-->
             </div>
 
             <canvas class="my-2 w-100" id="myChart" width="900" height="0"></canvas>
 
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
                 <h1 class="h3 fw-bold">Senior High School
-                    <a style="cursor : pointer;" title="Add" class="text-decoration-none" >
+                    <a style="cursor : pointer;" title="Add" class="text-decoration-none" hx-get="{% url 'senior-high' %}" hx-target="#senior-high-modal-dialog" data-bs-toggle="modal" data-bs-target="#senior-high-modal">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
@@ -60,15 +60,15 @@
                 </h1>
             </div>
             
-            <div class="row">
-                
+            <div class="row" hx-get="{% url 'senior-high-data' %}" hx-trigger="load, senior_high from:body">
+                <!--loaded_data/senior_high_data.html-->
             </div>
 
             <canvas class="my-2 w-100" id="myChart" width="900" height="0"></canvas>
 
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
                 <h1 class="h3 fw-bold">College
-                    <a style="cursor : pointer;" title="Add" class="text-decoration-none" >
+                    <a style="cursor : pointer;" title="Add" class="text-decoration-none" hx-get="{% url 'college' %}" hx-target="#college-modal-dialog" data-bs-toggle="modal" data-bs-target="#college-modal">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
@@ -77,15 +77,15 @@
                 </h1>
             </div>
             
-            <div class="row">
-                
+            <div class="row" hx-get="{% url 'college-data' %}" hx-trigger="load, college from:body">
+                <!--loaded_data/college_data.html-->
             </div>
 
             <canvas class="my-2 w-100" id="myChart" width="900" height="0"></canvas>
 
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
                 <h1 class="h3 fw-bold">Graduate Studies
-                    <a style="cursor : pointer;" title="Add" class="text-decoration-none" >
+                    <a style="cursor : pointer;" title="Add" class="text-decoration-none" hx-get="{% url 'graduate' %}" hx-target="#graduate-modal-dialog" data-bs-toggle="modal" data-bs-target="#graduate-modal">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
@@ -94,8 +94,8 @@
                 </h1>
             </div>
             
-            <div class="row">
-                <!--loaded_data/graduate_studies_data.html-->
+            <div class="row" hx-get="{% url 'graduate-data' %}" hx-trigger="load, graduate from:body">
+                <!--loaded_data/graduate_data.html-->
             </div>
 
 
@@ -104,16 +104,38 @@
 </div> 
 
 
+
 <!-- Modal -->
-<div class="modal" id="spouse-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog modal-lg" id="spouse-modal-dialog" hx-target="this">
+<div class="modal" id="primary-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg" id="primary-modal-dialog" hx-target="this">
         
     </div>
 </div>
 
 <!-- Modal -->
-<div class="modal" id="primary-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog modal-lg" id="primary-modal-dialog" hx-target="this">
+<div class="modal" id="high-school-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg" id="high-school-modal-dialog" hx-target="this">
+        
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="senior-high-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg" id="senior-high-modal-dialog" hx-target="this">
+        
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="college-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg" id="college-modal-dialog" hx-target="this">
+        
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="graduate-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg" id="graduate-modal-dialog" hx-target="this">
         
     </div>
 </div>
@@ -131,24 +153,7 @@
 
 
 {% block js %}
-<script>
-    ;(function () {
-        const spouse_modal = new bootstrap.Modal(document.getElementById("spouse-modal"))
-    
-        htmx.on("htmx:beforeSwap", (e) => {
-          // Empty response targeting #dialog => hide the modal
-          if (e.detail.target.id == "spouse-modal-dialog" && !e.detail.xhr.response) {
-            spouse_modal.hide()
-            e.detail.shouldSwap = false
-          }
-        })
-      
-        // Remove dialog content after hiding
-        htmx.on("hidden.bs.modal", () => {
-          document.getElementById("spouse-modal-dialog").innerHTML = ""
-        })
-      })()
-</script>
+
 <script>
     ;(function () {
         const primary_modal = new bootstrap.Modal(document.getElementById("primary-modal"))
@@ -164,6 +169,78 @@
         // Remove dialog content after hiding
         htmx.on("hidden.bs.modal", () => {
           document.getElementById("primary-modal-dialog").innerHTML = ""
+        })
+      })()
+</script>
+<script>
+    ;(function () {
+        const high_school_modal = new bootstrap.Modal(document.getElementById("high-school-modal"))
+    
+        htmx.on("htmx:beforeSwap", (e) => {
+          // Empty response targeting #dialog => hide the modal
+          if (e.detail.target.id == "high-school-modal-dialog" && !e.detail.xhr.response) {
+            high_school_modal.hide()
+            e.detail.shouldSwap = false
+          }
+        })
+      
+        // Remove dialog content after hiding
+        htmx.on("hidden.bs.modal", () => {
+          document.getElementById("high-school-modal-dialog").innerHTML = ""
+        })
+      })()
+</script>
+<script>
+    ;(function () {
+        const senior_high_modal = new bootstrap.Modal(document.getElementById("senior-high-modal"))
+    
+        htmx.on("htmx:beforeSwap", (e) => {
+          // Empty response targeting #dialog => hide the modal
+          if (e.detail.target.id == "senior-high-modal-dialog" && !e.detail.xhr.response) {
+            senior_high_modal.hide()
+            e.detail.shouldSwap = false
+          }
+        })
+      
+        // Remove dialog content after hiding
+        htmx.on("hidden.bs.modal", () => {
+          document.getElementById("senior-high-modal-dialog").innerHTML = ""
+        })
+      })()
+</script>
+<script>
+    ;(function () {
+        const college_modal = new bootstrap.Modal(document.getElementById("college-modal"))
+    
+        htmx.on("htmx:beforeSwap", (e) => {
+          // Empty response targeting #dialog => hide the modal
+          if (e.detail.target.id == "college-modal-dialog" && !e.detail.xhr.response) {
+            college_modal.hide()
+            e.detail.shouldSwap = false
+          }
+        })
+      
+        // Remove dialog content after hiding
+        htmx.on("hidden.bs.modal", () => {
+          document.getElementById("college-modal-dialog").innerHTML = ""
+        })
+      })()
+</script>
+<script>
+    ;(function () {
+        const graduate_modal = new bootstrap.Modal(document.getElementById("graduate-modal"))
+    
+        htmx.on("htmx:beforeSwap", (e) => {
+          // Empty response targeting #dialog => hide the modal
+          if (e.detail.target.id == "graduate-modal-dialog" && !e.detail.xhr.response) {
+            graduate_modal.hide()
+            e.detail.shouldSwap = false
+          }
+        })
+      
+        // Remove dialog content after hiding
+        htmx.on("hidden.bs.modal", () => {
+          document.getElementById("graduate-modal-dialog").innerHTML = ""
         })
       })()
 </script>
