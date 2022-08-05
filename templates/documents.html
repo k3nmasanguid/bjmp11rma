@@ -29,8 +29,8 @@
 
 
 <!-- Modal -->
-<div class="modal" id="spouse-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog modal-lg" id="spouse-modal-dialog" hx-target="this">
+<div class="modal" id="documents-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-md modal-dialog-centered" id="documents-modal-dialog" hx-target="this">
         
     </div>
 </div>
@@ -50,19 +50,19 @@
 
 <script>
     ;(function () {
-        const mother_modal = new bootstrap.Modal(document.getElementById("mother-modal"))
+        const documents_modal = new bootstrap.Modal(document.getElementById("documents-modal"))
     
         htmx.on("htmx:beforeSwap", (e) => {
           // Empty response targeting #dialog => hide the modal
-          if (e.detail.target.id == "mother-modal-dialog" && !e.detail.xhr.response) {
-            mother_modal.hide()
+          if (e.detail.target.id == "documents-modal-dialog" && !e.detail.xhr.response) {
+            documents_modal.hide()
             e.detail.shouldSwap = false
           }
         })
       
         // Remove dialog content after hiding
         htmx.on("hidden.bs.modal", () => {
-          document.getElementById("mother-modal-dialog").innerHTML = ""
+          document.getElementById("documents-modal-dialog").innerHTML = ""
         })
       })()
 </script>

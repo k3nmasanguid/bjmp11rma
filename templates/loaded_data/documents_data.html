@@ -11,17 +11,17 @@
         <tbody>
                 <tr>
                     <td>A. Personal Data Sheet</td>
-                    <td>File Name</td>
+                    <td>{% if obj_pds %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'pds' %}" hx-target="#documents-modal-dialog" data-bs-toggle="modal" data-bs-target="#documents-modal">Upload</button>
                         <button type="button" class="btn btn-danger btn-sm">Delete</button>
                     </td>
                 </tr>
                 <tr>
                     <td>B. Transcript of Record</td>
-                    <td>File Name</td>
+                    <td>{% if obj_tor %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                        <button type="button" class="btn btn-primary btn-sm">Upload</button>
                         <button type="button" class="btn btn-danger btn-sm">Delete</button>
                     </td>
                 </tr>
@@ -29,7 +29,7 @@
                     <td>C. Certification, Authentication and verification (CAV)</td>
                     <td>File Name</td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                        <button type="button" class="btn btn-primary btn-sm">Upload</button>
                         <button type="button" class="btn btn-danger btn-sm">Delete</button>
                     </td>
                 </tr>
@@ -37,7 +37,7 @@
                     <td>D. College Diploma</td>
                     <td>File Name</td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                        <button type="button" class="btn btn-primary btn-sm">Upload</button>
                         <button type="button" class="btn btn-danger btn-sm">Delete</button>
                     </td>
                 </tr>

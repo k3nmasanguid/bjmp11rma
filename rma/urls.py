@@ -66,5 +66,6 @@ urlpatterns = [
 
    # loaded data to the eligibility page
    path('documents/', views.documents, name='documents'),
-   path('documents-data', views.documents_data, name='documents-data')
+   path('documents-data', views.documents_data, name='documents-data'),
+   path('pds', views.pds, name='pds')
 ]

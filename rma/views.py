@@ -6,6 +6,9 @@ from django.contrib.auth.decorators import login_required
 from rma.models import Graduate, PermanentAddress, PersonalInfo, PresentAddress, Spouse, Father, Mother, Sibling, Children, Primary, HighSchool, SeniorHigh, College, Graduate, Eligibility
 from rma.forms import PersonalInfoForm, PresentAddressForm, PermanentAddressForm, SpouseForm, FatherForm, MotherForm, SiblingForm, ChildrenForm, PrimaryForm, HighSchoolForm, SeniorHighForm, CollegeForm, GraduateForm, EligibilityForm
 
+from upload_docs.models import PDS, TOR
+from upload_docs.forms import PDSForm
+
 def get_or_none(model, *args, **kwargs):
     try:
         return model.objects.get(*args, **kwargs)
@@ -579,4 +582,29 @@ def documents(request):
 
 @login_required()
 def documents_data(request):
-    return render(request, 'loaded_data/documents_data.html')
+    obj_pds = get_or_none(PDS, user_id=request.user)
+    obj_tor = get_or_none(TOR, user_id=request.user)
+    return render(request, 'loaded_data/documents_data.html',{
+        'obj_pds':obj_pds,
+        'obj_tor':obj_tor,
+    })
+
+
+@login_required()
+def pds(request):
+    try:
+        obj = request.user.pds
+    except ObjectDoesNotExist:
+        obj = PDS(user=request.user)
+
+    if request.method == 'POST':
+        form = PDSForm(request.POST, request.FILES ,instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
+    else:
+        form = PDSForm(instance=obj)
+    return render(request, 'modals/documents_modal.html',{
+        'form':form,
+        'obj':obj,
+    })

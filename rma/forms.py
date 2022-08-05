@@ -1,5 +1,4 @@
-from dataclasses import fields
-from tkinter.tix import Select
+
 from django import forms
 from django.core.validators import RegexValidator
 from rma.models import PersonalInfo, PresentAddress, PermanentAddress, Spouse, Father, Mother, Sibling, Children, Primary, HighSchool, SeniorHigh, College, Graduate, Eligibility
