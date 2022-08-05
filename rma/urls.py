@@ -54,4 +54,17 @@ urlpatterns = [
    path('graduate-edit/<str:id>/', views.graduate_edit, name='graduate-edit'),
    path('graduate-delete/<str:id>/', views.graduate_delete, name='graduate-delete'),
 
+
+   # loaded data to the eligibility page
+   path('eligibility/', views.eligibility, name='eligibility'),
+   path('eligibility-data/', views.eligibility_data, name='eligibility-data'),
+   # launch modals education page
+   path('eligibility-add/', views.eligibility_add, name='eligibility-add'),
+   path('eligibility-edit/<str:id>/', views.eligibility_edit, name='eligibility-edit'),
+   path('eligibility-delete/<str:id>/', views.eligibility_delete, name='eligibility-delete'),
+
+
+   # loaded data to the eligibility page
+   path('documents/', views.documents, name='documents'),
+   path('documents-data', views.documents_data, name='documents-data')
 ]

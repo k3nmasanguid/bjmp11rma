@@ -3,8 +3,8 @@
 from django.shortcuts import get_object_or_404, render, HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-from rma.models import Graduate, PermanentAddress, PersonalInfo, PresentAddress, Spouse, Father, Mother, Sibling, Children, Primary, HighSchool, SeniorHigh, College, Graduate
-from rma.forms import PersonalInfoForm, PresentAddressForm, PermanentAddressForm, SpouseForm, FatherForm, MotherForm, SiblingForm, ChildrenForm, PrimaryForm, HighSchoolForm, SeniorHighForm, CollegeForm, GraduateForm
+from rma.models import Graduate, PermanentAddress, PersonalInfo, PresentAddress, Spouse, Father, Mother, Sibling, Children, Primary, HighSchool, SeniorHigh, College, Graduate, Eligibility
+from rma.forms import PersonalInfoForm, PresentAddressForm, PermanentAddressForm, SpouseForm, FatherForm, MotherForm, SiblingForm, ChildrenForm, PrimaryForm, HighSchoolForm, SeniorHighForm, CollegeForm, GraduateForm, EligibilityForm
 
 def get_or_none(model, *args, **kwargs):
     try:
@@ -506,3 +506,77 @@ def graduate_delete(request, id):
     else:
         return render(request, 'modals/delete_modal.html')
 ############################################################### END LOAD MODAL IN EDUCATION PAGE ######################################################################
+
+
+
+
+
+
+
+
+############################################################### LOADED DATA IN ELIGIBILITY PAGE #########################################################################
+@login_required()
+def eligibility(request):
+    return render(request, 'eligibility.html')
+
+@login_required()
+def eligibility_data(request):
+    obj_eligibility = Eligibility.objects.filter(user_id=request.user)
+    return render(request, 'loaded_data/eligibility_data.html', {'obj_eligibility':obj_eligibility})
+
+############################################################### END LOADED DATA IN ELIGIBILITY PAGE #########################################################################
+
+############################################################### LOAD MODAL IN EDUCATION PAGE ######################################################################
+@login_required()
+def eligibility_add(request):
+    if request.method == 'POST':
+        form = EligibilityForm(request.POST)
+        if form.is_valid():
+            eligibility = form.save(commit=False)
+            eligibility.user_id = request.user.id
+            eligibility.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'eligibility'})
+    else:
+        form = EligibilityForm()  
+    return render(request, 'modals/eligibility_modal.html',{'form':form})
+
+@login_required()
+def eligibility_edit(request, id):
+    obj = get_object_or_404(Eligibility, id=id)
+
+    if request.method == 'POST':
+        form = EligibilityForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'eligibility'})
+    else:
+        form = EligibilityForm(instance=obj)  
+    return render(request, 'modals/eligibility_modal.html',{'form':form})
+
+
+@login_required()
+def eligibility_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(Eligibility, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'eligibility'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+############################################################### END LOAD MODAL IN EDUCATION PAGE ######################################################################
+
+
+
+
+
+
+
+
+############################################################### LOADED DATA IN ELIGIBILITY PAGE #########################################################################
+@login_required()
+def documents(request):
+    return render(request, 'documents.html')
+
+
+@login_required()
+def documents_data(request):
+    return render(request, 'loaded_data/documents_data.html')

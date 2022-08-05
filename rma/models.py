@@ -270,3 +270,18 @@ class Graduate(models.Model):
         return self.user.email
 
 
+class Eligibility(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    eligibility = Uppercase('Eligibility', max_length=200)
+    rating = models.DecimalField('Units Earned', max_digits=4, decimal_places=2)
+    date_of_exam = models.DateField('Date of Examination/Conferment')
+    place_of_exam = Uppercase('Place of Examination/Conferment', max_length=200, blank=True)
+    license = Uppercase('License Number', max_length=50, blank=True)
+
+
+    class Meta:
+        verbose_name_plural = "Eligibility"
+
+    def __str__(self):
+        return self.user.email
+

@@ -1,0 +1,29 @@
+<div class="col-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Eligibility</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Date of Exam</th>
+                <th scope="col">Place of Exam</th>
+                <th scope="col">License Number</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for eligibility in obj_eligibility %}
+                <tr>
+                    <td>{{eligibility.eligibility}}</td>
+                    <td>{{eligibility.rating}}</td>
+                    <td>{{eligibility.date_of_exam}}</td>
+                    <td>{{eligibility.place_of_exam}}</td>
+                    <td>{{eligibility.license}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'eligibility-edit' eligibility.id %}" hx-target="#eligibility-modal-dialog" data-bs-toggle="modal" data-bs-target="#eligibility-modal">Edit</button>
+                        <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'eligibility-delete' eligibility.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'includes/main_header.html' %}
+
+  
+<div class="container-fluid mb-5">
+    <div class="row">
+        
+        {% include 'includes/main_sidenav.html' %}
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 border-bottom">
+                <h1 class="h3 fw-bold">Eligibility
+                    <a style="cursor : pointer;" title="Add" class="text-decoration-none" hx-get="{% url 'eligibility-add' %}" hx-target="#eligibility-modal-dialog" data-bs-toggle="modal" data-bs-target="#eligibility-modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                    </a>
+                </h1>
+            </div>
+            
+            <div class="row" hx-get="{% url 'eligibility-data' %}" hx-trigger="load, eligibility from:body">
+                <!--loaded_data/eligibility_data.html-->
+            </div>
+               
+
+            <canvas class="my-2 w-100" id="myChart" width="900" height="0"></canvas> 
+
+
+        </main>
+    </div>
+</div> 
+
+
+
+<!-- Modal -->
+<div class="modal" id="eligibility-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg" id="eligibility-modal-dialog" hx-target="this">
+        
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal" id="delete-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-ms modal-dialog-centered" id="delete-modal-dialog" hx-target="this">
+        
+    </div>
+</div>
+
+
+{% endblock content %}
+
+
+
+{% block js %}
+
+<script>
+    ;(function () {
+        const eligibility_modal = new bootstrap.Modal(document.getElementById("eligibility-modal"))
+    
+        htmx.on("htmx:beforeSwap", (e) => {
+          // Empty response targeting #dialog => hide the modal
+          if (e.detail.target.id == "eligibility-modal-dialog" && !e.detail.xhr.response) {
+            eligibility_modal.hide()
+            e.detail.shouldSwap = false
+          }
+        })
+      
+        // Remove dialog content after hiding
+        htmx.on("hidden.bs.modal", () => {
+          document.getElementById("eligibility-modal-dialog").innerHTML = ""
+        })
+      })()
+</script>
+
+<script>
+    ;(function () {
+        const delete_modal = new bootstrap.Modal(document.getElementById("delete-modal"))
+    
+        htmx.on("htmx:beforeSwap", (e) => {
+          // Empty response targeting #dialog => hide the modal
+          if (e.detail.target.id == "delete-modal-dialog" && !e.detail.xhr.response) {
+            delete_modal.hide()
+            e.detail.shouldSwap = false
+          }
+        })
+      
+        // Remove dialog content after hiding
+        htmx.on("hidden.bs.modal", () => {
+          document.getElementById("delete-modal-dialog").innerHTML = ""
+        })
+      })()
+</script>
+{% endblock js %}
+
+
+
