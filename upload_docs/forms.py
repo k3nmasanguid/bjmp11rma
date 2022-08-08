@@ -1,5 +1,5 @@
 from django import forms
-from upload_docs.models import PDS, TOR, CAV, Diploma, BirthCert, EligibilityDoc, MarriageCert, Sketch, Waiver
+from upload_docs.models import PDS, TOR, CAV, Diploma, BirthCert, EligibilityDoc, MarriageCert, Sketch, Waiver, Barangay, NBI, Police, Fiscal, MTC, RTC, PNPDI
 
 
 
@@ -84,4 +84,67 @@ class WaiverForm(forms.ModelForm):
         exclude = ('user',)
         widgets = {
             'waiver': forms.FileInput(),
+        }
+
+class BarangayForm(forms.ModelForm):
+
+    class Meta:
+        model =  Barangay
+        exclude = ('user',)
+        widgets = {
+            'barangay': forms.FileInput(),
+        }
+
+class NBIForm(forms.ModelForm):
+
+    class Meta:
+        model =  NBI
+        exclude = ('user',)
+        widgets = {
+            'nbi': forms.FileInput(),
+        }
+
+class PoliceForm(forms.ModelForm):
+
+    class Meta:
+        model =  Police
+        exclude = ('user',)
+        widgets = {
+            'police': forms.FileInput(),
+        }
+
+class FiscalForm(forms.ModelForm):
+
+    class Meta:
+        model =  Fiscal
+        exclude = ('user',)
+        widgets = {
+            'fiscal': forms.FileInput(),
+        }
+
+class MTCForm(forms.ModelForm):
+
+    class Meta:
+        model =  MTC
+        exclude = ('user',)
+        widgets = {
+            'mtc': forms.FileInput(),
+        }
+
+class RTCForm(forms.ModelForm):
+
+    class Meta:
+        model =  RTC
+        exclude = ('user',)
+        widgets = {
+            'rtc': forms.FileInput(),
+        }
+
+class PNPDIForm(forms.ModelForm):
+
+    class Meta:
+        model =  PNPDI
+        exclude = ('user',)
+        widgets = {
+            'pnpdi': forms.FileInput(),
         }

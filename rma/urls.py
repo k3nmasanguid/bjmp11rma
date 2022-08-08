@@ -85,4 +85,20 @@ urlpatterns = [
    path('sketch-delete/<str:id>/', views.sketch_delete, name='sketch-delete'),
    path('waiver/', views.waiver, name='waiver'),
    path('waiver-delete/<str:id>/', views.waiver_delete, name='waiver-delete'),
+
+   path('barangay/', views.barangay, name='barangay'),
+   path('barangay-delete/<str:id>/', views.barangay_delete, name='barangay-delete'),
+   path('nbi/', views.nbi, name='nbi'),
+   path('nbi-delete/<str:id>/', views.nbi_delete, name='nbi-delete'),
+   path('police/', views.police, name='police'),
+   path('police-delete/<str:id>/', views.police_delete, name='police-delete'),
+   path('fiscal/', views.fiscal, name='fiscal'),
+   path('fiscal-delete/<str:id>/', views.fiscal_delete, name='fiscal-delete'),
+   path('mtc/', views.mtc, name='mtc'),
+   path('mtc-delete/<str:id>/', views.mtc_delete, name='mtc-delete'),
+   path('rtc/', views.rtc, name='rtc'),
+   path('rtc-delete/<str:id>/', views.rtc_delete, name='rtc-delete'),
+   path('pnpdi/', views.pnpdi, name='pnpdi'),
+   path('pnpdi-delete/<str:id>/', views.pnpdi_delete, name='pnpdi-delete'),
+
 ]

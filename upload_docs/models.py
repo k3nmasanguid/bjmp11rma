@@ -144,3 +144,104 @@ class Waiver(models.Model):
 
     def __str__(self):
         return self.user.email
+
+
+class Barangay(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    barangay = models.FileField('Barangay', upload_to = user_directory_path, validators=[validate_file_size,FileExtensionValidator( ['pdf'] )])
+    uploaded_at = models.DateTimeField('Uploaded Date/Time', auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "Barangay"
+
+    def filename(self):
+        return os.path.basename(self.file.name)
+
+    def __str__(self):
+        return self.user.email
+
+class NBI(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    nbi = models.FileField('NBI', upload_to = user_directory_path, validators=[validate_file_size,FileExtensionValidator( ['pdf'] )])
+    uploaded_at = models.DateTimeField('Uploaded Date/Time', auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "NBI"
+
+    def filename(self):
+        return os.path.basename(self.file.name)
+
+    def __str__(self):
+        return self.user.email
+
+
+class Police(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    police = models.FileField('Police', upload_to = user_directory_path, validators=[validate_file_size,FileExtensionValidator( ['pdf'] )])
+    uploaded_at = models.DateTimeField('Uploaded Date/Time', auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "Police"
+
+    def filename(self):
+        return os.path.basename(self.file.name)
+
+    def __str__(self):
+        return self.user.email
+
+class Fiscal(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    fiscal = models.FileField('Fiscal', upload_to = user_directory_path, validators=[validate_file_size,FileExtensionValidator( ['pdf'] )])
+    uploaded_at = models.DateTimeField('Uploaded Date/Time', auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "Fiscal"
+
+    def filename(self):
+        return os.path.basename(self.file.name)
+
+    def __str__(self):
+        return self.user.email
+
+class MTC(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    mtc = models.FileField('MTC', upload_to = user_directory_path, validators=[validate_file_size,FileExtensionValidator( ['pdf'] )])
+    uploaded_at = models.DateTimeField('Uploaded Date/Time', auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "MTC"
+
+    def filename(self):
+        return os.path.basename(self.file.name)
+
+    def __str__(self):
+        return self.user.email
+
+class RTC(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    rtc = models.FileField('RTC', upload_to = user_directory_path, validators=[validate_file_size,FileExtensionValidator( ['pdf'] )])
+    uploaded_at = models.DateTimeField('Uploaded Date/Time', auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "RTC"
+
+    def filename(self):
+        return os.path.basename(self.file.name)
+
+    def __str__(self):
+        return self.user.email
+
+class PNPDI(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    pnpdi = models.FileField('PNP Directorate for Intelligence Clearance', upload_to = user_directory_path, validators=[validate_file_size,FileExtensionValidator( ['pdf'] )])
+    uploaded_at = models.DateTimeField('Uploaded Date/Time', auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "PNP Directorate for Intelligence Clearance"
+
+    def filename(self):
+        return os.path.basename(self.file.name)
+
+    def __str__(self):
+        return self.user.email
+

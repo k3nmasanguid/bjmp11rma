@@ -89,38 +89,87 @@
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp; - Barangay</td>
-                    <td></td>
-                    <td></td>
+                    <td>{% if obj_barangay %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
+                   
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'barangay' %}" hx-target="#barangay-modal-dialog" data-bs-toggle="modal" data-bs-target="#barangay-modal">Upload</button>
+                        {% if obj_barangay %}
+                            <a href={{obj_barangay.eligibility_doc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'barangay-delete' obj_barangay.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp; - NBI</td>
-                    <td></td>
-                    <td></td>
+                    <td>{% if obj_nbi %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
+                   
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'nbi' %}" hx-target="#nbi-modal-dialog" data-bs-toggle="modal" data-bs-target="#nbi-modal">Upload</button>
+                        {% if obj_nbi %}
+                            <a href={{obj_nbi.eligibility_doc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'nbi-delete' obj_nbi.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp; - Police</td>
-                    <td></td>
-                    <td></td>
+                    <td>{% if obj_police %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
+                   
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'police' %}" hx-target="#police-modal-dialog" data-bs-toggle="modal" data-bs-target="#police-modal">Upload</button>
+                        {% if obj_police %}
+                            <a href={{obj_police.eligibility_doc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'police-delete' obj_police.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp; - Fiscal</td>
-                    <td></td>
-                    <td></td>
+                    <td>{% if obj_fiscal %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
+                   
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'fiscal' %}" hx-target="#fiscal-modal-dialog" data-bs-toggle="modal" data-bs-target="#fiscal-modal">Upload</button>
+                        {% if obj_fiscal %}
+                            <a href={{obj_fiscal.eligibility_doc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'fiscal-delete' obj_fiscal.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp; - MTC</td>
-                    <td></td>
-                    <td></td>
+                    <td>{% if obj_mtc %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
+                   
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'mtc' %}" hx-target="#mtc-modal-dialog" data-bs-toggle="modal" data-bs-target="#mtc-modal">Upload</button>
+                        {% if obj_mtc %}
+                            <a href={{obj_mtc.eligibility_doc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'mtc-delete' obj_mtc.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp; - RTC</td>
-                    <td></td>
-                    <td></td>
+                    <td>{% if obj_rtc %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
+                   
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'rtc' %}" hx-target="#rtc-modal-dialog" data-bs-toggle="modal" data-bs-target="#rtc-modal">Upload</button>
+                        {% if obj_rtc %}
+                            <a href={{obj_rtc.eligibility_doc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'rtc-delete' obj_rtc.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp; - PNP Directorate for Intelligence Clearance</td>
-                    <td></td>
-                    <td></td>
+                    <td>{% if obj_pnpdi %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
+                   
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'pnpdi' %}" hx-target="#pnpdi-modal-dialog" data-bs-toggle="modal" data-bs-target="#pnpdi-modal">Upload</button>
+                        {% if obj_pnpdi %}
+                            <a href={{obj_pnpdi.eligibility_doc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'pnpdi-delete' obj_pnpdi.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>H. Marriage Certificate</td>

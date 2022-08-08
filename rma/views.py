@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 from rma.models import Graduate, PermanentAddress, PersonalInfo, PresentAddress, Spouse, Father, Mother, Sibling, Children, Primary, HighSchool, SeniorHigh, College, Graduate, Eligibility
 from rma.forms import PersonalInfoForm, PresentAddressForm, PermanentAddressForm, SpouseForm, FatherForm, MotherForm, SiblingForm, ChildrenForm, PrimaryForm, HighSchoolForm, SeniorHighForm, CollegeForm, GraduateForm, EligibilityForm
 
-from upload_docs.models import PDS, TOR, CAV, Diploma, BirthCert, EligibilityDoc, MarriageCert, Sketch, Waiver
-from upload_docs.forms import PDSForm, TORForm, CAVForm, DiplomaForm, BirthCertForm, EligibilityDocForm, MarriageCertForm, SketchForm, WaiverForm
+from upload_docs.models import PDS, TOR, CAV, Diploma, BirthCert, EligibilityDoc, MarriageCert, Sketch, Waiver, Barangay, NBI, Police, Fiscal, MTC, RTC, PNPDI
+from upload_docs.forms import PDSForm, TORForm, CAVForm, DiplomaForm, BirthCertForm, EligibilityDocForm, MarriageCertForm, SketchForm, WaiverForm, BarangayForm, NBIForm,PoliceForm,FiscalForm,MTCForm,RTCForm, PNPDIForm
 
 def get_or_none(model, *args, **kwargs):
     try:
@@ -591,6 +591,14 @@ def documents_data(request):
     obj_marriagecert = get_or_none(MarriageCert, user_id=request.user)
     obj_sketch = get_or_none(Sketch, user_id=request.user)
     obj_waiver = get_or_none(Waiver, user_id=request.user)
+
+    obj_barangay = get_or_none(Barangay, user_id=request.user)
+    obj_nbi = get_or_none(NBI, user_id=request.user)
+    obj_police = get_or_none(Police, user_id=request.user)
+    obj_fiscal = get_or_none(Fiscal, user_id=request.user)
+    obj_mtc = get_or_none(MTC, user_id=request.user)
+    obj_rtc = get_or_none(RTC, user_id=request.user)
+    obj_pnpdi = get_or_none(PNPDI, user_id=request.user)
     return render(request, 'loaded_data/documents_data.html',{
         'obj_pds':obj_pds,
         'obj_tor':obj_tor,
@@ -601,6 +609,13 @@ def documents_data(request):
         'obj_marriagecert':obj_marriagecert,
         'obj_sketch':obj_sketch,
         'obj_waiver':obj_waiver,
+        'obj_barangay':obj_barangay,
+        'obj_nbi':obj_nbi,
+        'obj_police':obj_police,
+        'obj_fiscal':obj_fiscal,
+        'obj_mtc':obj_mtc,
+        'obj_rtc':obj_rtc,
+        'obj_pnpdi':obj_pnpdi,
     })
 
 
@@ -854,6 +869,203 @@ def waiver(request):
 def waiver_delete(request, id):
     if request.method == 'POST':
         obj = get_object_or_404(Waiver, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+@login_required()
+def barangay(request):
+    try:
+        obj = request.user.barangay
+    except ObjectDoesNotExist:
+        obj = Barangay(user=request.user)
+
+    if request.method == 'POST':
+        form = BarangayForm(request.POST, request.FILES ,instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
+    else:
+        form = BarangayForm(instance=obj)
+    return render(request, 'modals/barangay_modal.html',{
+        'form':form,
+        'obj':obj,
+    })
+
+@login_required()
+def barangay_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(Barangay, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+@login_required()
+def nbi(request):
+    try:
+        obj = request.user.nbi
+    except ObjectDoesNotExist:
+        obj = NBI(user=request.user)
+
+    if request.method == 'POST':
+        form = NBIForm(request.POST, request.FILES ,instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
+    else:
+        form = NBIForm(instance=obj)
+    return render(request, 'modals/nbi_modal.html',{
+        'form':form,
+        'obj':obj,
+    })
+
+@login_required()
+def nbi_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(NBI, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+@login_required()
+def police(request):
+    try:
+        obj = request.user.police
+    except ObjectDoesNotExist:
+        obj = Police(user=request.user)
+
+    if request.method == 'POST':
+        form = PoliceForm(request.POST, request.FILES ,instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
+    else:
+        form = PoliceForm(instance=obj)
+    return render(request, 'modals/police_modal.html',{
+        'form':form,
+        'obj':obj,
+    })
+
+@login_required()
+def police_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(Police, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+@login_required()
+def fiscal(request):
+    try:
+        obj = request.user.fiscal
+    except ObjectDoesNotExist:
+        obj = Fiscal(user=request.user)
+
+    if request.method == 'POST':
+        form = FiscalForm(request.POST, request.FILES ,instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
+    else:
+        form = FiscalForm(instance=obj)
+    return render(request, 'modals/fiscal_modal.html',{
+        'form':form,
+        'obj':obj,
+    })
+
+@login_required()
+def fiscal_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(Fiscal, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+
+@login_required()
+def mtc(request):
+    try:
+        obj = request.user.mtc
+    except ObjectDoesNotExist:
+        obj = MTC(user=request.user)
+
+    if request.method == 'POST':
+        form = MTCForm(request.POST, request.FILES ,instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
+    else:
+        form = MTCForm(instance=obj)
+    return render(request, 'modals/mtc_modal.html',{
+        'form':form,
+        'obj':obj,
+    })
+
+@login_required()
+def mtc_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(MTC, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+@login_required()
+def rtc(request):
+    try:
+        obj = request.user.rtc
+    except ObjectDoesNotExist:
+        obj = RTC(user=request.user)
+
+    if request.method == 'POST':
+        form = RTCForm(request.POST, request.FILES ,instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
+    else:
+        form = RTCForm(instance=obj)
+    return render(request, 'modals/rtc_modal.html',{
+        'form':form,
+        'obj':obj,
+    })
+
+@login_required()
+def rtc_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(RTC, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+@login_required()
+def pnpdi(request):
+    try:
+        obj = request.user.pnpdi
+    except ObjectDoesNotExist:
+        obj = PNPDI(user=request.user)
+
+    if request.method == 'POST':
+        form = PNPDIForm(request.POST, request.FILES ,instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
+    else:
+        form = PNPDIForm(instance=obj)
+    return render(request, 'modals/pnpdi_modal.html',{
+        'form':form,
+        'obj':obj,
+    })
+
+@login_required()
+def pnpdi_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(PNPDI, id=id)
         obj.delete()
         return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
     else:

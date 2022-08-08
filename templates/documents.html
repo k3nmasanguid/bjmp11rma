@@ -91,6 +91,55 @@
 </div>
 
 <!-- Modal -->
+<div class="modal" id="barangay-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-md modal-dialog-centered" id="barangay-modal-dialog" hx-target="this">
+      
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="nbi-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-md modal-dialog-centered" id="nbi-modal-dialog" hx-target="this">
+      
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="police-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-md modal-dialog-centered" id="police-modal-dialog" hx-target="this">
+      
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="fiscal-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-md modal-dialog-centered" id="fiscal-modal-dialog" hx-target="this">
+      
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="mtc-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-md modal-dialog-centered" id="mtc-modal-dialog" hx-target="this">
+      
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="rtc-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-md modal-dialog-centered" id="rtc-modal-dialog" hx-target="this">
+      
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="pnpdi-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-md modal-dialog-centered" id="pnpdi-modal-dialog" hx-target="this">
+      
+  </div>
+</div>
+
+<!-- Modal -->
 <div class="modal" id="delete-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-ms modal-dialog-centered" id="delete-modal-dialog" hx-target="this">
         
@@ -268,6 +317,139 @@
       // Remove dialog content after hiding
       htmx.on("hidden.bs.modal", () => {
         document.getElementById("waiver-modal-dialog").innerHTML = ""
+      })
+    })()
+</script>
+
+<script>
+  ;(function () {
+      const barangay_modal = new bootstrap.Modal(document.getElementById("barangay-modal"))
+  
+      htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "barangay-modal-dialog" && !e.detail.xhr.response) {
+          barangay_modal.hide()
+          e.detail.shouldSwap = false
+        }
+      })
+    
+      // Remove dialog content after hiding
+      htmx.on("hidden.bs.modal", () => {
+        document.getElementById("barangay-modal-dialog").innerHTML = ""
+      })
+    })()
+</script>
+
+<script>
+  ;(function () {
+      const nbi_modal = new bootstrap.Modal(document.getElementById("nbi-modal"))
+  
+      htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "nbi-modal-dialog" && !e.detail.xhr.response) {
+          nbi_modal.hide()
+          e.detail.shouldSwap = false
+        }
+      })
+    
+      // Remove dialog content after hiding
+      htmx.on("hidden.bs.modal", () => {
+        document.getElementById("nbi-modal-dialog").innerHTML = ""
+      })
+    })()
+</script>
+
+<script>
+  ;(function () {
+      const police_modal = new bootstrap.Modal(document.getElementById("police-modal"))
+  
+      htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "police-modal-dialog" && !e.detail.xhr.response) {
+          police_modal.hide()
+          e.detail.shouldSwap = false
+        }
+      })
+    
+      // Remove dialog content after hiding
+      htmx.on("hidden.bs.modal", () => {
+        document.getElementById("police-modal-dialog").innerHTML = ""
+      })
+    })()
+</script>
+
+<script>
+  ;(function () {
+      const fiscal_modal = new bootstrap.Modal(document.getElementById("fiscal-modal"))
+  
+      htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "fiscal-modal-dialog" && !e.detail.xhr.response) {
+          fiscal_modal.hide()
+          e.detail.shouldSwap = false
+        }
+      })
+    
+      // Remove dialog content after hiding
+      htmx.on("hidden.bs.modal", () => {
+        document.getElementById("fiscal-modal-dialog").innerHTML = ""
+      })
+    })()
+</script>
+
+<script>
+  ;(function () {
+      const mtc_modal = new bootstrap.Modal(document.getElementById("mtc-modal"))
+  
+      htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "mtc-modal-dialog" && !e.detail.xhr.response) {
+          mtc_modal.hide()
+          e.detail.shouldSwap = false
+        }
+      })
+    
+      // Remove dialog content after hiding
+      htmx.on("hidden.bs.modal", () => {
+        document.getElementById("mtc-modal-dialog").innerHTML = ""
+      })
+    })()
+</script>
+
+<script>
+  ;(function () {
+      const rtc_modal = new bootstrap.Modal(document.getElementById("rtc-modal"))
+  
+      htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "rtc-modal-dialog" && !e.detail.xhr.response) {
+          rtc_modal.hide()
+          e.detail.shouldSwap = false
+        }
+      })
+    
+      // Remove dialog content after hiding
+      htmx.on("hidden.bs.modal", () => {
+        document.getElementById("rtc-modal-dialog").innerHTML = ""
+      })
+    })()
+</script>
+
+<script>
+  ;(function () {
+      const pnpdi_modal = new bootstrap.Modal(document.getElementById("pnpdi-modal"))
+  
+      htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "pnpdi-modal-dialog" && !e.detail.xhr.response) {
+          pnpdi_modal.hide()
+          e.detail.shouldSwap = false
+        }
+      })
+    
+      // Remove dialog content after hiding
+      htmx.on("hidden.bs.modal", () => {
+        document.getElementById("pnpdi-modal-dialog").innerHTML = ""
       })
     })()
 </script>
