@@ -2,9 +2,10 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">File</th>
-                <th scope="col">Uploaded</th>
-                <th scope="col">Actions</th>
+                <th scope="col" width="50%">FILES</th>
+                <th scope="col" width="25%">Uploaded</th>
+              
+                <th scope="col" width="25%">Actions</th>
                
             </tr>
         </thead>
@@ -12,41 +13,149 @@
                 <tr>
                     <td>A. Personal Data Sheet</td>
                     <td>{% if obj_pds %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
+                   
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'pds' %}" hx-target="#documents-modal-dialog" data-bs-toggle="modal" data-bs-target="#documents-modal">Upload</button>
-                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'pds' %}" hx-target="#pds-modal-dialog" data-bs-toggle="modal" data-bs-target="#pds-modal">Upload</button>
+                        {% if obj_pds %}
+                            <a href={{obj_pds.pds.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'pds-delete' obj_pds.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                        {% endif %}
                     </td>
                 </tr>
                 <tr>
-                    <td>B. Transcript of Record</td>
+                    <td>B. Transcript of Records</td>
                     <td>{% if obj_tor %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
+                   
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm">Upload</button>
-                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'tor' %}" hx-target="#tor-modal-dialog" data-bs-toggle="modal" data-bs-target="#tor-modal">Upload</button>
+                        {% if obj_tor %}
+                            <a href={{obj_tor.tor.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'tor-delete' obj_tor.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                        {% endif %}
                     </td>
                 </tr>
                 <tr>
-                    <td>C. Certification, Authentication and verification (CAV)</td>
-                    <td>File Name</td>
+                    <td>C. Certification, Authentication and Verification</td>
+                    <td>{% if obj_cav %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
+                   
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm">Upload</button>
-                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'cav' %}" hx-target="#cav-modal-dialog" data-bs-toggle="modal" data-bs-target="#cav-modal">Upload</button>
+                        {% if obj_cav %}
+                            <a href={{obj_cav.cav.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'cav-delete' obj_cav.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                        {% endif %}
                     </td>
                 </tr>
                 <tr>
                     <td>D. College Diploma</td>
-                    <td>File Name</td>
+                    <td>{% if obj_diploma %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
+                   
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm">Upload</button>
-                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'diploma' %}" hx-target="#diploma-modal-dialog" data-bs-toggle="modal" data-bs-target="#diploma-modal">Upload</button>
+                        {% if obj_diploma %}
+                            <a href={{obj_diploma.diploma.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'diploma-delete' obj_diploma.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                        {% endif %}
                     </td>
                 </tr>
                 <tr>
                     <td>E. Birth Certificate</td>
-                    <td>File Name</td>
+                    <td>{% if obj_birthcert %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
+                   
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'birthcert' %}" hx-target="#birthcert-modal-dialog" data-bs-toggle="modal" data-bs-target="#birthcert-modal">Upload</button>
+                        {% if obj_birthcert %}
+                            <a href={{obj_birthcert.birthcert.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'birthcert-delete' obj_birthcert.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>F. Eligibility</td>
+                    <td>{% if obj_eligibilitydoc %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
+                   
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'eligibilitydoc' %}" hx-target="#eligibilitydoc-modal-dialog" data-bs-toggle="modal" data-bs-target="#eligibilitydoc-modal">Upload</button>
+                        {% if obj_eligibilitydoc %}
+                            <a href={{obj_eligibilitydoc.eligibility_doc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'eligibilitydoc-delete' obj_eligibilitydoc.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>G. Clearances</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - Barangay</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - NBI</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - Police</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - Fiscal</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - MTC</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - RTC</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - PNP Directorate for Intelligence Clearance</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>H. Marriage Certificate</td>
+                    <td>{% if obj_marriagecert %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
+                   
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'marriagecert' %}" hx-target="#marriagecert-modal-dialog" data-bs-toggle="modal" data-bs-target="#marriagecert-modal">Upload</button>
+                        {% if obj_marriagecert %}
+                            <a href={{obj_marriagecert.marriage_cert.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'marriagecert-delete' obj_marriagecert.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>I. Sketch of Residence/Locality</td>
+                    <td>{% if obj_sketch %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
+                   
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'sketch' %}" hx-target="#sketch-modal-dialog" data-bs-toggle="modal" data-bs-target="#sketch-modal">Upload</button>
+                        {% if obj_sketch %}
+                            <a href={{obj_sketch.sketch.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'sketch-delete' obj_sketch.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>J. Certificate for Age and/or Height Waiver</td>
+                    <td>{% if obj_waiver %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
+                   
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'waiver' %}" hx-target="#waiver-modal-dialog" data-bs-toggle="modal" data-bs-target="#waiver-modal">Upload</button>
+                        {% if obj_waiver %}
+                            <a href={{obj_waiver.waiver.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'waiver-delete' obj_waiver.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                        {% endif %}
                     </td>
                 </tr>
         </tbody>

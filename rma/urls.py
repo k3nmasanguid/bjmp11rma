@@ -67,5 +67,22 @@ urlpatterns = [
    # loaded data to the eligibility page
    path('documents/', views.documents, name='documents'),
    path('documents-data', views.documents_data, name='documents-data'),
-   path('pds', views.pds, name='pds')
+   path('pds/', views.pds, name='pds'),
+   path('pds-delete/<str:id>/', views.pds_delete, name='pds-delete'),
+   path('tor/', views.tor, name='tor'),
+   path('tor-delete/<str:id>/', views.tor_delete, name='tor-delete'),
+   path('cav/', views.cav, name='cav'),
+   path('cav-delete/<str:id>/', views.cav_delete, name='cav-delete'),
+   path('diploma/', views.diploma, name='diploma'),
+   path('diploma-delete/<str:id>/', views.diploma_delete, name='diploma-delete'),
+   path('birthcert/', views.birthcert, name='birthcert'),
+   path('birthcert-delete/<str:id>/', views.birthcert_delete, name='birthcert-delete'),
+   path('eligibilitydoc/', views.eligibilitydoc, name='eligibilitydoc'),
+   path('eligibilitydoc-delete/<str:id>/', views.eligibilitydoc_delete, name='eligibilitydoc-delete'),
+   path('marriagecert/', views.marriagecert, name='marriagecert'),
+   path('marriagecert-delete/<str:id>/', views.marriagecert_delete, name='marriagecert-delete'),
+   path('sketch/', views.sketch, name='sketch'),
+   path('sketch-delete/<str:id>/', views.sketch_delete, name='sketch-delete'),
+   path('waiver/', views.waiver, name='waiver'),
+   path('waiver-delete/<str:id>/', views.waiver_delete, name='waiver-delete'),
 ]

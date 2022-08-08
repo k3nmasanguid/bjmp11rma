@@ -1,0 +1,27 @@
+
+
+{% load widget_tweaks %}
+
+{% with WIDGET_ERROR_CLASS='is-invalid' %}
+
+
+    <form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content" enctype='multipart/form-data' novalidate>
+        <div class="modal-header pb-2 border-bottom-0">
+            <h3 class="fw-bold mt-0">Upload/Edit Document</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <hr class="my-1">
+        <div class="modal-body">
+            
+            <label for="{{ form.diploma.id_for_label }}" class="form-label mb-3"> {{form.diploma.label_tag}}</label>
+            {% render_field form.diploma type="file" class="form-control" accept=".pdf"  %}
+            <div class="invalid-feedback">{{ form.diploma.errors|first }}</div>
+        </div>
+        <div class="modal-footer">
+            <button class="w-100 mb-2 btn btn-md btn-primary fw-bold" type="submit">Save</button>
+        </div>
+    </form>
+{% endwith %}
+
+
+

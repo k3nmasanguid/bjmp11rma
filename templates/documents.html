@@ -29,12 +29,66 @@
 
 
 <!-- Modal -->
-<div class="modal" id="documents-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog modal-md modal-dialog-centered" id="documents-modal-dialog" hx-target="this">
+<div class="modal" id="pds-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-md modal-dialog-centered" id="pds-modal-dialog" hx-target="this">
         
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal" id="tor-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-md modal-dialog-centered" id="tor-modal-dialog" hx-target="this">
+      
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="cav-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-md modal-dialog-centered" id="cav-modal-dialog" hx-target="this">
+      
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="diploma-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-md modal-dialog-centered" id="diploma-modal-dialog" hx-target="this">
+      
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="birthcert-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-md modal-dialog-centered" id="birthcert-modal-dialog" hx-target="this">
+      
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="eligibilitydoc-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-md modal-dialog-centered" id="eligibilitydoc-modal-dialog" hx-target="this">
+      
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="marriagecert-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-md modal-dialog-centered" id="marriagecert-modal-dialog" hx-target="this">
+      
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="sketch-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-md modal-dialog-centered" id="sketch-modal-dialog" hx-target="this">
+      
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal" id="waiver-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-md modal-dialog-centered" id="waiver-modal-dialog" hx-target="this">
+      
+  </div>
+</div>
 
 <!-- Modal -->
 <div class="modal" id="delete-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
@@ -50,22 +104,174 @@
 
 <script>
     ;(function () {
-        const documents_modal = new bootstrap.Modal(document.getElementById("documents-modal"))
+        const pds_modal = new bootstrap.Modal(document.getElementById("pds-modal"))
     
         htmx.on("htmx:beforeSwap", (e) => {
           // Empty response targeting #dialog => hide the modal
-          if (e.detail.target.id == "documents-modal-dialog" && !e.detail.xhr.response) {
-            documents_modal.hide()
+          if (e.detail.target.id == "pds-modal-dialog" && !e.detail.xhr.response) {
+            pds_modal.hide()
             e.detail.shouldSwap = false
           }
         })
       
         // Remove dialog content after hiding
         htmx.on("hidden.bs.modal", () => {
-          document.getElementById("documents-modal-dialog").innerHTML = ""
+          document.getElementById("pds-modal-dialog").innerHTML = ""
         })
       })()
 </script>
+
+<script>
+  ;(function () {
+      const tor_modal = new bootstrap.Modal(document.getElementById("tor-modal"))
+  
+      htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "tor-modal-dialog" && !e.detail.xhr.response) {
+          tor_modal.hide()
+          e.detail.shouldSwap = false
+        }
+      })
+    
+      // Remove dialog content after hiding
+      htmx.on("hidden.bs.modal", () => {
+        document.getElementById("tor-modal-dialog").innerHTML = ""
+      })
+    })()
+</script>
+
+<script>
+  ;(function () {
+      const cav_modal = new bootstrap.Modal(document.getElementById("cav-modal"))
+  
+      htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "cav-modal-dialog" && !e.detail.xhr.response) {
+          cav_modal.hide()
+          e.detail.shouldSwap = false
+        }
+      })
+    
+      // Remove dialog content after hiding
+      htmx.on("hidden.bs.modal", () => {
+        document.getElementById("cav-modal-dialog").innerHTML = ""
+      })
+    })()
+</script>
+
+<script>
+  ;(function () {
+      const diploma_modal = new bootstrap.Modal(document.getElementById("diploma-modal"))
+  
+      htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "diploma-modal-dialog" && !e.detail.xhr.response) {
+          diploma_modal.hide()
+          e.detail.shouldSwap = false
+        }
+      })
+    
+      // Remove dialog content after hiding
+      htmx.on("hidden.bs.modal", () => {
+        document.getElementById("diploma-modal-dialog").innerHTML = ""
+      })
+    })()
+</script>
+
+<script>
+  ;(function () {
+      const birthcert_modal = new bootstrap.Modal(document.getElementById("birthcert-modal"))
+  
+      htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "birthcert-modal-dialog" && !e.detail.xhr.response) {
+          birthcert_modal.hide()
+          e.detail.shouldSwap = false
+        }
+      })
+    
+      // Remove dialog content after hiding
+      htmx.on("hidden.bs.modal", () => {
+        document.getElementById("birthcert-modal-dialog").innerHTML = ""
+      })
+    })()
+</script>
+
+<script>
+  ;(function () {
+      const eligibilitydoc_modal = new bootstrap.Modal(document.getElementById("eligibilitydoc-modal"))
+  
+      htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "eligibilitydoc-modal-dialog" && !e.detail.xhr.response) {
+          eligibilitydoc_modal.hide()
+          e.detail.shouldSwap = false
+        }
+      })
+    
+      // Remove dialog content after hiding
+      htmx.on("hidden.bs.modal", () => {
+        document.getElementById("eligibilitydoc-modal-dialog").innerHTML = ""
+      })
+    })()
+</script>
+
+<script>
+  ;(function () {
+      const marriagecert_modal = new bootstrap.Modal(document.getElementById("marriagecert-modal"))
+  
+      htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "marriagecert-modal-dialog" && !e.detail.xhr.response) {
+          marriagecert_modal.hide()
+          e.detail.shouldSwap = false
+        }
+      })
+    
+      // Remove dialog content after hiding
+      htmx.on("hidden.bs.modal", () => {
+        document.getElementById("marriagecert-modal-dialog").innerHTML = ""
+      })
+    })()
+</script>
+
+<script>
+  ;(function () {
+      const sketch_modal = new bootstrap.Modal(document.getElementById("sketch-modal"))
+  
+      htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "sketch-modal-dialog" && !e.detail.xhr.response) {
+          sketch_modal.hide()
+          e.detail.shouldSwap = false
+        }
+      })
+    
+      // Remove dialog content after hiding
+      htmx.on("hidden.bs.modal", () => {
+        document.getElementById("sketch-modal-dialog").innerHTML = ""
+      })
+    })()
+</script>
+<script>
+  ;(function () {
+      const waiver_modal = new bootstrap.Modal(document.getElementById("waiver-modal"))
+  
+      htmx.on("htmx:beforeSwap", (e) => {
+        // Empty response targeting #dialog => hide the modal
+        if (e.detail.target.id == "waiver-modal-dialog" && !e.detail.xhr.response) {
+          waiver_modal.hide()
+          e.detail.shouldSwap = false
+        }
+      })
+    
+      // Remove dialog content after hiding
+      htmx.on("hidden.bs.modal", () => {
+        document.getElementById("waiver-modal-dialog").innerHTML = ""
+      })
+    })()
+</script>
+
 
 <script>
     ;(function () {

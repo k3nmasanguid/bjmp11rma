@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 from rma.models import Graduate, PermanentAddress, PersonalInfo, PresentAddress, Spouse, Father, Mother, Sibling, Children, Primary, HighSchool, SeniorHigh, College, Graduate, Eligibility
 from rma.forms import PersonalInfoForm, PresentAddressForm, PermanentAddressForm, SpouseForm, FatherForm, MotherForm, SiblingForm, ChildrenForm, PrimaryForm, HighSchoolForm, SeniorHighForm, CollegeForm, GraduateForm, EligibilityForm
 
-from upload_docs.models import PDS, TOR
-from upload_docs.forms import PDSForm
+from upload_docs.models import PDS, TOR, CAV, Diploma, BirthCert, EligibilityDoc, MarriageCert, Sketch, Waiver
+from upload_docs.forms import PDSForm, TORForm, CAVForm, DiplomaForm, BirthCertForm, EligibilityDocForm, MarriageCertForm, SketchForm, WaiverForm
 
 def get_or_none(model, *args, **kwargs):
     try:
@@ -584,9 +584,23 @@ def documents(request):
 def documents_data(request):
     obj_pds = get_or_none(PDS, user_id=request.user)
     obj_tor = get_or_none(TOR, user_id=request.user)
+    obj_cav = get_or_none(CAV, user_id=request.user)
+    obj_diploma = get_or_none(Diploma, user_id=request.user)
+    obj_birthcert = get_or_none(BirthCert, user_id=request.user)
+    obj_eligibilitydoc = get_or_none(EligibilityDoc, user_id=request.user)
+    obj_marriagecert = get_or_none(MarriageCert, user_id=request.user)
+    obj_sketch = get_or_none(Sketch, user_id=request.user)
+    obj_waiver = get_or_none(Waiver, user_id=request.user)
     return render(request, 'loaded_data/documents_data.html',{
         'obj_pds':obj_pds,
         'obj_tor':obj_tor,
+        'obj_cav':obj_cav,
+        'obj_diploma':obj_diploma,
+        'obj_birthcert':obj_birthcert,
+        'obj_eligibilitydoc':obj_eligibilitydoc,
+        'obj_marriagecert':obj_marriagecert,
+        'obj_sketch':obj_sketch,
+        'obj_waiver':obj_waiver,
     })
 
 
@@ -604,7 +618,243 @@ def pds(request):
             return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
     else:
         form = PDSForm(instance=obj)
-    return render(request, 'modals/documents_modal.html',{
+    return render(request, 'modals/pds_modal.html',{
         'form':form,
         'obj':obj,
     })
+
+@login_required()
+def pds_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(PDS, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+
+@login_required()
+def tor(request):
+    try:
+        obj = request.user.tor
+    except ObjectDoesNotExist:
+        obj = TOR(user=request.user)
+
+    if request.method == 'POST':
+        form = TORForm(request.POST, request.FILES ,instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
+    else:
+        form = TORForm(instance=obj)
+    return render(request, 'modals/tor_modal.html',{
+        'form':form,
+        'obj':obj,
+    })
+
+@login_required()
+def tor_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(TOR, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+@login_required()
+def cav(request):
+    try:
+        obj = request.user.cav
+    except ObjectDoesNotExist:
+        obj = CAV(user=request.user)
+
+    if request.method == 'POST':
+        form = CAVForm(request.POST, request.FILES ,instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
+    else:
+        form = CAVForm(instance=obj)
+    return render(request, 'modals/cav_modal.html',{
+        'form':form,
+        'obj':obj,
+    })
+
+@login_required()
+def cav_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(CAV, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+@login_required()
+def diploma(request):
+    try:
+        obj = request.user.diploma
+    except ObjectDoesNotExist:
+        obj = Diploma(user=request.user)
+
+    if request.method == 'POST':
+        form = DiplomaForm(request.POST, request.FILES ,instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
+    else:
+        form = DiplomaForm(instance=obj)
+    return render(request, 'modals/diploma_modal.html',{
+        'form':form,
+        'obj':obj,
+    })
+
+@login_required()
+def diploma_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(Diploma, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+
+@login_required()
+def birthcert(request):
+    try:
+        obj = request.user.birthcert
+    except ObjectDoesNotExist:
+        obj = BirthCert(user=request.user)
+
+    if request.method == 'POST':
+        form = BirthCertForm(request.POST, request.FILES ,instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
+    else:
+        form = BirthCertForm(instance=obj)
+    return render(request, 'modals/birthcert_modal.html',{
+        'form':form,
+        'obj':obj,
+    })
+
+@login_required()
+def birthcert_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(BirthCert, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+@login_required()
+def eligibilitydoc(request):
+    try:
+        obj = request.user.eligibilitydoc
+    except ObjectDoesNotExist:
+        obj = EligibilityDoc(user=request.user)
+
+    if request.method == 'POST':
+        form = EligibilityDocForm(request.POST, request.FILES ,instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
+    else:
+        form = EligibilityDocForm(instance=obj)
+    return render(request, 'modals/eligibilitydoc_modal.html',{
+        'form':form,
+        'obj':obj,
+    })
+
+@login_required()
+def eligibilitydoc_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(EligibilityDoc, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+
+@login_required()
+def marriagecert(request):
+    try:
+        obj = request.user.marriagecert
+    except ObjectDoesNotExist:
+        obj = MarriageCert(user=request.user)
+
+    if request.method == 'POST':
+        form = MarriageCertForm(request.POST, request.FILES ,instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
+    else:
+        form = MarriageCertForm(instance=obj)
+    return render(request, 'modals/marriagecert_modal.html',{
+        'form':form,
+        'obj':obj,
+    })
+
+@login_required()
+def marriagecert_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(MarriageCert, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+@login_required()
+def sketch(request):
+    try:
+        obj = request.user.sketch
+    except ObjectDoesNotExist:
+        obj = Sketch(user=request.user)
+
+    if request.method == 'POST':
+        form = SketchForm(request.POST, request.FILES ,instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
+    else:
+        form = SketchForm(instance=obj)
+    return render(request, 'modals/sketch_modal.html',{
+        'form':form,
+        'obj':obj,
+    })
+
+@login_required()
+def sketch_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(Sketch, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
+
+@login_required()
+def waiver(request):
+    try:
+        obj = request.user.waiver
+    except ObjectDoesNotExist:
+        obj = Waiver(user=request.user)
+
+    if request.method == 'POST':
+        form = WaiverForm(request.POST, request.FILES ,instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
+    else:
+        form = WaiverForm(instance=obj)
+    return render(request, 'modals/waiver_modal.html',{
+        'form':form,
+        'obj':obj,
+    })
+
+@login_required()
+def waiver_delete(request, id):
+    if request.method == 'POST':
+        obj = get_object_or_404(Waiver, id=id)
+        obj.delete()
+        return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
+    else:
+        return render(request, 'modals/delete_modal.html')
