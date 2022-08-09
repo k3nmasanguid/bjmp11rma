@@ -24,13 +24,23 @@ class UserAccountManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
+    APPLICATION_STATUS = (
+        ('Complete', 'Complete'),
+        ('Pending', 'Pending'),
+    )
+
     email = models.EmailField(verbose_name='Email', max_length=100, unique=True)
     date_joined = models.DateTimeField(verbose_name='Date joined', auto_now_add = True)
     last_login = models.DateTimeField(verbose_name='Last login', auto_now = True)
+
+    status = models.CharField('Application Status', max_length=20, default='Pending' ,choices=APPLICATION_STATUS)
+
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+
+
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

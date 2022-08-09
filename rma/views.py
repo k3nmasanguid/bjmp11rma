@@ -3,6 +3,7 @@
 from django.shortcuts import get_object_or_404, render, HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
+from authentication.models import User
 from rma.models import Graduate, PermanentAddress, PersonalInfo, PresentAddress, Spouse, Father, Mother, Sibling, Children, Primary, HighSchool, SeniorHigh, College, Graduate, Eligibility
 from rma.forms import PersonalInfoForm, PresentAddressForm, PermanentAddressForm, SpouseForm, FatherForm, MotherForm, SiblingForm, ChildrenForm, PrimaryForm, HighSchoolForm, SeniorHighForm, CollegeForm, GraduateForm, EligibilityForm
 
@@ -15,13 +16,53 @@ def get_or_none(model, *args, **kwargs):
     except model.DoesNotExist:
         return None
 
+def update_status(request):
+    p_info = get_or_none(PersonalInfo,user_id=request.user)
+    present_add = get_or_none(PresentAddress,user_id=request.user)
+    permanent_add = get_or_none(PermanentAddress,user_id=request.user)
+    father = get_or_none(Father,user_id=request.user)
+    mother = get_or_none(Mother,user_id=request.user)
+    primary = get_or_none(Primary,user_id=request.user)
+    highschool = get_or_none(HighSchool,user_id=request.user)
+    college = get_or_none(College,user_id=request.user)
+    eligibility = get_or_none(Eligibility,user_id=request.user)
+    pds = get_or_none(PDS,user_id=request.user)
+    tor = get_or_none(TOR,user_id=request.user)
+    cav = get_or_none(CAV,user_id=request.user)
+    diploma = get_or_none(Diploma,user_id=request.user)
+    birthcert = get_or_none(BirthCert,user_id=request.user)
+    eligibilitydoc = get_or_none(EligibilityDoc,user_id=request.user)
+    sketch = get_or_none(Sketch,user_id=request.user)
+    barangay = get_or_none(Barangay,user_id=request.user)
+    nbi = get_or_none(NBI,user_id=request.user)
+    police = get_or_none(Police,user_id=request.user)
+    fiscal = get_or_none(Fiscal,user_id=request.user)
+    mtc = get_or_none(MTC,user_id=request.user)
+    rtc = get_or_none(RTC,user_id=request.user)
+    pnpdi = get_or_none(PNPDI,user_id=request.user)
 
+    user = User.objects.get(id=request.user.id)
+    if p_info and present_add and permanent_add and father and mother and primary and highschool and college and eligibility and pds and tor and cav and diploma and birthcert and eligibilitydoc and sketch and barangay and nbi and police and fiscal and mtc and rtc and pnpdi:
+        user.status = "Complete"
+        user.save()
+    else:
+        user.status = "Pending"
+        user.save()
 
 ############################################################### LOADED DATA IN HOME #########################################################################
-
 @login_required()
 def home(request):
-    return render(request, 'home.html') 
+    update_status(request)
+    user = User.objects.get(id=request.user.id)
+    return render(request, 'home.html',{'user':user}) 
+
+
+@login_required()
+def profile(request):
+    update_status(request)
+    return render(request, 'profile.html') 
+
+
 
 @login_required()  
 def personal_info_data(request):
@@ -55,6 +96,7 @@ def personal_info(request):
         form = PersonalInfoForm(request.POST, instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'personal_info'})
     else:
         form = PersonalInfoForm(instance=obj)
@@ -71,6 +113,7 @@ def present_address(request):
         form = PresentAddressForm(request.POST, instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'present_address'})
     else:
         form = PresentAddressForm(instance=obj)  
@@ -87,6 +130,7 @@ def permanent_address(request):
         form = PermanentAddressForm(request.POST, instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'permanent_address'})
     else:
         form = PermanentAddressForm(instance=obj)  
@@ -99,6 +143,7 @@ def permanent_address(request):
 
 @login_required()
 def background(request):
+    update_status(request)
     return render(request, 'background.html')
 
 @login_required()
@@ -158,6 +203,7 @@ def father(request):
         form = FatherForm(request.POST, instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'father'})
     else:
         form = FatherForm(instance=obj)  
@@ -174,6 +220,7 @@ def mother(request):
         form = MotherForm(request.POST, instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'mother'})
     else:
         form = MotherForm(instance=obj)  
@@ -259,6 +306,7 @@ def children_delete(request, id):
 
 @login_required()
 def education(request):
+    update_status(request)
     return render(request, 'education.html')
 
 @login_required()
@@ -298,6 +346,7 @@ def primary(request):
             primary = form.save(commit=False)
             primary.user_id = request.user.id
             primary.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'primary'})
     else:
         form = PrimaryForm()  
@@ -335,6 +384,7 @@ def high_school(request):
             high_school = form.save(commit=False)
             high_school.user_id = request.user.id
             high_school.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'high_school'})
     else:
         form = HighSchoolForm()  
@@ -408,6 +458,7 @@ def college(request):
             college = form.save(commit=False)
             college.user_id = request.user.id
             college.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'college'})
     else:
         form = CollegeForm()  
@@ -436,42 +487,6 @@ def college_delete(request, id):
     else:
         return render(request, 'modals/delete_modal.html')
 
-
-@login_required()
-def college(request):
-    if request.method == 'POST':
-        form = CollegeForm(request.POST)
-        if form.is_valid():
-            college = form.save(commit=False)
-            college.user_id = request.user.id
-            college.save()
-            return HttpResponse(status=204, headers={'HX-Trigger': 'college'})
-    else:
-        form = CollegeForm()  
-    return render(request, 'modals/college_modal.html',{'form':form})
-
-@login_required()
-def college_edit(request, id):
-    obj = get_object_or_404(College, id=id)
-
-    if request.method == 'POST':
-        form = CollegeForm(request.POST, instance=obj)
-        if form.is_valid():
-            form.save()
-            return HttpResponse(status=204, headers={'HX-Trigger': 'college'})
-    else:
-        form = CollegeForm(instance=obj)  
-    return render(request, 'modals/college_modal.html',{'form':form})
-
-
-@login_required()
-def college_delete(request, id):
-    if request.method == 'POST':
-        obj = get_object_or_404(College, id=id)
-        obj.delete()
-        return HttpResponse(status=204, headers={'HX-Trigger': 'college'}) 
-    else:
-        return render(request, 'modals/delete_modal.html')
 
 @login_required()
 def graduate(request):
@@ -520,6 +535,7 @@ def graduate_delete(request, id):
 ############################################################### LOADED DATA IN ELIGIBILITY PAGE #########################################################################
 @login_required()
 def eligibility(request):
+    update_status(request)
     return render(request, 'eligibility.html')
 
 @login_required()
@@ -538,6 +554,7 @@ def eligibility_add(request):
             eligibility = form.save(commit=False)
             eligibility.user_id = request.user.id
             eligibility.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'eligibility'})
     else:
         form = EligibilityForm()  
@@ -577,6 +594,7 @@ def eligibility_delete(request, id):
 ############################################################### LOADED DATA IN ELIGIBILITY PAGE #########################################################################
 @login_required()
 def documents(request):
+    update_status(request)
     return render(request, 'documents.html')
 
 
@@ -630,6 +648,7 @@ def pds(request):
         form = PDSForm(request.POST, request.FILES ,instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
     else:
         form = PDSForm(instance=obj)
@@ -659,6 +678,7 @@ def tor(request):
         form = TORForm(request.POST, request.FILES ,instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
     else:
         form = TORForm(instance=obj)
@@ -687,6 +707,7 @@ def cav(request):
         form = CAVForm(request.POST, request.FILES ,instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
     else:
         form = CAVForm(instance=obj)
@@ -715,6 +736,7 @@ def diploma(request):
         form = DiplomaForm(request.POST, request.FILES ,instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
     else:
         form = DiplomaForm(instance=obj)
@@ -744,6 +766,7 @@ def birthcert(request):
         form = BirthCertForm(request.POST, request.FILES ,instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
     else:
         form = BirthCertForm(instance=obj)
@@ -772,6 +795,7 @@ def eligibilitydoc(request):
         form = EligibilityDocForm(request.POST, request.FILES ,instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
     else:
         form = EligibilityDocForm(instance=obj)
@@ -829,6 +853,7 @@ def sketch(request):
         form = SketchForm(request.POST, request.FILES ,instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
     else:
         form = SketchForm(instance=obj)
@@ -885,6 +910,7 @@ def barangay(request):
         form = BarangayForm(request.POST, request.FILES ,instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
     else:
         form = BarangayForm(instance=obj)
@@ -913,6 +939,7 @@ def nbi(request):
         form = NBIForm(request.POST, request.FILES ,instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
     else:
         form = NBIForm(instance=obj)
@@ -941,6 +968,7 @@ def police(request):
         form = PoliceForm(request.POST, request.FILES ,instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
     else:
         form = PoliceForm(instance=obj)
@@ -969,6 +997,7 @@ def fiscal(request):
         form = FiscalForm(request.POST, request.FILES ,instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
     else:
         form = FiscalForm(instance=obj)
@@ -998,6 +1027,7 @@ def mtc(request):
         form = MTCForm(request.POST, request.FILES ,instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
     else:
         form = MTCForm(instance=obj)
@@ -1026,6 +1056,7 @@ def rtc(request):
         form = RTCForm(request.POST, request.FILES ,instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
     else:
         form = RTCForm(instance=obj)
@@ -1054,6 +1085,7 @@ def pnpdi(request):
         form = PNPDIForm(request.POST, request.FILES ,instance=obj)
         if form.is_valid():
             form.save()
+            update_status(request)
             return HttpResponse(status=204, headers={'HX-Trigger': 'documents'})
     else:
         form = PNPDIForm(instance=obj)
@@ -1070,3 +1102,5 @@ def pnpdi_delete(request, id):
         return HttpResponse(status=204, headers={'HX-Trigger': 'documents'}) 
     else:
         return render(request, 'modals/delete_modal.html')
+
+

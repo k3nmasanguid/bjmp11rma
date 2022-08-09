@@ -4,6 +4,7 @@ from rma import views
 urlpatterns = [
    # loaded data to the home page
    path('', views.home, name='home'),
+   path('profile/', views.profile, name='profile'),
    path('personal-info-data/', views.personal_info_data, name='personal-info-data'),
    path('present-address-data/', views.present_address_data, name='present-address-data'),
    path('permanent-address-data/', views.permanent_address_data, name='permanent-address-data'),

@@ -11,7 +11,10 @@
         </thead>
         <tbody>
                 <tr>
-                    <td>A. Personal Data Sheet</td>
+                    <td>A. Personal Data Sheet <button type="button" class="btn btn-outline-danger" disabled
+                        style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        required
+                      </button></td>
                     <td>{% if obj_pds %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
                    
                     <td>
@@ -23,7 +26,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>B. Transcript of Records</td>
+                    <td>B. Transcript of Records <button type="button" class="btn btn-outline-danger" disabled
+                        style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        required
+                      </button></td>
                     <td>{% if obj_tor %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
                    
                     <td>
@@ -35,7 +41,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>C. Certification, Authentication and Verification</td>
+                    <td>C. Certification, Authentication and Verification <button type="button" class="btn btn-outline-danger" disabled
+                        style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        required
+                      </button></td>
                     <td>{% if obj_cav %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
                    
                     <td>
@@ -47,7 +56,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>D. College Diploma</td>
+                    <td>D. College Diploma <button type="button" class="btn btn-outline-danger" disabled
+                        style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        required
+                      </button></td>
                     <td>{% if obj_diploma %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
                    
                     <td>
@@ -59,7 +71,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>E. Birth Certificate</td>
+                    <td>E. Birth Certificate <button type="button" class="btn btn-outline-danger" disabled
+                        style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        required
+                      </button></td>
                     <td>{% if obj_birthcert %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
                    
                     <td>
@@ -71,7 +86,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>F. Eligibility</td>
+                    <td>F. Eligibility <button type="button" class="btn btn-outline-danger" disabled
+                        style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        required
+                      </button></td>
                     <td>{% if obj_eligibilitydoc %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
                    
                     <td>
@@ -88,85 +106,106 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - Barangay</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - Barangay <button type="button" class="btn btn-outline-danger" disabled
+                        style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        required
+                      </button></td>
                     <td>{% if obj_barangay %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
                    
                     <td>
                         <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'barangay' %}" hx-target="#barangay-modal-dialog" data-bs-toggle="modal" data-bs-target="#barangay-modal">Upload</button>
                         {% if obj_barangay %}
-                            <a href={{obj_barangay.eligibility_doc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <a href={{obj_barangay.barangay.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
                             <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'barangay-delete' obj_barangay.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
                         {% endif %}
                     </td>
                 </tr>
                 <tr>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - NBI</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - NBI <button type="button" class="btn btn-outline-danger" disabled
+                        style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        required
+                      </button></td>
                     <td>{% if obj_nbi %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
                    
                     <td>
                         <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'nbi' %}" hx-target="#nbi-modal-dialog" data-bs-toggle="modal" data-bs-target="#nbi-modal">Upload</button>
                         {% if obj_nbi %}
-                            <a href={{obj_nbi.eligibility_doc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <a href={{obj_nbi.nbi.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
                             <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'nbi-delete' obj_nbi.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
                         {% endif %}
                     </td>
                 </tr>
                 <tr>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - Police</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - Police <button type="button" class="btn btn-outline-danger" disabled
+                        style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        required
+                      </button></td>
                     <td>{% if obj_police %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
                    
                     <td>
                         <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'police' %}" hx-target="#police-modal-dialog" data-bs-toggle="modal" data-bs-target="#police-modal">Upload</button>
                         {% if obj_police %}
-                            <a href={{obj_police.eligibility_doc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <a href={{obj_police.police.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
                             <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'police-delete' obj_police.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
                         {% endif %}
                     </td>
                 </tr>
                 <tr>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - Fiscal</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - Fiscal <button type="button" class="btn btn-outline-danger" disabled
+                        style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        required
+                      </button></td>
                     <td>{% if obj_fiscal %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
                    
                     <td>
                         <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'fiscal' %}" hx-target="#fiscal-modal-dialog" data-bs-toggle="modal" data-bs-target="#fiscal-modal">Upload</button>
                         {% if obj_fiscal %}
-                            <a href={{obj_fiscal.eligibility_doc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <a href={{obj_fiscal.fiscal.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
                             <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'fiscal-delete' obj_fiscal.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
                         {% endif %}
                     </td>
                 </tr>
                 <tr>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - MTC</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - MTC <button type="button" class="btn btn-outline-danger" disabled
+                        style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        required
+                      </button></td>
                     <td>{% if obj_mtc %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
                    
                     <td>
                         <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'mtc' %}" hx-target="#mtc-modal-dialog" data-bs-toggle="modal" data-bs-target="#mtc-modal">Upload</button>
                         {% if obj_mtc %}
-                            <a href={{obj_mtc.eligibility_doc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <a href={{obj_mtc.mtc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
                             <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'mtc-delete' obj_mtc.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
                         {% endif %}
                     </td>
                 </tr>
                 <tr>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - RTC</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - RTC <button type="button" class="btn btn-outline-danger" disabled
+                        style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        required
+                      </button></td>
                     <td>{% if obj_rtc %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
                    
                     <td>
                         <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'rtc' %}" hx-target="#rtc-modal-dialog" data-bs-toggle="modal" data-bs-target="#rtc-modal">Upload</button>
                         {% if obj_rtc %}
-                            <a href={{obj_rtc.eligibility_doc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <a href={{obj_rtc.rtc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
                             <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'rtc-delete' obj_rtc.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
                         {% endif %}
                     </td>
                 </tr>
                 <tr>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - PNP Directorate for Intelligence Clearance</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp; - PNP Directorate for Intelligence Clearance <button type="button" class="btn btn-outline-danger" disabled
+                        style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        required
+                      </button></td>
                     <td>{% if obj_pnpdi %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
                    
                     <td>
                         <button type="button" class="btn btn-primary btn-sm" hx-get="{% url 'pnpdi' %}" hx-target="#pnpdi-modal-dialog" data-bs-toggle="modal" data-bs-target="#pnpdi-modal">Upload</button>
                         {% if obj_pnpdi %}
-                            <a href={{obj_pnpdi.eligibility_doc.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
+                            <a href={{obj_pnpdi.pnpdi.url}} target="_blank" type="button" class="btn btn-secondary btn-sm">View</a>
                             <button type="button" class="btn btn-danger btn-sm" hx-get="{% url 'pnpdi-delete' obj_pnpdi.id %}" hx-target="#delete-modal-dialog" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
                         {% endif %}
                     </td>
@@ -184,7 +223,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>I. Sketch of Residence/Locality</td>
+                    <td>I. Sketch of Residence/Locality <button type="button" class="btn btn-outline-danger" disabled
+                        style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                        required
+                      </button></td>
                     <td>{% if obj_sketch %}{% include 'includes/check_icon.html' %}{% else %}{% include 'includes/x_icon.html' %}{% endif %}</td>
                    
                     <td>

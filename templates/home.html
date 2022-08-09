@@ -10,141 +10,16 @@
         {% include 'includes/main_sidenav.html' %}
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 border-bottom">
-                <h1 class="h3 fw-bold">Personal Information
-                    <a style="cursor : pointer;" title="Edit" class="text-decoration-none" hx-get="{% url 'personal-info' %}" hx-target="#personal-info-modal-dialog" data-bs-toggle="modal" data-bs-target="#personal-info-modal">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                        </svg>
-                    </a>
+            
+            <div class="mt-4 pb-2 {% if user.status == "Complete" %}alert alert-success {% else %}alert alert-danger{% endif %}">
+                <h1 class="h3 fw-normal">Application Status: <span class="fw-bold">{{user.status}}</span>
                 </h1>
+                <h1 class="h4"></h1>
             </div>
-            
-            <div class="row" hx-get="{% url 'personal-info-data' %}" hx-trigger="load, personal_info from:body">
-                <!--loaded_data/personal_info_data.html-->
-            </div>
-               
-            <canvas class="my-2 w-100" id="myChart" width="900" height="0"></canvas>
-            
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
-                <h1 class="h3 fw-bold">Present Address
-                    <a style="cursor : pointer;" title="Edit" class="text-decoration-none" hx-get="{% url 'present-address' %}" hx-target="#present-address-modal-dialog" data-bs-toggle="modal" data-bs-target="#present-address-modal">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                        </svg>
-                    </a>
-                </h1>
-            </div>
-            
-            <div class="row" hx-get="{% url 'present-address-data' %}" hx-trigger="load, present_address from:body">
-                <!--loaded_data/present_address_data.html-->
-            </div>
-            
-            <canvas class="my-2 w-100" id="myChart" width="900" height="0"></canvas>
-
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
-                <h1 class="h3 fw-bold">Permanent Address
-                    <a style="cursor : pointer;" title="Edit" class="text-decoration-none" hx-get="{% url 'permanent-address' %}" hx-target="#permanent-address-modal-dialog" data-bs-toggle="modal" data-bs-target="#permanent-address-modal">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                        </svg>
-                    </a>
-                </h1>
-            </div>
-            
-            <div class="row" hx-get="{% url 'permanent-address-data' %}" hx-trigger="load, permanent_address from:body">
-                <!--loaded_data/permanent_address_data.html-->
-            </div>
-
         </main>
     </div>
 </div> 
 
 
-<!-- Modal -->
-<div class="modal" id="personal-info-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog modal-lg" id="personal-info-modal-dialog" hx-target="this">
-        
-    </div>
-</div>
 
-<!-- Modal -->
-<div class="modal" id="present-address-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog modal-lg" id="present-address-modal-dialog" hx-target="this">
-        
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal" id="permanent-address-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog modal-lg" id="permanent-address-modal-dialog" hx-target="this">
-        
-    </div>
-</div>
 {% endblock content %}
-
-
-
-{% block js %}
-<script>
-    ;(function () {
-        const personal_info_modal = new bootstrap.Modal(document.getElementById("personal-info-modal"))
-    
-        htmx.on("htmx:beforeSwap", (e) => {
-          // Empty response targeting #dialog => hide the modal
-          if (e.detail.target.id == "personal-info-modal-dialog" && !e.detail.xhr.response) {
-            personal_info_modal.hide()
-            e.detail.shouldSwap = false
-          }
-        })
-      
-        // Remove dialog content after hiding
-        htmx.on("hidden.bs.modal", () => {
-          document.getElementById("personal-info-modal-dialog").innerHTML = ""
-        })
-      })()
-</script>
-
-<script>
-    ;(function () {
-        const present_address_modal = new bootstrap.Modal(document.getElementById("present-address-modal"))
-    
-        htmx.on("htmx:beforeSwap", (e) => {
-          // Empty response targeting #dialog => hide the modal
-          if (e.detail.target.id == "present-address-modal-dialog" && !e.detail.xhr.response) {
-            present_address_modal.hide()
-            e.detail.shouldSwap = false
-          }
-        })
-      
-        // Remove dialog content after hiding
-        htmx.on("hidden.bs.modal", () => {
-          document.getElementById("present-address-modal-dialog").innerHTML = ""
-        })
-      })()
-</script>
-
-
-<script>
-    ;(function () {
-        const permanent_address_modal = new bootstrap.Modal(document.getElementById("permanent-address-modal"))
-    
-        htmx.on("htmx:beforeSwap", (e) => {
-          // Empty response targeting #dialog => hide the modal
-          if (e.detail.target.id == "permanent-address-modal-dialog" && !e.detail.xhr.response) {
-            permanent_address_modal.hide()
-            e.detail.shouldSwap = false
-          }
-        })
-      
-        // Remove dialog content after hiding
-        htmx.on("hidden.bs.modal", () => {
-          document.getElementById("permanent-address-modal-dialog").innerHTML = ""
-        })
-      })()
-</script>
-
-{% endblock js %}
