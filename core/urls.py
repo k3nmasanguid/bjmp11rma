@@ -25,6 +25,6 @@ urlpatterns = [
     path('', include('authentication.urls')),
     path('', include('rma.urls')),
     path('verification/', include('verify_email.urls')),
-    
+    path('bjmpadmin/', include('bjmpadmin.urls')),
     # path('', include('rma.urls')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'verify_email.apps.VerifyEmailConfig',
     'upload_docs',
     'django_cleanup.apps.CleanupConfig',
+    'bjmpadmin',
 ]
 
 MIDDLEWARE = [

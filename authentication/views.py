@@ -1,6 +1,4 @@
-from email import message
 import json
-from multiprocessing import context
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import login, authenticate, logout
 from authentication.forms import UserForm
