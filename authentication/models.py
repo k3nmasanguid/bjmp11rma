@@ -28,6 +28,7 @@ class UserAccountManager(BaseUserManager):
 class User(AbstractBaseUser):
     APPLICATION_STATUS = (
         ('Complete', 'Complete'),
+        ('For Submission', 'For Submission'),
         ('Pending', 'Pending'),
     )
 
@@ -37,7 +38,7 @@ class User(AbstractBaseUser):
 
     status = models.CharField('Application Status', max_length=20, default='Pending' ,choices=APPLICATION_STATUS)
 
-    batch = models.ManyToManyField(to='rma.Quota')
+    batch = models.ManyToManyField(to='rma.Quota', null=True, blank=True)
 
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
