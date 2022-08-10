@@ -58,28 +58,25 @@ SENIOR_HIGH_LEVEL = (
         ('GRADE 12', 'GRADE 12'),
 )
 
+QUOTA_CHOICES = (
+        ('Open', 'Open'),
+        ('Close', 'Close'),
+)
+
 YEAR_CHOICES = [('N/A','N/A')]
 for r in range(1990, (datetime.datetime.now().year+1)):
     YEAR_CHOICES.append((str(r),str(r)))
 
-class Hiring(models.Model):
-    description = models.CharField('Description', max_length=255, unique=True)
-    
-    class Meta:
-        verbose_name_plural = "Hiring"
-
-    def __str__(self):
-        return self.description
-
 class Quota(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    hiring = models.ForeignKey(Hiring, on_delete=models.CASCADE)
-
+    batch = models.CharField('Batch Name', max_length=255, unique=True)
+    status = models.CharField('Status', max_length=5, default='Close' ,choices = QUOTA_CHOICES)
     class Meta:
         verbose_name_plural = "Quota"
 
     def __str__(self):
-        return self.user.email
+        return self.batch
+
+
 
 class PersonalInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+
+
 class UserAccountManager(BaseUserManager):
     def create_user(self, email, password=None):
         if not email:
@@ -34,6 +36,8 @@ class User(AbstractBaseUser):
     last_login = models.DateTimeField(verbose_name='Last login', auto_now = True)
 
     status = models.CharField('Application Status', max_length=20, default='Pending' ,choices=APPLICATION_STATUS)
+
+    batch = models.ManyToManyField(to='rma.Quota')
 
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)

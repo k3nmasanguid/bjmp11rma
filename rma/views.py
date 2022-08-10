@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render, HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from authentication.models import User
-from rma.models import Graduate, PermanentAddress, PersonalInfo, PresentAddress, Spouse, Father, Mother, Sibling, Children, Primary, HighSchool, SeniorHigh, College, Graduate, Eligibility
+from rma.models import Graduate, PermanentAddress, PersonalInfo, PresentAddress, Spouse, Father, Mother, Sibling, Children, Primary, HighSchool, SeniorHigh, College, Graduate, Eligibility, Quota
 from rma.forms import PersonalInfoForm, PresentAddressForm, PermanentAddressForm, SpouseForm, FatherForm, MotherForm, SiblingForm, ChildrenForm, PrimaryForm, HighSchoolForm, SeniorHighForm, CollegeForm, GraduateForm, EligibilityForm
 
 from upload_docs.models import PDS, TOR, CAV, Diploma, BirthCert, EligibilityDoc, MarriageCert, Sketch, Waiver, Barangay, NBI, Police, Fiscal, MTC, RTC, PNPDI
@@ -1104,3 +1104,11 @@ def pnpdi_delete(request, id):
         return render(request, 'modals/delete_modal.html')
 
 
+@login_required()
+def apply(request):
+    # pass
+    user = User.objects.get(id=request.user.id)
+    if user.status == "Complete":
+        quota = get_or_none(Quota, status = 'Open')
+        user.batch.add(quota.id)
+    return render(request, 'home.html')
