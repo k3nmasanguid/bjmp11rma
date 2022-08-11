@@ -53,6 +53,7 @@ def update_status(request):
 ############################################################### LOADED DATA IN HOME #########################################################################
 @login_required()
 def home(request):
+
     update_status(request) 
     user = User.objects.get(id=request.user.id)
     
