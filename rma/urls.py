@@ -102,6 +102,6 @@ urlpatterns = [
    path('pnpdi/', views.pnpdi, name='pnpdi'),
    path('pnpdi-delete/<str:id>/', views.pnpdi_delete, name='pnpdi-delete'),
 
-
+   path('home-data/', views.home_data, name='home-data'),
    path('apply/', views.apply, name='apply'),
 ]

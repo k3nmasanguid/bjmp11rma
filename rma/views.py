@@ -1110,16 +1110,20 @@ def pnpdi_delete(request, id):
     else:
         return render(request, 'modals/delete_modal.html')
 
+@login_required()
+def home_data(request):
+    msg = ""
+    quota = get_or_none(Quota, status = 'Open')
+    if quota is None:
+        msg = "Application period is not yet open"
+    return render(request, 'loaded_data/home_data.html',{'msg':msg})
 
 @login_required()
 def apply(request):
-    msg = ""
     user = User.objects.get(id=request.user.id)
     if user.status == "For Submission":
         quota = get_or_none(Quota, status = 'Open')
         if quota is not None:
             user.batch.add(quota.id)
             return redirect('home')
-        else:
-            msg = "There is no open quota"
-    return render(request,'home.html', {'msg':msg})
+    return HttpResponse(status=204, headers={'HX-Trigger': 'home'})
