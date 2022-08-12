@@ -47,38 +47,48 @@
             </div>
         </div>
 
-        <div class="row mt-5">
+        {% comment %} <div class="row mt-5">
             <div class="input-group">
                 <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
             </div>
-        </div>
-
-        <div class="row mt-2">
-            <table class="table table-striped table-sm">
+        </div> {% endcomment %}
+        <hr class="mt-5">
+        <div class="row mt-5">
+            <table id="example" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Middle Name</th>
-                        <th scope="col">Suffix</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">Course</th>
-                        <th scope="col">Eligibility</th>
+                        <th>Email</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Middle Name</th>
+                        <th>Suffix</th>
+                        <th>Gender</th>
+                        <th>Civil Status</th>
+                        <th>Date of Birth</th>
+                        <th>Cellphone #</th>
+                        <th>Course</th>
+                        <th>Eligibility</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="fw-lighter">
-                        <td>1</td>
-                        <td>MASANGUID</td>
-                        <td>KEN</td>
-                        <td>BATAD</td>
-                        <td></td>
-                        <td>MALE</td>
-                        <td >BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</td>
-                        <td>CSC PROF</td>
-                    </tr>
+                    {% for result in results %}
+                        <tr>
+                            <td>{{result.email}}</td>
+                            <td>{{result.personalinfo.last_name}}</td>
+                            <td>{{result.personalinfo.first_name}}</td>
+                            <td>{{result.personalinfo.middle_name}}</td>
+                            <td>{{result.personalinfo.suffix}}</td>
+                            <td>{{result.personalinfo.gender}}</td>
+                            <td>{{result.personalinfo.civil_status}}</td>
+                            <td>{{result.personalinfo.date_of_birth}}</td>
+                            <td>{{result.personalinfo.cellphone_no}}</td>
+                            <td>
+                               
+                            </td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -88,3 +98,12 @@
 
 
 {% endblock content %}
+
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+
+{% endblock js %}
