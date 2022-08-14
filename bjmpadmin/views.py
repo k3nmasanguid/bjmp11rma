@@ -1,28 +1,25 @@
 
 from django.shortcuts import render
 from authentication.models import User
-from rma.models import College
+from rma.models import College, Quota
 from django.db.models import Q
 def bjmpadmin(request):
-    queryset1  = User.objects.prefetch_related('batch').filter(batch__batch='2024-01')
-    # results = User.objects.filter(id__in=queryset1).select_related('personalinfo')
-    # resultsss = College.objects.filter(user_id=2).select_related('user')
-    infos = User.objects.filter(id__in=queryset1).select_related('personalinfo')
+    batches = Quota.objects.all().order_by('-id')
+    queryset1  = User.objects.prefetch_related('batch').filter(batch__batch='2023-01')
     
-
-
+    infos = User.objects.filter(id__in=queryset1).select_related('personalinfo')
+    total_applicant = infos.count()
+    male_applicant = infos.filter(personalinfo__gender__iexact='MALE').count()
+    female_applicant = infos.filter(personalinfo__gender__iexact='FEMALE').count()
+    crim_course = College.objects.filter(Q(user_id__in=queryset1) & ~Q(year_graduated__iexact="N/A") & Q(course__icontains="criminology")).count()
+    
     context = {
+        'batches':batches,
         'infos':infos,
-       
+        'total_applicant':total_applicant,
+        'male_applicant':male_applicant,
+        'female_applicant':female_applicant,
+        'crim_course':crim_course,
     }
-    # college_results = College.objects.select_related('user')#.filter(Q(user_id__id=queryset1)& ~Q(year_graduated = 'N/A')).first()
-    # # # for x in results:
-    # # #     print(x.personalinfo.last_name,x.presentaddress.zip_code)
-    # # # queryset2 = User.objects.filter(id=queryset1.id)
-    # # # for x in queryset1 :
-    # # #     print(x.id)
-    # for x in queryset1:
-    #     courses = College.objects.filter(user_id=x.id).select_related('user')
-   
-
+  
     return render(request, 'bjmpadmin/bjmpadmin.html',context)#{'results':results,})

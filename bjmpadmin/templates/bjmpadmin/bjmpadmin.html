@@ -3,19 +3,33 @@
 
 {% include 'includes/main_header.html' %}
 <div class="container-fluid mb-5">
-    <div class="row">
+    {% comment %} <div class="row">
     {% include 'bjmpadmin/includes/bjmpadmin_nav.html' %}
-    </div>
+    </div> {% endcomment %}
     
     
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-4">
-        <h1>{{table_obj.last_name}}</h1>
+    <main class="ms-sm-auto px-md-4 mt-4">
+        <div class="row ">
+            <div class="col-auto">
+                <label for="" class="form-label">Select a Batch:</label>
+            </div>
+            <div class="col-sm-4">
+                <select class="form-select col-auto" aria-label="Default select example">
+                    {% for batch in batches %}
+                        <option value="1">{{batch.batch}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-info mb-3">Confirm identity</button>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-3 ">
                 <div class="card text-bg-success shadow rounded">
                     <div class="card-body text-center">
-                        <h1 class="card-title fw-bold">540</h1>
+                        <h1 class="card-title fw-bold">{{total_applicant}}</h1>
                         <p class="card-text">Total Number of Applicants</p>
                         
                     </div>
@@ -24,7 +38,7 @@
             <div class="col-sm-3">
                 <div class="card text-bg-primary">
                     <div class="card-body text-center shadow rounded">
-                        <h1 class="card-title fw-bold">340</h1>
+                        <h1 class="card-title fw-bold">{{male_applicant}}</h1>
                         <p class="card-text">Male Applicants</p>
                     </div>
                 </div>
@@ -32,7 +46,7 @@
             <div class="col-sm-3">
                 <div class="card text-bg-warning">
                     <div class="card-body text-center shadow rounded">
-                        <h1 class="card-title fw-bold">200</h1>
+                        <h1 class="card-title fw-bold">{{female_applicant}}</h1>
                         <p class="card-text">Female Applicants</p>
                     </div>
                 </div>
@@ -40,7 +54,7 @@
             <div class="col-sm-3">
                 <div class="card text-bg-secondary">
                     <div class="card-body text-center shadow rounded">
-                        <h1 class="card-title fw-bold">300</h1>
+                        <h1 class="card-title fw-bold">{{crim_course}}</h1>
                         <p class="card-text">Criminology Graduate</p>
                     </div>
                 </div>
@@ -71,7 +85,7 @@
                 </thead>
                 <tbody>
                     {% for info in infos %}   
-                        <tr class="fw-normal">
+                        <tr >
                             <td>{{info.email}}</td>
                             <td>{{info.personalinfo.last_name}}</td>
                             <td>{{info.personalinfo.first_name}}</td>

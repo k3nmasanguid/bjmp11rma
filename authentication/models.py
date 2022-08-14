@@ -38,7 +38,7 @@ class User(AbstractBaseUser):
 
     status = models.CharField('Application Status', max_length=20, default='Pending' ,choices=APPLICATION_STATUS)
 
-    batch = models.ManyToManyField(to='rma.Quota', null=True, blank=True)
+    batch = models.ManyToManyField(to='rma.Quota')
 
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
