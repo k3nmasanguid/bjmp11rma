@@ -67,28 +67,22 @@
                         <th>Civil Status</th>
                         <th>Date of Birth</th>
                         <th>Cellphone #</th>
-                        <th>Course</th>
-                        <th>Eligibility</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for result in results %}
-                        <tr>
-                            <td>{{result.email}}</td>
-                            <td>{{result.personalinfo.last_name}}</td>
-                            <td>{{result.personalinfo.first_name}}</td>
-                            <td>{{result.personalinfo.middle_name}}</td>
-                            <td>{{result.personalinfo.suffix}}</td>
-                            <td>{{result.personalinfo.gender}}</td>
-                            <td>{{result.personalinfo.civil_status}}</td>
-                            <td>{{result.personalinfo.date_of_birth}}</td>
-                            <td>{{result.personalinfo.cellphone_no}}</td>
-                            <td>
-                               
-                            </td>
-                            <td></td>
+                    {% for info in infos %}   
+                        <tr class="fw-normal">
+                            <td>{{info.email}}</td>
+                            <td>{{info.personalinfo.last_name}}</td>
+                            <td>{{info.personalinfo.first_name}}</td>
+                            <td>{{info.personalinfo.middle_name}}</td>
+                            <td>{{info.personalinfo.suffix}}</td>
+                            <td>{{info.personalinfo.gender}}</td>
+                            <td>{{info.personalinfo.civil_status}}</td>
+                            <td>{{info.personalinfo.date_of_birth}}</td>
+                            <td>{{info.personalinfo.cellphone_no}}</td>
                         </tr>
-                    {% endfor %}
+                    {% endfor %} 
                 </tbody>
             </table>
         </div>
