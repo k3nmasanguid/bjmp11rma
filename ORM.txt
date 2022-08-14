@@ -1,0 +1,101 @@
+class Promotion(models.Model):
+	description = models.CharField(max_length=255)
+	discount = models.FloatField()
+
+class Product(models.Model):
+	sku = models.CharField(max-Length=10, primary_key=True) ---> will create a custom primary key
+	title = models.CharField(max_length=255)
+	description = models.TextField()
+	unit_price = models.DecimalField(max_digits=6, decimal_places=2)
+	inventory = models.IntegerField()
+	last_update = models.DateTimeField(auto_add=True)
+	collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
+	promotions = models.OnetoManyField(Promotion)
+
+class Customer(models.Model):
+	MEMBERSHIP_CHOICES = [
+		('B','Bronze'),
+		('S','Silver'),
+		('G','Gold'),	
+	]
+
+	first_name = models.CharField(max_length=255)
+	last_name = models.CharField(max_length=255)
+	email = models.EmailField(unique=True)
+	phone = models.CharField(max_length=255)
+	birth_date = models.DateField(null=True)
+	membership = models.CharField(max_length=1, choices=MEMBERSHIP_CHOICES)
+
+class Address(models.Model):
+	street = 
+	city = 
+	customer = models.OnetoOneField(Customer, on_delete=models.CASCADE, primary_key=True)
+
+class Order(models.Model):
+	PAYMENT_STATUS_CHOICES = [
+		('P','Pending'),
+		('C','Complete'),
+		('F','Failed'),	
+	]
+	placed_at = models.DateTimeField(auto_now_add=True)
+	payment_status = models.CharField(max_length=1, choices=PAYMENT_STATUS_CHOICES)
+	customer = models.ForeignKey(Customer, on_delete=models.PROTECT)	
+
+class Collection(models.Model):
+	title = models.CharField(max_length=255)
+	featured_product = models.ForeignKey('Product', on_delete=models.SET_NULL, null=True, related_name='+')	
+
+class OrderItem(models.Model):
+	order =  models.ForeignKey(Order, on_delete=models.PROTECT)
+	product = models.ForeignKey(Product, on_delete=models.PROTECT)
+	quantity = models.PositiveSmallIntegerField()
+	unit_price = models.DecimalField(max_digits=6, decimal_places=2)
+
+class Cart(models.Model):
+	created_at =  models.DateTimeField(auto_now_add=True)
+
+
+class CartItem(models.Model):
+	cart =  models.ForeignKey(Cart, on_delete=models.CASCADE)
+	product = models.ForeignKey(Product, on_delete=models.CASCADE)
+	quantity = models.PositiveSmallIntegerField()
+
+
+query_set = Product.objects.all()[:5]
+query_set = Product.objects.get()
+query_set = Product.objects.filter()
+query_set = Product.objects.count()
+
+# slice the result
+query_set = Product.objects.all()
+query_set[0] ---> get the first object
+query_set[0:5] > get the first 5 objects
+
+# another way of using try catch if using .get()
+product = Product.objects.filter(pk=0).exists()
+
+# field lookups and navigate to the relationships
+query_set = Product.objects.filter(unit_price__gt=20)
+query_set = Product.objects.filter(unit_price__range=(20,30))
+query_set = Product.objects.filter(last_update__year=2021)
+query_set = Product.objects.filter(title__icontains='coffee')
+query_set = Product.objects.filter(description__isnull=True)
+query_set = Product.objects.filter(collection__id=1) ---> navigate to Product and Collection relationship
+query_set = Product.objects.filter(collection__id__range=(1,2,3)) ---> navigate to Product and Collection relationship
+
+# using Q objects
+query_set = Product.objects.filter(
+			Q(inventory__lt=10) & ~Q(unit_price__lt=20)) ---> Products: inventory < 10 AND price is not equal or less than 20
+
+# sorting
+query_set = Product.objects.order_by('title').order_by('unit_price')
+query_set = Product.objects.filter(collection__id=1).order_by('unit_price')
+
+# selecting fields to query
+query_set = Product.objects.values('id','title','collection__title')
+
+#select products that have been ordered and sort them by title
+step 1. order = OrderItem.objects.values('product__id').distinct() ---> use the distict method to elimate duplicate values
+step 2. products = Product.objects.filter(id__in=OrderItem.objects.values('product__id').distinct()).order_by('title')
+
+
