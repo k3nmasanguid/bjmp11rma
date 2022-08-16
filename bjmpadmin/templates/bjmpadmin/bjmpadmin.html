@@ -6,8 +6,6 @@
     {% comment %} <div class="row">
     {% include 'bjmpadmin/includes/bjmpadmin_nav.html' %}
     </div> {% endcomment %}
-    
-    
 
     <main class="ms-sm-auto px-md-4 mt-4">
         <form class="row" method="GET" action="{% url 'bjmpadmin-search' %}">
@@ -23,13 +21,13 @@
                 <button type="submit" class="btn btn-danger mb-3">Filter</button>
             </div>
         </form>
-        <h2 class="fw-bold">{{selected_batch}}</h2>
+        <h1 class="fw-bold">{{selected_batch}}</h1>
         <div class="row">
             <div class="col-sm-3 ">
                 <div class="card text-bg-success shadow rounded">
                     <div class="card-body text-center">
                         <h1 class="card-title fw-bold">{{total_applicant}}</h1>
-                        <p class="card-text">Total Number</p>
+                        <p class="card-text">Total Applicant</p>
                         
                     </div>
                 </div>
@@ -59,19 +57,12 @@
                 </div>
             </div>
         </div>
-
-        {% comment %} <div class="row mt-5">
-            <div class="input-group">
-                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-            </div>
-        </div> {% endcomment %}
         <hr class="mt-5">
         <div class="row mt-5">
             <table id="example" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Email</th>
+                        
                         <th>Last Name</th>
                         <th>First Name</th>
                         <th>Middle Name</th>
@@ -80,12 +71,12 @@
                         <th>Civil Status</th>
                         <th>Date of Birth</th>
                         <th>Cellphone #</th>
+                        <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for info in infos %}   
                         <tr >
-                            <td>{{info.email}}</td>
                             <td>{{info.personalinfo.last_name}}</td>
                             <td>{{info.personalinfo.first_name}}</td>
                             <td>{{info.personalinfo.middle_name}}</td>
@@ -94,8 +85,9 @@
                             <td>{{info.personalinfo.civil_status}}</td>
                             <td>{{info.personalinfo.date_of_birth}}</td>
                             <td>{{info.personalinfo.cellphone_no}}</td>
+                            <td><a href="{% url 'bjmpadmin-profile' info.id %}" target="_blank">{{info.email}}</a></td>
                         </tr>
-                    {% endfor %} 
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

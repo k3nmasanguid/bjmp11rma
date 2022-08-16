@@ -53,23 +53,25 @@ def update_status(request):
 ############################################################### LOADED DATA IN HOME #########################################################################
 @login_required()
 def home(request):
-
-    update_status(request) 
-    user = User.objects.get(id=request.user.id)
-    
-    q = get_or_none(Quota,status='Open')
-    
-    if q is None:
-        update_status(request)
+    if request.user.is_staff:
+        return redirect('bjmpadmin')
     else:
-        u = get_or_none(User,id=request.user.id, batch=q)
-        if u and user.status != "Pending":
-            user.status = "Complete"
-            user.save()
-        else:
+        update_status(request) 
+        user = User.objects.get(id=request.user.id)
+        
+        q = get_or_none(Quota,status='Open')
+        
+        if q is None:
             update_status(request)
-    
-    return render(request, 'home.html',{'user':user}) 
+        else:
+            u = get_or_none(User,id=request.user.id, batch=q)
+            if u and user.status != "Pending":
+                user.status = "Complete"
+                user.save()
+            else:
+                update_status(request)
+        
+        return render(request, 'home.html',{'user':user}) 
 
 
 @login_required()

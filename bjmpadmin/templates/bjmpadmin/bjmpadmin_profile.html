@@ -1,0 +1,636 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% include 'includes/main_header.html' %}
+<div class="container-fluid mb-5">
+    <main class="ms-sm-auto px-md-4 mt-4">
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button text-white bg-primary" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                        PROFILE
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        <h5 class="fw-bold">Personal Information</h5>
+                        <div class="row">
+                            <div class="col-6">
+                                <table class="table">
+                                    <thead>
+                                        <tr >
+                                          <th scope="col" width="30%"></th>
+                                          <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Last Name:</th>
+                                            <td class="fw-bold">{{obj_pinfo.last_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">First Name:</th>
+                                            <td class="fw-bold">{{obj_pinfo.first_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Middle Name:</th>
+                                            <td class="fw-bold">{{obj_pinfo.middle_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Suffix:</th>
+                                            <td class="fw-bold">{{obj_pinfo.suffix}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Gender:</th>
+                                            <td class="fw-bold">{{obj_pinfo.gender}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Civil Status:</th>
+                                            <td class="fw-bold">{{obj_pinfo.civil_status}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Date of Birth:</th>
+                                            <td class="fw-bold">{{obj_pinfo.date_of_birth}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Place of Birth:</th>
+                                            <td class="fw-bold">{{obj_pinfo.place_of_birth}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Cellphone Number:</th>
+                                            <td class="fw-bold">{{obj_pinfo.cellphone_no}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table">
+                                    <thead>
+                                        <tr >
+                                          <th scope="col" class="border border-0" width="30%"></th>
+                                          <th scope="col" class="border border-0"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Height (m):</th>
+                                            <td class="fw-bold">{{obj_pinfo.height}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Weight (kg):</th>
+                                            <td class="fw-bold">{{obj_pinfo.weight}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Blood Type:</th>
+                                            <td class="fw-bold">{{obj_pinfo.blood_type}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">TIN:</th>
+                                            <td class="fw-bold">{{obj_pinfo.tin}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Pag-ibig No.:</th>
+                                            <td class="fw-bold">{{obj_pinfo.pag_ibig}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Philhealth No.:</th>
+                                            <td class="fw-bold">{{obj_pinfo.philhealth}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">SSS No.:</th>
+                                            <td class="fw-bold">{{obj_pinfo.sss}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">GSIS No.:</th>
+                                            <td class="fw-bold">{{obj_pinfo.gsis}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mt-4">Present Address</h5>
+                        <div class="row">
+                            <div class="col-4">
+                                <table class="table">
+                                    <thead>
+                                        <tr >
+                                          <th scope="col" class="border border-0" width="30%"></th>
+                                          <th scope="col" class="border border-0"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Region:</th>
+                                            <td class="fw-bold">{{obj_present_address.region}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Zip Code:</th>
+                                            <td class="fw-bold">{{obj_present_address.zip_code}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Province:</th>
+                                            <td class="fw-bold">{{obj_present_address.province}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-8">
+                                <table class="table">
+                                    <thead>
+                                        <tr >
+                                          <th scope="col" class="border border-0" width="30%"></th>
+                                          <th scope="col" class="border border-0"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">City/Municipality:</th>
+                                            <td class="fw-bold">{{obj_present_address.city_municipality}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Barangay:</th>
+                                            <td class="fw-bold">{{obj_present_address.barangay}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">House/Lot/Unit No./St./Subd.:</th>
+                                            <td class="fw-bold">{{obj_present_address.house}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mt-4">Permanent Address</h5>
+                        <div class="row">
+                            <div class="col-4">
+                                <table class="table">
+                                    <thead>
+                                        <tr >
+                                          <th width="30%"></th>
+                                          <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Region:</th>
+                                            <td class="fw-bold">{{obj_permanent_address.region}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Zip Code:</th>
+                                            <td class="fw-bold">{{obj_permanent_address.zip_code}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Province:</th>
+                                            <td class="fw-bold">{{obj_permanent_address.province}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-8">
+                                <table class="table">
+                                    <thead>
+                                        <tr >
+                                          <th scope="col" class="border border-0" width="30%"></th>
+                                          <th scope="col" class="border border-0"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">City/Municipality:</th>
+                                            <td class="fw-bold">{{obj_permanent_address.city_municipality}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Barangay:</th>
+                                            <td class="fw-bold">{{obj_permanent_address.barangay}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">House/Lot/Unit No./St./Subd.:</th>
+                                            <td class="fw-bold">{{obj_permanent_address.house}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header fw-bold" id="panelsStayOpen-headingTwo">
+                    <button class="accordion-button collapsed text-white bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                        BACKGROUND
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accordion-body">
+                        <h5 class="fw-bold">Spouse</h5>
+                        <div class="row">
+                            <div class="col-6">
+                                <table class="table">
+                                    <thead>
+                                        <tr >
+                                          <th scope="col" class="border border-0" width="30%"></th>
+                                          <th scope="col" class="border border-0"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Living Status:</th>
+                                            <td class="fw-bold">{{obj_spouse.living_status}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Last Name (Maiden):</th>
+                                            <td class="fw-bold">{{obj_spouse.last_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">First Name:</th>
+                                            <td class="fw-bold">{{obj_spouse.first_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Middle Name:</th>
+                                            <td class="fw-bold">{{obj_spouse.middle_name}}</td>
+                                        </tr>
+                                        
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table">
+                                    <thead>
+                                        <tr >
+                                          <th scope="col" class="border border-0" width="30%"></th>
+                                          <th scope="col" class="border border-0"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Suffix:</th>
+                                            <td class="fw-bold">{{obj_spouse.suffix}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="fw-normal">Gender:</th>
+                                            <td class="fw-bold">{{obj_spouse.gender}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mt-4">Children</h5>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Living Status</th>
+                                            <th scope="col">Last Name</th>
+                                            <th scope="col">First Name</th>
+                                            <th scope="col">Middle Name</th>
+                                            <th scope="col">Suffix</th>
+                                            <th scope="col">Gender</th>
+                                            <th scope="col">Date of Birth</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for children in obj_children %}
+                                            <tr>
+                                                <td>{{children.living_status}}</td>
+                                                <td>{{children.last_name}}</td>
+                                                <td>{{children.first_name}}</td>
+                                                <td>{{children.middle_name}}</td>
+                                                <td>{{children.suffix}}</td>
+                                                <td>{{children.gender}}</td>
+                                                <td>{{children.date_of_birth}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <h5 class="fw-bold">Father</h5>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table">
+                                            <thead>
+                                                <tr >
+                                                  <th scope="col" class="border border-0" width="30%"></th>
+                                                  <th scope="col" class="border border-0"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row" class="fw-normal">Living Status:</th>
+                                                    <td class="fw-bold">{{obj_father.living_status}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row" class="fw-normal">Last Name:</th>
+                                                    <td class="fw-bold">{{obj_father.last_name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row" class="fw-normal">First Name:</th>
+                                                    <td class="fw-bold">{{obj_father.first_name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row" class="fw-normal">Middle Name:</th>
+                                                    <td class="fw-bold">{{obj_father.middle_name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row" class="fw-normal">Suffix:</th>
+                                                    <td class="fw-bold">{{obj_father.suffix}}</td>
+                                                </tr>
+                                               
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="fw-bold">Mother</h5>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table">
+                                            <thead>
+                                                <tr >
+                                                  <th scope="col" class="border border-0" width="30%"></th>
+                                                  <th scope="col" class="border border-0"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row" class="fw-normal">Living Status:</th>
+                                                    <td class="fw-bold">{{obj_mother.living_status}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row" class="fw-normal">Last Name (Maiden):</th>
+                                                    <td class="fw-bold">{{obj_mother.last_name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row" class="fw-normal">First Name:</th>
+                                                    <td class="fw-bold">{{obj_mother.first_name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row" class="fw-normal">Middle Name:</th>
+                                                    <td class="fw-bold">{{obj_mother.middle_name}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mt-4">Sibling</h5>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Living Status</th>
+                                            <th scope="col">Last Name</th>
+                                            <th scope="col">First Name</th>
+                                            <th scope="col">Middle Name</th>
+                                            <th scope="col">Suffix</th>
+                                            <th scope="col">Gender</th>
+                                            <th scope="col">Civil Status</th>
+                        
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for sibling in obj_sibling %}
+                                            <tr>
+                                                <td>{{sibling.living_status}}</td>
+                                                <td>{{sibling.last_name}}</td>
+                                                <td>{{sibling.first_name}}</td>
+                                                <td>{{sibling.middle_name}}</td>
+                                                <td>{{sibling.suffix}}</td>
+                                                <td>{{sibling.gender}}</td>
+                                                <td>{{sibling.civil_status}}</td>
+                                            
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                    <button class="accordion-button collapsed text-white bg-success" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                       EDUCATION
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                    <div class="accordion-body">
+                        <h5 class="fw-bold">Primary Education</h5>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name of School</th>
+                                            <th scope="col">From</th>
+                                            <th scope="col">To</th>
+                                            <th scope="col">Highest level</th>
+                                            <th scope="col">Year Graduated</th>
+                                            <th scope="col">Academic Honors Received</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for primary in obj_primary %}
+                                            <tr>
+                                     
+                                                <td>{{primary.school_name}}</td>
+                                                <td>{{primary.year_from}}</td>
+                                                <td>{{primary.year_to}}</td>
+                                                <td>{{primary.highest_level}}</td>
+                                                <td>{{primary.year_graduated}}</td>
+                                                <td>{{primary.academic_honors}}</td>
+                                               
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mt-4">High School</h5>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name of School</th>
+                                            <th scope="col">From</th>
+                                            <th scope="col">To</th>
+                                            <th scope="col">Highest level</th>
+                                            <th scope="col">Year Graduated</th>
+                                            <th scope="col">Academic Honors Received</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for high_school in obj_high_school %}
+                                            <tr>
+                                     
+                                                <td>{{high_school.school_name}}</td>
+                                                <td>{{high_school.year_from}}</td>
+                                                <td>{{high_school.year_to}}</td>
+                                                <td>{{high_school.highest_level}}</td>
+                                                <td>{{high_school.year_graduated}}</td>
+                                                <td>{{high_school.academic_honors}}</td>
+                                                
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mt-4">Senior High School</h5>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name of School</th>
+                                            <th scope="col">From</th>
+                                            <th scope="col">To</th>
+                                            <th scope="col">Highest level</th>
+                                            <th scope="col">Year Graduated</th>
+                                            <th scope="col">Academic Honors Received</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for senior_high in obj_senior_high %}
+                                            <tr>
+                                     
+                                                <td>{{senior_high.school_name}}</td>
+                                                <td>{{senior_high.year_from}}</td>
+                                                <td>{{senior_high.year_to}}</td>
+                                                <td>{{senior_high.highest_level}}</td>
+                                                <td>{{senior_high.year_graduated}}</td>
+                                                <td>{{senior_high.academic_honors}}</td>
+                                                
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mt-4">College</h5>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name of School</th>
+                                            <th scope="col">Course</th>
+                                            <th scope="col">From</th>
+                                            <th scope="col">To</th>
+                                            <th scope="col">Units Earned</th>
+                                            <th scope="col">Year Graduated</th>
+                                            <th scope="col">Academic Honors Received</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for college in obj_college %}
+                                            <tr>
+                                                <td>{{college.school_name}}</td>
+                                                <td>{{college.course}}</td>
+                                                <td>{{college.year_from}}</td>
+                                                <td>{{college.year_to}}</td>
+                                                <td>{{college.units_earned}}</td>
+                                                <td>{{college.year_graduated}}</td>
+                                                <td>{{college.academic_honors}}</td>
+                                               
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mt-4">Graduate Studies</h5>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name of School</th>
+                                            <th scope="col">Degree</th>
+                                            <th scope="col">From</th>
+                                            <th scope="col">To</th>
+                                            <th scope="col">Units Earned</th>
+                                            <th scope="col">Year Graduated</th>
+                                            <th scope="col">Academic Honors Received</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for graduate in obj_graduate %}
+                                            <tr>
+                                                <td>{{graduate.school_name}}</td>
+                                                <td>{{graduate.degree}}</td>
+                                                <td>{{graduate.year_from}}</td>
+                                                <td>{{graduate.year_to}}</td>
+                                                <td>{{graduate.units_earned}}</td>
+                                                <td>{{graduate.year_graduated}}</td>
+                                                <td>{{graduate.academic_honors}}</td>
+                                                
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                    <button class="accordion-button collapsed text-dark bg-warning" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                       ELIGIBILITY
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+                    <div class="accordion-body">
+                        <h5 class="fw-bold">Eligibility</h5>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Eligibility</th>
+                                            <th scope="col">Rating</th>
+                                            <th scope="col">Date of Exam</th>
+                                            <th scope="col">Place of Exam</th>
+                                            <th scope="col">License Number</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for eligibility in obj_eligibility %}
+                                            <tr>
+                                                <td>{{eligibility.eligibility}}</td>
+                                                <td>{{eligibility.rating}}</td>
+                                                <td>{{eligibility.date_of_exam}}</td>
+                                                <td>{{eligibility.place_of_exam}}</td>
+                                                <td>{{eligibility.license}}</td>
+                                                
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+</div>
+{% endblock content %}
+
