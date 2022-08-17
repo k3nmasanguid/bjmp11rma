@@ -254,7 +254,7 @@ class SeniorHigh(models.Model):
         return self.user.email
 
 class College(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='college_rel')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     school_name = Uppercase('Name of School', max_length=200)
     course = Uppercase('Course/Degree', max_length=200)
     year_from = Uppercase('From',max_length=4, choices=YEAR_CHOICES)

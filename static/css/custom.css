@@ -101,7 +101,6 @@
     box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
   }
 
-  
 
 
 table.dataTable thead .sorting:after,
@@ -116,3 +115,5 @@ table.dataTable thead .sorting_desc_disabled:after,
 table.dataTable thead .sorting_desc_disabled:before {
   bottom: .5em;
 }
+
+

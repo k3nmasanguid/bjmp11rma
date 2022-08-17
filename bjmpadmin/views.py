@@ -1,6 +1,7 @@
 
 from ast import Await
 from ctypes import Union
+from tkinter import X
 from django.shortcuts import render, redirect, HttpResponse
 from authentication.models import User
 from rma.models import Quota,PersonalInfo, PresentAddress, PermanentAddress, Spouse, Children, Father, Mother, Sibling, Primary, HighSchool,SeniorHigh, College, Graduate, Eligibility
@@ -18,6 +19,7 @@ def bjmpadmin(request):
     
 
 def bjmpadmin_search(request):
+    
     if request.user.is_staff:
         batches = Quota.objects.all().order_by('-id')
         if request.method == 'GET':
@@ -28,20 +30,19 @@ def bjmpadmin_search(request):
                 queryset1  = User.objects.prefetch_related('batch').filter(batch__batch=selected_batch)
                 infos = User.objects.filter(id__in=queryset1).select_related('personalinfo')
                 college = College.objects.filter(Q(user_id__in=queryset1) & ~Q(year_graduated='N/A'))
+                eligibility = Eligibility.objects.filter(user_id__in=queryset1)
                 total_applicant = infos.count()
                 male_applicant = infos.filter(personalinfo__gender__iexact='MALE').count()
                 female_applicant = infos.filter(personalinfo__gender__iexact='FEMALE').count()
-                crim_course = College.objects.filter(Q(user_id__in=queryset1) & ~Q(year_graduated__iexact="N/A") & Q(course__icontains="criminology")).count()
-                
                 context = {
                     'college':college,
+                    'eligibility':eligibility,
                     'selected_batch':selected_batch,
                     'batches':batches,
                     'infos':infos,
                     'total_applicant':total_applicant,
                     'male_applicant':male_applicant,
                     'female_applicant':female_applicant,
-                    'crim_course':crim_course,
                 }
         
                 return render(request, 'bjmpadmin/bjmpadmin.html',context)
