@@ -4,6 +4,7 @@ from ctypes import Union
 from django.shortcuts import render, redirect, HttpResponse
 from authentication.models import User
 from rma.models import Quota,PersonalInfo, PresentAddress, PermanentAddress, Spouse, Children, Father, Mother, Sibling, Primary, HighSchool,SeniorHigh, College, Graduate, Eligibility
+from upload_docs.models import *
 from django.db.models import Q
 from rma.views import get_or_none
 
@@ -62,6 +63,26 @@ def bjmpadmin_profile(request, id):
     obj_college = College.objects.filter(user_id=id)
     obj_graduate = Graduate.objects.filter(user_id=id)
     obj_eligibility = Eligibility.objects.filter(user_id=id)
+    
+
+    obj_pds = get_or_none(PDS, user_id=id)
+    obj_tor = get_or_none(TOR, user_id=id)
+    obj_cav = get_or_none(CAV, user_id=id)
+    obj_diploma = get_or_none(Diploma, user_id=id)
+    obj_birthcert = get_or_none(BirthCert, user_id=id)
+    obj_eligibilitydoc = get_or_none(EligibilityDoc, user_id=id)
+    obj_marriagecert = get_or_none(MarriageCert, user_id=id)
+    obj_sketch = get_or_none(Sketch, user_id=id)
+    obj_waiver = get_or_none(Waiver, user_id=id)
+
+    obj_barangay = get_or_none(Barangay, user_id=id)
+    obj_nbi = get_or_none(NBI, user_id=id)
+    obj_police = get_or_none(Police, user_id=id)
+    obj_fiscal = get_or_none(Fiscal, user_id=id)
+    obj_mtc = get_or_none(MTC, user_id=id)
+    obj_rtc = get_or_none(RTC, user_id=id)
+    obj_pnpdi = get_or_none(PNPDI, user_id=id)
+   
     context = {
         'obj_pinfo':obj_pinfo,
         'obj_present_address':obj_present_address,
@@ -77,5 +98,23 @@ def bjmpadmin_profile(request, id):
         'obj_college':obj_college,
         'obj_graduate':obj_graduate,
         'obj_eligibility':obj_eligibility,
+        
+
+        'obj_pds':obj_pds,
+        'obj_tor':obj_tor,
+        'obj_cav':obj_cav,
+        'obj_diploma':obj_diploma,
+        'obj_birthcert':obj_birthcert,
+        'obj_eligibilitydoc':obj_eligibilitydoc,
+        'obj_marriagecert':obj_marriagecert,
+        'obj_sketch':obj_sketch,
+        'obj_waiver':obj_waiver,
+        'obj_barangay':obj_barangay,
+        'obj_nbi':obj_nbi,
+        'obj_police':obj_police,
+        'obj_fiscal':obj_fiscal,
+        'obj_mtc':obj_mtc,
+        'obj_rtc':obj_rtc,
+        'obj_pnpdi':obj_pnpdi,
     }
     return render(request,'bjmpadmin/bjmpadmin_profile.html',context)
