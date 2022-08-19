@@ -29,13 +29,15 @@ def bjmpadmin_search(request):
             else:
                 queryset1  = User.objects.prefetch_related('batch').filter(batch__batch=selected_batch)
                 infos = User.objects.filter(id__in=queryset1).select_related('personalinfo')
-                college = College.objects.filter(Q(user_id__in=queryset1) & ~Q(year_graduated='N/A'))
+                courses = College.objects.filter(Q(user_id__in=queryset1) & ~Q(year_graduated='N/A'))
                 eligibility = Eligibility.objects.filter(user_id__in=queryset1)
                 total_applicant = infos.count()
                 male_applicant = infos.filter(personalinfo__gender__iexact='MALE').count()
                 female_applicant = infos.filter(personalinfo__gender__iexact='FEMALE').count()
+                crim_course = courses.filter(course__icontains='Criminology').count()
+                other_course = courses.exclude(course__icontains='Criminology').count()
                 context = {
-                    'college':college,
+                    'courses':courses,
                     'eligibility':eligibility,
                     'selected_batch':selected_batch,
                     'batches':batches,
@@ -43,6 +45,8 @@ def bjmpadmin_search(request):
                     'total_applicant':total_applicant,
                     'male_applicant':male_applicant,
                     'female_applicant':female_applicant,
+                    'crim_course':crim_course,
+                    'other_course':other_course,
                 }
         
                 return render(request, 'bjmpadmin/bjmpadmin.html',context)

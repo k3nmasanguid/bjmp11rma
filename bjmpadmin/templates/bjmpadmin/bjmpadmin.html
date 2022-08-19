@@ -23,8 +23,8 @@
         </form>
         <h1 class="fw-bold">{{selected_batch}}</h1>
         <div class="row">
-            <div class="col-sm-4 ">
-                <div class="card text-bg-success shadow rounded">
+            <div class="col-sm-2">
+                <div class="card text-bg-secondary shadow rounded">
                     <div class="card-body text-center">
                         <h1 class="card-title fw-bold">{{total_applicant}}</h1>
                         <p class="card-text">Total</p>
@@ -32,19 +32,35 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="card text-bg-primary">
+            <div class="col-sm-2">
+                <div class="card text-bg-secondary">
                     <div class="card-body text-center shadow rounded">
                         <h1 class="card-title fw-bold">{{male_applicant}}</h1>
                         <p class="card-text">Male</p>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="card text-bg-warning">
+            <div class="col-sm-2">
+                <div class="card text-bg-secondary">
                     <div class="card-body text-center shadow rounded">
                         <h1 class="card-title fw-bold">{{female_applicant}}</h1>
                         <p class="card-text">Female</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="card text-bg-secondary">
+                    <div class="card-body text-center shadow rounded">
+                        <h1 class="card-title fw-bold">{{crim_course}}</h1>
+                        <p class="card-text">Criminology Graduate</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="card text-bg-secondary">
+                    <div class="card-body text-center shadow rounded">
+                        <h1 class="card-title fw-bold">{{other_course}}</h1>
+                        <p class="card-text">Other Course</p>
                     </div>
                 </div>
             </div>
@@ -56,50 +72,48 @@
                     <thead>
                         <tr>
                             
-                            <th>Last Name</th>
-                            <th>First Name</th>
-                            <th>Middle Name</th>
-                            <th>Suffix</th>
-                            <th>Gender</th>
-                            <th>Civil Status</th>
-                            <th>Date of Birth</th>
-                            <th>Contact</th>
-                            <th>Course</th>
-                            <th>Eligibility</th>
-                            <th>Email</th>
+                            <th><small>Last Name</small></th>
+                            <th><small>First Name</small></th>
+                            <th><small>Middle Name</small></th>
+                            <th><small>Suffix</small></th>
+                            <th><small>Gender</small></th>
+                            <th><small>Civil Status</small></th>
+                            <th><small>Date of Birth</small></th>
+                            <th><small>Contact</small></th>
+                            <th><small>Course</small></th>
+                            <th><small>Eligibility</small></th>
+                            <th><small>Email</small></th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for info in infos %}   
                             <tr >
-                                <td>{{info.personalinfo.last_name}}</td>
-                                <td>{{info.personalinfo.first_name}}</td>
-                                <td>{{info.personalinfo.middle_name}}</td>
-                                <td>{{info.personalinfo.suffix}}</td>
-                                <td>{{info.personalinfo.gender}}</td>
-                                <td>{{info.personalinfo.civil_status}}</td>
-                                <td>{{info.personalinfo.date_of_birth}}</td>
-                                <td>{{info.personalinfo.cellphone_no}}</td>
+                                <td><small>{{info.personalinfo.last_name}}</small></td>
+                                <td><small>{{info.personalinfo.first_name}}</small></td>
+                                <td><small>{{info.personalinfo.middle_name}}</small></td>
+                                <td><small>{{info.personalinfo.suffix}}</small></td>
+                                <td><small>{{info.personalinfo.gender}}</small></td>
+                                <td><small>{{info.personalinfo.civil_status}}</small></td>
+                                <td><small>{{info.personalinfo.date_of_birth}}</small></td>
+                                <td><small>{{info.personalinfo.cellphone_no}}</small></td>
                                 
                                 <td>
-                                    {% for col in college %}
-                                        {% if col.user.id == info.id %}
-                                    
-                                            {{col.course}}
-                                    
+                                    {% for course in courses %}
+                                        {% if course.user.id == info.id %}
+                                        <small>{{course.course}}</small>
                                         {% endif %}
                                     {% endfor %}
                                 </td>
                                 <td>
                                     {% for el in eligibility %}
                                         {% if el.user.id == info.id %}
-                                    
-                                            {{el.eligibility}}
+
+                                        <small>{{el.eligibility}}</small>
                                     
                                         {% endif %}
                                     {% endfor %}
                                 </td>
-                                <td><a href="{% url 'bjmpadmin-profile' info.id %}" target="_blank">{{info.email}}</a></td>
+                                <td><small><a href="{% url 'bjmpadmin-profile' info.id %}" target="_blank">{{info.email}}</small></a></td>
                             </tr>
                         {% endfor %}
                     </tbody>

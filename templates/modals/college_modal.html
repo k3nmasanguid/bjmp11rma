@@ -47,7 +47,7 @@
                     <div class="invalid-feedback">{{ form.units_earned.errors|first }}</div>
                 </div>
                 <div class="col-sm-6">
-                    <label for="{{ form.year_graduated.id_for_label }}" class="form-label">Year Graduated*</label>
+                    <label for="{{ form.year_graduated.id_for_label }}" class="form-label">Year Graduated* <small><em>(select 'N/A' if not graduated)</em></small></label>
                     {% render_field form.year_graduated type="text" class="form-select" %}
                     <div class="invalid-feedback">{{ form.year_graduated.errors|first }}</div>
                 </div>

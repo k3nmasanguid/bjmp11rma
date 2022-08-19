@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="row mb-3 align-items-center">
-                <label for="{{ form.last_name.id_for_label }}" class="col-sm-2 col-form-label"><small>Last name (Maiden)*</small></label>
+                <label for="{{ form.last_name.id_for_label }}" class="col-sm-2 col-form-label">Last name*</label>
                 <div class="col-sm-10">
                     {% render_field form.last_name type="text" class="form-control text-uppercase" placeholder="" %}
                     <div class="invalid-feedback">{{ form.last_name.errors|first }}</div>

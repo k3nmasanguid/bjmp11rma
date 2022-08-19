@@ -63,6 +63,37 @@ QUOTA_CHOICES = (
         ('Close', 'Close'),
 )
 
+ELIGIBILITY_LIST = (
+    ('CSC PROFESSIONAL','CSC PROFESSIONAL'),
+    ('(P.D.) 907','(P.D.) 907'),
+    ('(RA1080) - ACCOUNTACY','(RA1080) - ACCOUNTACY'),
+    ('(RA1080) - AERONAUTICAL ENGINEERING','(RA1080) - AERONAUTICAL ENGINEERING'),
+    ('(RA1080) - AGRICULTURAL AND BIOSYSTEMS ENGINEERING','(RA1080) - AGRICULTURAL AND BIOSYSTEMS ENGINEERING'),
+    ('(RA1080) - AGRICULTURE','(RA1080) - AGRICULTURE'),
+    ('(RA1080) - ARCHITECTURE','(RA1080) - ARCHITECTURE'),
+    ('(RA1080) - CHEMICAL ENGINEERING','(RA1080) - CHEMICAL ENGINEERING'),
+    ('(RA1080) - CIVIL ENGINEERING','(RA1080) - CIVIL ENGINEERING'),
+    ('(RA1080) - CRIMINOLOGY','(RA1080) - CRIMINOLOGY'),
+    ('(RA1080) - CUSTOMS BROKERS','(RA1080) - CUSTOMS BROKERS'),
+    ('(RA1080) - DENTISTRY','(RA1080) - DENTISTRY'),
+    ('(RA1080) - ELECTRICAL ENGINEERING','(RA1080) - ELECTRICAL ENGINEERING'),
+    ('(RA1080) - ELECTRONICS ENGINEERING','(RA1080) - ELECTRONICS ENGINEERING'),
+    ('(RA1080) - ENVIRONMENTAL PLANNING','(RA1080) - ENVIRONMENTAL PLANNING'),
+    ('(RA1080) - FISHERIES TECHNOLOGY','(RA1080) - FISHERIES TECHNOLOGY'),
+    ('(RA1080) - FOOD TECHNOLOGY','(RA1080) - FOOD TECHNOLOGY'),
+    ('(RA1080) - FORESTERS','(RA1080) - FORESTERS'),
+    ('(RA1080) - GEODETIC ENGINEERING','(RA1080) - GEODETIC ENGINEERING'),
+    ('(RA1080) - MECHANICAL ENGINEERING','(RA1080) - MECHANICAL ENGINEERING'),
+    ('(RA1080) - MEDICAL TECHNOLOGY','(RA1080) - MEDICAL TECHNOLOGY'),
+    ('(RA1080) - MEDICINE','(RA1080) - MEDICINE'),
+    ('(RA1080) - NURSING','(RA1080) - NURSING'),
+    ('(RA1080) - PHARMACY','(RA1080) - PHARMACY'),
+    ('(RA1080) - PROFESSIONAL TEACHERS','(RA1080) - PROFESSIONAL TEACHERS'),
+    ('(RA1080) - PSYCHOLOGY','(RA1080) - PSYCHOLOGY'),
+    ('(RA1080) - RADIOLOGIC TECHNOLOGY','(RA1080) - RADIOLOGIC TECHNOLOGY'),
+    ('(RA1080) - SOCIAL WORKERS','(RA1080) - SOCIAL WORKERS'),
+)
+
 YEAR_CHOICES = [('N/A','N/A')]
 for r in range(1990, (datetime.datetime.now().year+1)):
     YEAR_CHOICES.append((str(r),str(r)))
@@ -288,8 +319,8 @@ class Graduate(models.Model):
 
 class Eligibility(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    eligibility = Uppercase('Eligibility', max_length=200)
-    rating = models.DecimalField('Units Earned', max_digits=4, decimal_places=2)
+    eligibility = Uppercase('Eligibility', max_length=200, choices=ELIGIBILITY_LIST)
+    rating = models.DecimalField('Rating', max_digits=4, decimal_places=2)
     date_of_exam = models.DateField('Date of Examination/Conferment')
     place_of_exam = Uppercase('Place of Examination/Conferment', max_length=200, blank=True)
     license = Uppercase('License Number', max_length=50, blank=True)

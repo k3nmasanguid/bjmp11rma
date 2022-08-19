@@ -8,6 +8,15 @@ class PersonalInfoAdmin(admin.ModelAdmin):
     search_fields = ['user','last_name','first_name','middle_name']
     ordering = ['last_name']
     filter_horizontal = ()
+
+class CollegeAdmin(admin.ModelAdmin):
+    model = College
+    list_display = ['user','school_name','course','year_from','year_to','units_earned','year_graduated','academic_honors']
+
+class EligibilityAdmin(admin.ModelAdmin):
+    model = Eligibility
+    list_display = ['user','eligibility','rating','date_of_exam','place_of_exam','license']
+
 admin.site.register(PersonalInfo,PersonalInfoAdmin)
 admin.site.register(PresentAddress)
 admin.site.register(PermanentAddress)
@@ -19,9 +28,9 @@ admin.site.register(Children)
 admin.site.register(Primary)
 admin.site.register(HighSchool)
 admin.site.register(SeniorHigh)
-admin.site.register(College)
+admin.site.register(College,CollegeAdmin)
 admin.site.register(Graduate)
-admin.site.register(Eligibility)
+admin.site.register(Eligibility,EligibilityAdmin)
 
 class QuotaAdmin(admin.ModelAdmin):
     model = Quota
