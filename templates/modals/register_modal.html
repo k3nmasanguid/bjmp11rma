@@ -23,9 +23,36 @@
                 {% render_field form.password2 type="password" class="form-control" placeholder="Confirm password" %}
                 <div class="invalid-feedback">{{ form.password2.errors|first }}</div>
             </div>
-                <button class="w-100 mb-2 btn btn-lg btn-success fw-bold" type="submit">Sign up</button>
+                <button id="btn-signup" class="w-100 mb-2 btn btn-lg btn-success fw-bold" type="submit">Sign up</button>
                 <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
                 <hr class="my-4">
         </div>
     </form>
+
+    <script>
+        jQuery(function($) {
+            $(document).ajaxSend(function() {
+                $("spinner-border").fadeIn(500);
+                var loading = '<div class="spinner-border"></div>Please wait..'
+                $("#btn-signup").html(loading);
+            });
+    
+            $("#btn-signup").click(function(){
+                $.ajax({
+                    type: 'GET',
+                    success:function(data) {
+                        console.log(data);
+    
+                    }
+                }).done(function() {
+                    setTimeout(function() {
+                        $(".spinner-border").fadeOut(500);
+                    }, 700);
+                });
+            });
+        });
+    </script>
 {% endwith %}
+
+
+

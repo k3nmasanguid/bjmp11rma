@@ -117,3 +117,7 @@ table.dataTable thead .sorting_desc_disabled:before {
 }
 
 
+.spinner-border{
+  height: 10px;
+  width: 10px;
+}
